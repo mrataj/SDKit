@@ -103,9 +103,10 @@
 
 - (void)touchEndedAtLocation:(CGPoint)location
 {
-    NSArray *touchedControls = [self getControlsAtLocation:location];
-    for (SDControl *control in touchedControls)
+    for (SDControl *control in highlightedSubcontrols)
         [control touchEndedAtLocation:location];
+    
+    [highlightedSubcontrols removeAllObjects];
 }
 
 - (void)touchMovedAtLocation:(CGPoint)location
