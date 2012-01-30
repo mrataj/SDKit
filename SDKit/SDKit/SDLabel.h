@@ -24,6 +24,4 @@
 @property (nonatomic, retain) UIColor *highlightedTextColor;
 @property (nonatomic, retain) SDEvent *event;
 
-- (CGSize)sizeForPoint:(CGPoint)point;
-
 @end

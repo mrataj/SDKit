@@ -34,7 +34,32 @@ CGPoint CGEndpointFromCGRect(CGRect rect)
     return CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
 }
 
+CGPoint CGPointRound(CGPoint point)
+{
+    return CGPointMake(floor(point.x), floor(point.y));
+}
+
 CGPoint CGPointMakeAndRound(CGFloat x, CGFloat y)
 {
-    return CGPointMake(floor(x), floor(y));
+    return CGPointRound(CGPointMake(x, y));
+}
+
+CGRect CGRectMakeFromOriginAndSize(CGPoint origin, CGSize size)
+{
+    return CGRectMake(origin.x, origin.y, size.width, size.height);
+}
+
+CGPoint CGSubstractTwoPoints(CGPoint point1, CGPoint point2)
+{
+    return CGPointMake(point1.x - point2.x, point1.y - point2.y);
+}
+
+CGPoint CGAggregateTwoPoints(CGPoint point1, CGPoint point2)
+{
+    return CGPointMake(point1.x + point2.x, point1.y + point2.y);
+}
+
+CGSize CGSizeMakeFromPoint(CGPoint point)
+{
+    return CGSizeMake(point.x, point.y);
 }

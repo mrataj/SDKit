@@ -134,7 +134,7 @@
     return NO;
 }
 
-- (CGSize)drawAtPoint:(CGPoint)point
+- (CGPoint)getEndpointForDrawingAtPoint:(CGPoint)point doDrawing:(BOOL)drawing
 {
     CGPoint coordinate = point;
     CGPoint maxEndpoint = CGPointZero;
@@ -163,16 +163,16 @@
             if (exceed)
                 break;            
         }
-                
+        
         // If possible, append space at the end.
         if ([self canInsertSpace:i afterLabel:label])
             [label setText:[NSString stringWithFormat:@"%@ ", label.text]];
         
-        // Draw current control.
-        [label drawAtPoint:coordinate];
+        // If not drawing, just get size of this label, otherwise do drawing, too.
+        CGSize size = (!drawing) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
         
         // Resize sentence control if needed.
-        CGPoint endpoint = CGEndpointFromCGRect(label.frame);
+        CGPoint endpoint = CGEndpointFromCGRect(CGRectMakeFromOriginAndSize(coordinate, size));
         if (endpoint.x > maxEndpoint.x)
             maxEndpoint = CGPointMake(endpoint.x, maxEndpoint.x);
         else if (endpoint.y > maxEndpoint.y)
@@ -180,11 +180,23 @@
         
         // Set coordinate for next control.
         coordinate = (newLine)
-            ? CGPointMakeAndRound(point.x, coordinate.y + [label.font lineHeight])
-            : CGPointMake(endpoint.x, coordinate.y);
+        ? CGPointMakeAndRound(point.x, coordinate.y + [label.font lineHeight])
+        : CGPointMake(endpoint.x, coordinate.y);
     }
     
-    return [self createdAtPoint:point withSize:CGSizeMake(maxEndpoint.x - point.x, maxEndpoint.y - point.y)];
+    return CGSubstractTwoPoints(maxEndpoint, point);
+}
+
+- (CGSize)drawAtPoint:(CGPoint)point
+{
+    CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:YES];    
+    return [self createdAtPoint:point withSize:CGSizeMakeFromPoint(endpoint)];
+}
+
+- (CGSize)sizeForPoint:(CGPoint)point
+{
+    CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:NO];
+    return CGSizeMakeFromPoint(endpoint);
 }
 
 - (BOOL)canInsertSpace:(NSInteger)elementIndex afterLabel:(SDLabel *)label

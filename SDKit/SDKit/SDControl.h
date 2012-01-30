@@ -18,5 +18,6 @@
 @property (nonatomic, assign) BOOL highlighted;
 
 - (CGSize)drawAtPoint:(CGPoint)point;
+- (CGSize)sizeForPoint:(CGPoint)point;
 
 @end

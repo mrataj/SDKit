@@ -32,6 +32,11 @@
     return CGSizeZero;
 }
 
+- (CGSize)sizeForPoint:(CGPoint)point
+{
+    return CGSizeZero;
+}
+
 - (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size
 {
     _frame = CGRectMake(point.x, point.y, size.width, size.height);
