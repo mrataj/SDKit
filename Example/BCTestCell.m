@@ -25,7 +25,7 @@
         [_placeholder addSubcontrol:_image];
         
         SDLabel *sender = [[SDLabel alloc] init];
-        [sender setText:@"Miha Rataj"];
+        [sender setText:@"Anne Frank"];
         [sender setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:sender.text]];
         [sender setFont:[UIFont boldSystemFontOfSize:14]];
         [sender setTextColor:[UIColor blueColor]];
@@ -33,7 +33,7 @@
         [sender release];
         
         SDLabel *description = [[SDLabel alloc] init];
-        [description setText:@"je delil povezavo"];
+        [description setText:@"shared link"];
         [description setFont:[UIFont systemFontOfSize:14]];
         [description setTextColor:[UIColor grayColor]];
         [_sentence addSubcontrol:description];
@@ -48,14 +48,14 @@
         [link release];
         
         SDLabel *to = [[SDLabel alloc] init];
-        [to setText:@"na zid osebe"];
+        [to setText:@"to person"];
         [to setFont:[UIFont systemFontOfSize:14]];
         [to setTextColor:[UIColor grayColor]];
         [_sentence addSubcontrol:to];
         [to release];
         
         SDLabel *receiver = [[SDLabel alloc] init];
-        [receiver setText:@"Boštjan Bregar"];
+        [receiver setText:@"Johnny English"];
         [receiver setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:receiver.text]];
         [receiver setFont:[UIFont boldSystemFontOfSize:14]];
         [receiver setTextColor:[UIColor blueColor]];
