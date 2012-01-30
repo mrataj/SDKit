@@ -181,7 +181,7 @@
         // Set coordinate for next control.
         coordinate = (newLine)
         ? CGPointMakeAndRound(point.x, coordinate.y + [label.font lineHeight])
-        : CGPointMake(endpoint.x, coordinate.y);
+        : CGPointMakeAndRound(endpoint.x, coordinate.y);
     }
     
     return CGSubstractTwoPoints(maxEndpoint, point);
