@@ -46,10 +46,10 @@
 - (void)setHighlightEffect:(NSNumber *)highlight
 {
     _highlighted = [highlight boolValue];
-    for (SDControl *sibling in siblingControls)
-        [sibling setHighlighted:[highlight boolValue]];
+    for (SDControl *item in _relatedItems)
+        [item setHighlighted:[highlight boolValue]];
     
-    [parent setNeedsDisplay];
+    [_parent setNeedsDisplay];
 }
 
 - (void)touchBeganAtLocation:(CGPoint)location

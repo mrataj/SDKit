@@ -57,8 +57,8 @@
             [nextLabel setEvent:label.event];
             [nextLabel setTextColor:label.textColor];
             [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-            [nextLabel addSibling:label];
-            [subcontrols insertObject:nextLabel atIndex:[subcontrols indexOfObject:label] + 1];
+            [nextLabel addRelatedItem:label];
+            [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
             [nextLabel release];
             
             return YES;
@@ -100,8 +100,8 @@
     [nextLabel setEvent:label.event];
     [nextLabel setTextColor:label.textColor];
     [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-    [nextLabel addSibling:label];
-    [subcontrols insertObject:nextLabel atIndex:[subcontrols indexOfObject:label] + 1];
+    [nextLabel addRelatedItem:label];
+    [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
     [nextLabel release];
     
     return YES;
@@ -139,9 +139,9 @@
     CGPoint coordinate = point;
     CGPoint maxEndpoint = CGPointZero;
     
-    for (NSInteger i = 0; i < [subcontrols count]; i++)
+    for (NSInteger i = 0; i < [_items count]; i++)
     {
-        SDLabel *label = [subcontrols objectAtIndex:i];
+        SDLabel *label = [_items objectAtIndex:i];
         if (![label isKindOfClass:[SDLabel class]])
             continue;
         

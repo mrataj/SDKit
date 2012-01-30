@@ -12,116 +12,115 @@
 
 @implementation SDPlaceholder
 
-@synthesize parent;
+@synthesize parent=_parent, items=_items;
 
 - (id)init
 {
     self = [super init];
     if (self)
     {
-        subcontrols = [[NSMutableArray alloc] init];
-        highlightedSubcontrols = [[NSMutableArray alloc] init];
-        siblingControls = [[NSMutableArray alloc] init];
+        _items = [[NSMutableArray alloc] init];
+        _highlightedItems = [[NSMutableArray alloc] init];
+        _relatedItems = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (id)initWithParent:(UIView *)parentView
+- (id)initWithParent:(UIView *)parent
 {
     self = [self init];
     if (self)
     {
-        parent = [parentView retain];
+        _parent = [parent retain];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [subcontrols release];
-    [highlightedSubcontrols release];
-    [siblingControls release];
-    [parent release];
+    [_items release];
+    [_highlightedItems release];
+    [_relatedItems release];
+    [_parent release];
     [super dealloc];
 }
 
 #pragma mark - Subcontrols and siblings
 
-- (void)addSibling:(SDPlaceholder *)control
+- (void)addRelatedItem:(SDPlaceholder *)item
 {
     // If control already exist in list, do nothing.
-    for (id exiting in siblingControls)
-        if (exiting == control)
+    for (id exiting in _relatedItems)
+        if (exiting == item)
             return;
     
-    // If one control is sibling to another, the other control is also sibling of this control.
-    [siblingControls addObject:control];
-    [control addSibling:self];
+    // If one control is related to another, the other control is also related to this control.
+    [_relatedItems addObject:item];
+    [item addRelatedItem:self];
     
-    // Also, make all other siblings controls sibling of that control and self.
-    for (SDControl *sibling in siblingControls)
-        [sibling addSibling:control];
+    // Also, make all other related controls related to that control.
+    for (SDControl *relatedItem in _relatedItems)
+        [relatedItem addRelatedItem:item];
 }
 
-- (void)addSubcontrol:(SDControl *)control
+- (void)setItems:(NSMutableArray *)items
 {
-    // If control already exist in list, do nothing.
-    for (id exiting in subcontrols)
-        if (exiting == control)
-            return;
+    if (items == _items)
+        return;
     
-    [control setParent:parent];
-    [subcontrols addObject:control];
-}
-
-- (void)removeSubcontrol:(SDControl *)control
-{
-    [subcontrols removeObject:control];
+    [_items release];
+    if (![items isKindOfClass:[NSMutableArray class]])
+        _items  = [[NSMutableArray alloc] initWithArray:items];
+    else
+        _items = [items retain];
+    
+    for (id item in _items)
+        [item setParent:_parent];
 }
 
 #pragma mark - Touches
 
-- (NSArray *)getControlsAtLocation:(CGPoint)location
+- (NSArray *)getItemsAtLocation:(CGPoint)location
 {    
     NSMutableArray *respondingControls = [NSMutableArray array];
-    for (SDControl *control in subcontrols)
-        if (CGRectContainsPoint(control.frame, location))
-            [respondingControls addObject:control];
+    for (SDControl *item in _items)
+        if (CGRectContainsPoint(item.frame, location))
+            [respondingControls addObject:item];
     
     return respondingControls;
 }
 
 - (void)touchBeganAtLocation:(CGPoint)location
 {
-    NSArray *touchedControls = [self getControlsAtLocation:location];
-    for (SDControl *control in touchedControls)
+    NSArray *items = [self getItemsAtLocation:location];
+    for (SDControl *item in items)
     {
-        [control touchBeganAtLocation:location];
-        [highlightedSubcontrols addObject:control];        
+        [item touchBeganAtLocation:location];
+        [_highlightedItems addObject:item];        
     }
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location
 {
-    for (SDControl *control in highlightedSubcontrols)
+    for (SDControl *control in _highlightedItems)
         [control touchEndedAtLocation:location];
     
-    [highlightedSubcontrols removeAllObjects];
+    [_highlightedItems removeAllObjects];
 }
 
 - (void)touchMovedAtLocation:(CGPoint)location
 {
-    NSArray *touchedControls = [self getControlsAtLocation:location];
-    for (SDControl *control in touchedControls)
+    NSArray *items = [self getItemsAtLocation:location];
+    for (SDControl *control in items)
         [control touchMovedAtLocation:location];
 }
 
 - (void)touchCanceledAtLocation:(CGPoint)location
 {
-    for (SDControl *control in highlightedSubcontrols)
+    for (SDControl *control in _highlightedItems)
         [control touchCanceledAtLocation:location];
     
-    [highlightedSubcontrols removeAllObjects];
+    [_highlightedItems removeAllObjects];
 }
 
 #pragma mark - UIView
@@ -129,7 +128,7 @@
 - (CGPoint)getTouchLocation:(NSSet *)touches
 {    
     UITouch *touch = [touches anyObject];
-    return [touch locationInView:parent];    
+    return [touch locationInView:_parent];    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

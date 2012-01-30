@@ -17,55 +17,52 @@
     {
         _sentence = [[SDSentence alloc] init];
         [_sentence setMaxWidth:265];
-        [_placeholder addSubcontrol:_sentence];
         
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
         [_image setImage:[UIImage imageNamed:@"woman.jpg"]];
-        [_placeholder addSubcontrol:_image];
+        
+        [_placeholder setItems:[NSArray arrayWithObjects:_image, _sentence, nil]];
         
         SDLabel *sender = [[SDLabel alloc] init];
         [sender setText:@"Anne Frank"];
         [sender setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:sender.text]];
         [sender setFont:[UIFont boldSystemFontOfSize:15.0]];
         [sender setTextColor:[UIColor blueColor]];
-        [_sentence addSubcontrol:sender];
-        [sender release];
         
         SDLabel *description = [[SDLabel alloc] init];
         [description setText:@"shared link"];
         [description setFont:[UIFont systemFontOfSize:15.0]];
         [description setTextColor:[UIColor grayColor]];
-        [_sentence addSubcontrol:description];
-        [description release];
         
         SDLabel *link = [[SDLabel alloc] init];
         [link setText:@"http://www.youtube.com/watch?v=zBO0rrGHjC8&feature=g-all-u&context=G26a38e4FAAAAAAAADAA"];
         [link setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:link.text]];
         [link setFont:[UIFont boldSystemFontOfSize:15.0]];
         [link setTextColor:[UIColor blueColor]];
-        [_sentence addSubcontrol:link];
-        [link release];
         
         SDLabel *to = [[SDLabel alloc] init];
         [to setText:@"to person"];
         [to setFont:[UIFont systemFontOfSize:15.0]];
         [to setTextColor:[UIColor grayColor]];
-        [_sentence addSubcontrol:to];
-        [to release];
         
         SDLabel *receiver = [[SDLabel alloc] init];
         [receiver setText:@"Johnny English"];
         [receiver setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:receiver.text]];
         [receiver setFont:[UIFont boldSystemFontOfSize:15.0]];
         [receiver setTextColor:[UIColor blueColor]];
-        [_sentence addSubcontrol:receiver];
-        [receiver release];
         
         SDLabel *ending = [[SDLabel alloc] init];
         [ending setText:@"."];
         [ending setFont:[UIFont systemFontOfSize:15.0]];
         [ending setTextColor:[UIColor grayColor]];
-        [_sentence addSubcontrol:ending];
+        
+        [_sentence setItems:[NSArray arrayWithObjects:sender, description, link, to, receiver, ending, nil]];
+        
+        [sender release];
+        [description release];
+        [link release];
+        [to release];
+        [receiver release];
         [ending release];
     }
     return self;

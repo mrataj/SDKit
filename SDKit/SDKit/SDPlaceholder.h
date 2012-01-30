@@ -11,20 +11,19 @@
 @class SDControl;
 
 @interface SDPlaceholder : NSObject {
-    NSMutableArray *subcontrols;
-    NSMutableArray *highlightedSubcontrols;
-    NSMutableArray *siblingControls;
+    NSMutableArray *_items;
+    NSMutableArray *_highlightedItems;
+    NSMutableArray *_relatedItems;
     
-    UIView *parent;
+    UIView *_parent;
 }
 
 @property (nonatomic, retain) UIView *parent;
+@property (nonatomic, retain) NSMutableArray *items;
 
-- (id)initWithParent:(UIView *)parentView;
+- (id)initWithParent:(UIView *)parent;
 
-- (void)addSibling:(SDPlaceholder *)control;
-- (void)addSubcontrol:(SDControl *)control;
-- (void)removeSubcontrol:(SDControl *)control;
+- (void)addRelatedItem:(SDPlaceholder *)item;
 
 - (void)touchBeganAtLocation:(CGPoint)location;
 - (void)touchEndedAtLocation:(CGPoint)location;
