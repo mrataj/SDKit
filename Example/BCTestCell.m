@@ -27,14 +27,14 @@
         SDLabel *sender = [[SDLabel alloc] init];
         [sender setText:@"Anne Frank"];
         [sender setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:sender.text]];
-        [sender setFont:[UIFont boldSystemFontOfSize:14]];
+        [sender setFont:[UIFont boldSystemFontOfSize:15.0]];
         [sender setTextColor:[UIColor blueColor]];
         [_sentence addSubcontrol:sender];
         [sender release];
         
         SDLabel *description = [[SDLabel alloc] init];
         [description setText:@"shared link"];
-        [description setFont:[UIFont systemFontOfSize:14]];
+        [description setFont:[UIFont systemFontOfSize:15.0]];
         [description setTextColor:[UIColor grayColor]];
         [_sentence addSubcontrol:description];
         [description release];
@@ -42,14 +42,14 @@
         SDLabel *link = [[SDLabel alloc] init];
         [link setText:@"http://www.youtube.com/watch?v=zBO0rrGHjC8&feature=g-all-u&context=G26a38e4FAAAAAAAADAA"];
         [link setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:link.text]];
-        [link setFont:[UIFont boldSystemFontOfSize:14]];
+        [link setFont:[UIFont boldSystemFontOfSize:15.0]];
         [link setTextColor:[UIColor blueColor]];
         [_sentence addSubcontrol:link];
         [link release];
         
         SDLabel *to = [[SDLabel alloc] init];
         [to setText:@"to person"];
-        [to setFont:[UIFont systemFontOfSize:14]];
+        [to setFont:[UIFont systemFontOfSize:15.0]];
         [to setTextColor:[UIColor grayColor]];
         [_sentence addSubcontrol:to];
         [to release];
@@ -57,14 +57,14 @@
         SDLabel *receiver = [[SDLabel alloc] init];
         [receiver setText:@"Johnny English"];
         [receiver setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:receiver.text]];
-        [receiver setFont:[UIFont boldSystemFontOfSize:14]];
+        [receiver setFont:[UIFont boldSystemFontOfSize:15.0]];
         [receiver setTextColor:[UIColor blueColor]];
         [_sentence addSubcontrol:receiver];
         [receiver release];
         
         SDLabel *ending = [[SDLabel alloc] init];
         [ending setText:@"."];
-        [ending setFont:[UIFont systemFontOfSize:14]];
+        [ending setFont:[UIFont systemFontOfSize:15.0]];
         [ending setTextColor:[UIColor grayColor]];
         [_sentence addSubcontrol:ending];
         [ending release];
