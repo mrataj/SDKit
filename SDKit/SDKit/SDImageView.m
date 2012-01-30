@@ -1,0 +1,49 @@
+//
+//  SDImage.m
+//  Style
+//
+//  Created by Miha Rataj on 30.1.12.
+//  Copyright (c) 2012 Marg, d.o.o. All rights reserved.
+//
+
+#import "SDImageView.h"
+#import "SDEvent.h"
+
+@interface SDControl (protected)
+- (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size;
+@end
+
+@implementation SDImageView
+
+@synthesize size=_size, event=_event, image=_image;
+
+- (id)initWithSize:(CGSize)size
+{
+    self = [super init];
+    if (self)
+    {
+        _size = size;
+    }
+    return self;
+}
+
+- (CGSize)drawAtPoint:(CGPoint)point
+{
+    [_image drawInRect:CGRectMake(point.x, point.y, _size.width, _size.height)];
+    return [self createdAtPoint:point withSize:_size];
+}
+
+- (void)touchEndedAtLocation:(CGPoint)location
+{
+    [super touchEndedAtLocation:location];
+    [_event performEvent];
+}
+
+- (void)dealloc
+{
+    [_event release];
+    [_image release];
+    [super dealloc];
+}
+
+@end

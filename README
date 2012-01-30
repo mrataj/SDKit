@@ -1,0 +1,7 @@
+SDKit is a simple library containing controls, which are providing fast rendering
+and can be used in a UITableView control for glassy scrolling.
+
+To integrate SDKit library into your project, drag and drop files from SDKit directory into
+your project. Just include "SDKit.h" file, wherever you need SDKit controls and that's it!
+
+In Example.xcodeproj, you have examples, how to use SDKit controls.

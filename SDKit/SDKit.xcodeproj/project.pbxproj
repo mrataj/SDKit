@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		114F4E5514D6DF34004FDAF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114F4E5414D6DF34004FDAF3 /* Foundation.framework */; };
+		114F4E7914D6DF61004FDAF3 /* SDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E6814D6DF61004FDAF3 /* SDControl.m */; };
+		114F4E7B14D6DF61004FDAF3 /* SDEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E6A14D6DF61004FDAF3 /* SDEvent.m */; };
+		114F4E7D14D6DF61004FDAF3 /* SDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E6C14D6DF61004FDAF3 /* SDHelper.m */; };
+		114F4E7F14D6DF61004FDAF3 /* SDImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E6E14D6DF61004FDAF3 /* SDImageView.m */; };
+		114F4E8214D6DF61004FDAF3 /* SDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E7114D6DF61004FDAF3 /* SDLabel.m */; };
+		114F4E8414D6DF61004FDAF3 /* SDPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E7314D6DF61004FDAF3 /* SDPlaceholder.m */; };
+		114F4E8614D6DF61004FDAF3 /* SDSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E7514D6DF61004FDAF3 /* SDSentence.m */; };
+		114F4E8814D6DF61004FDAF3 /* SDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E7714D6DF61004FDAF3 /* SDTableViewCell.m */; };
+		114F4E8A14D6DFC7004FDAF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114F4E8914D6DFC7004FDAF3 /* CoreGraphics.framework */; };
+		114F4E8E14D6E46C004FDAF3 /* SDKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E6F14D6DF61004FDAF3 /* SDKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114F4E8F14D6E478004FDAF3 /* SDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E6B14D6DF61004FDAF3 /* SDHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		114F4E9014D6E496004FDAF3 /* SDControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E6714D6DF61004FDAF3 /* SDControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114F4E9114D6E496004FDAF3 /* SDEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E6914D6DF61004FDAF3 /* SDEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114F4E9214D6E496004FDAF3 /* SDImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E6D14D6DF61004FDAF3 /* SDImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114F4E9314D6E496004FDAF3 /* SDLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E7014D6DF61004FDAF3 /* SDLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114F4E9414D6E496004FDAF3 /* SDPlaceholder.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E7214D6DF61004FDAF3 /* SDPlaceholder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114F4E9514D6E496004FDAF3 /* SDSentence.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E7414D6DF61004FDAF3 /* SDSentence.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114F4E9614D6E496004FDAF3 /* SDTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		114F4E5114D6DF34004FDAF3 /* libSDKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		114F4E5414D6DF34004FDAF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		114F4E5814D6DF34004FDAF3 /* SDKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDKit-Prefix.pch"; sourceTree = "<group>"; };
+		114F4E6714D6DF61004FDAF3 /* SDControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDControl.h; sourceTree = "<group>"; };
+		114F4E6814D6DF61004FDAF3 /* SDControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDControl.m; sourceTree = "<group>"; };
+		114F4E6914D6DF61004FDAF3 /* SDEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEvent.h; sourceTree = "<group>"; };
+		114F4E6A14D6DF61004FDAF3 /* SDEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEvent.m; sourceTree = "<group>"; };
+		114F4E6B14D6DF61004FDAF3 /* SDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHelper.h; sourceTree = "<group>"; };
+		114F4E6C14D6DF61004FDAF3 /* SDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHelper.m; sourceTree = "<group>"; };
+		114F4E6D14D6DF61004FDAF3 /* SDImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageView.h; sourceTree = "<group>"; };
+		114F4E6E14D6DF61004FDAF3 /* SDImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageView.m; sourceTree = "<group>"; };
+		114F4E6F14D6DF61004FDAF3 /* SDKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKit.h; sourceTree = "<group>"; };
+		114F4E7014D6DF61004FDAF3 /* SDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLabel.h; sourceTree = "<group>"; };
+		114F4E7114D6DF61004FDAF3 /* SDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLabel.m; sourceTree = "<group>"; };
+		114F4E7214D6DF61004FDAF3 /* SDPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlaceholder.h; sourceTree = "<group>"; };
+		114F4E7314D6DF61004FDAF3 /* SDPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlaceholder.m; sourceTree = "<group>"; };
+		114F4E7414D6DF61004FDAF3 /* SDSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSentence.h; sourceTree = "<group>"; };
+		114F4E7514D6DF61004FDAF3 /* SDSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSentence.m; sourceTree = "<group>"; };
+		114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTableViewCell.h; sourceTree = "<group>"; };
+		114F4E7714D6DF61004FDAF3 /* SDTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTableViewCell.m; sourceTree = "<group>"; };
+		114F4E8914D6DFC7004FDAF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		114F4E4E14D6DF34004FDAF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114F4E8A14D6DFC7004FDAF3 /* CoreGraphics.framework in Frameworks */,
+				114F4E5514D6DF34004FDAF3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		114F4E4614D6DF34004FDAF3 = {
+			isa = PBXGroup;
+			children = (
+				114F4E5614D6DF34004FDAF3 /* SDKit */,
+				114F4E5314D6DF34004FDAF3 /* Frameworks */,
+				114F4E5214D6DF34004FDAF3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		114F4E5214D6DF34004FDAF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				114F4E5114D6DF34004FDAF3 /* libSDKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		114F4E5314D6DF34004FDAF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				114F4E8914D6DFC7004FDAF3 /* CoreGraphics.framework */,
+				114F4E5414D6DF34004FDAF3 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		114F4E5614D6DF34004FDAF3 /* SDKit */ = {
+			isa = PBXGroup;
+			children = (
+				114F4E6714D6DF61004FDAF3 /* SDControl.h */,
+				114F4E6814D6DF61004FDAF3 /* SDControl.m */,
+				114F4E6914D6DF61004FDAF3 /* SDEvent.h */,
+				114F4E6A14D6DF61004FDAF3 /* SDEvent.m */,
+				114F4E6B14D6DF61004FDAF3 /* SDHelper.h */,
+				114F4E6C14D6DF61004FDAF3 /* SDHelper.m */,
+				114F4E6D14D6DF61004FDAF3 /* SDImageView.h */,
+				114F4E6E14D6DF61004FDAF3 /* SDImageView.m */,
+				114F4E6F14D6DF61004FDAF3 /* SDKit.h */,
+				114F4E7014D6DF61004FDAF3 /* SDLabel.h */,
+				114F4E7114D6DF61004FDAF3 /* SDLabel.m */,
+				114F4E7214D6DF61004FDAF3 /* SDPlaceholder.h */,
+				114F4E7314D6DF61004FDAF3 /* SDPlaceholder.m */,
+				114F4E7414D6DF61004FDAF3 /* SDSentence.h */,
+				114F4E7514D6DF61004FDAF3 /* SDSentence.m */,
+				114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */,
+				114F4E7714D6DF61004FDAF3 /* SDTableViewCell.m */,
+				114F4E5714D6DF34004FDAF3 /* Supporting Files */,
+			);
+			path = SDKit;
+			sourceTree = "<group>";
+		};
+		114F4E5714D6DF34004FDAF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				114F4E5814D6DF34004FDAF3 /* SDKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		114F4E4F14D6DF34004FDAF3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114F4E8E14D6E46C004FDAF3 /* SDKit.h in Headers */,
+				114F4E9014D6E496004FDAF3 /* SDControl.h in Headers */,
+				114F4E9114D6E496004FDAF3 /* SDEvent.h in Headers */,
+				114F4E9214D6E496004FDAF3 /* SDImageView.h in Headers */,
+				114F4E9314D6E496004FDAF3 /* SDLabel.h in Headers */,
+				114F4E9414D6E496004FDAF3 /* SDPlaceholder.h in Headers */,
+				114F4E9514D6E496004FDAF3 /* SDSentence.h in Headers */,
+				114F4E9614D6E496004FDAF3 /* SDTableViewCell.h in Headers */,
+				114F4E8F14D6E478004FDAF3 /* SDHelper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		114F4E5014D6DF34004FDAF3 /* SDKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 114F4E5E14D6DF34004FDAF3 /* Build configuration list for PBXNativeTarget "SDKit" */;
+			buildPhases = (
+				114F4E4D14D6DF34004FDAF3 /* Sources */,
+				114F4E4E14D6DF34004FDAF3 /* Frameworks */,
+				114F4E4F14D6DF34004FDAF3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDKit;
+			productName = SDKit;
+			productReference = 114F4E5114D6DF34004FDAF3 /* libSDKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		114F4E4814D6DF34004FDAF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Marg, d.o.o.";
+			};
+			buildConfigurationList = 114F4E4B14D6DF34004FDAF3 /* Build configuration list for PBXProject "SDKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 114F4E4614D6DF34004FDAF3;
+			productRefGroup = 114F4E5214D6DF34004FDAF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				114F4E5014D6DF34004FDAF3 /* SDKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		114F4E4D14D6DF34004FDAF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114F4E7914D6DF61004FDAF3 /* SDControl.m in Sources */,
+				114F4E7B14D6DF61004FDAF3 /* SDEvent.m in Sources */,
+				114F4E7D14D6DF61004FDAF3 /* SDHelper.m in Sources */,
+				114F4E7F14D6DF61004FDAF3 /* SDImageView.m in Sources */,
+				114F4E8214D6DF61004FDAF3 /* SDLabel.m in Sources */,
+				114F4E8414D6DF61004FDAF3 /* SDPlaceholder.m in Sources */,
+				114F4E8614D6DF61004FDAF3 /* SDSentence.m in Sources */,
+				114F4E8814D6DF61004FDAF3 /* SDTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		114F4E5C14D6DF34004FDAF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		114F4E5D14D6DF34004FDAF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		114F4E5F14D6DF34004FDAF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SDKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDKit/SDKit-Prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+			};
+			name = Debug;
+		};
+		114F4E6014D6DF34004FDAF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SDKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDKit/SDKit-Prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		114F4E4B14D6DF34004FDAF3 /* Build configuration list for PBXProject "SDKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				114F4E5C14D6DF34004FDAF3 /* Debug */,
+				114F4E5D14D6DF34004FDAF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		114F4E5E14D6DF34004FDAF3 /* Build configuration list for PBXNativeTarget "SDKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				114F4E5F14D6DF34004FDAF3 /* Debug */,
+				114F4E6014D6DF34004FDAF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 114F4E4814D6DF34004FDAF3 /* Project object */;
+}
