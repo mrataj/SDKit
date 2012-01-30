@@ -79,12 +79,7 @@
 - (void)drawRect:(CGRect)rect
 {
     [_image drawAtPoint:CGPointMake(5, 5)];    
-    
-    //CGSize precalculated = [_sentence sizeForPoint:CGPointMake(50, 5)];
-    CGSize real = [_sentence drawAtPoint:CGPointMake(50, 5)];
-    
-    //NSLog(@"%@", NSStringFromCGSize(precalculated));
-    NSLog(@"%@", NSStringFromCGSize(real));
+    [_sentence drawAtPoint:CGPointMake(50, 5)];
 }
 
 - (void)dealloc
