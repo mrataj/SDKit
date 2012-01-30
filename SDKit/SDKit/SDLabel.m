@@ -49,6 +49,19 @@
     return [_text sizeWithFont:_font];
 }
 
+- (void)setText:(NSString *)text
+{
+    if (text == _text)
+        return;
+    
+    [_text release];
+    
+    if ([text hasSuffix:@" "])
+        _text = [text copy];
+    else
+        _text = [[NSString alloc] initWithFormat:@"%@ ", text];
+}
+
 - (void)touchEndedAtLocation:(CGPoint)location
 {
     [super touchEndedAtLocation:location];

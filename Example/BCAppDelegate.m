@@ -25,7 +25,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.viewController = [[[BCTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
-    self.window.rootViewController = self.viewController;
+    self.window.rootViewController = [[[UINavigationController alloc] initWithRootViewController:self.viewController] autorelease];
     [self.window makeKeyAndVisible];
     return YES;
 }

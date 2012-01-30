@@ -15,12 +15,10 @@
 @interface SDSentence : SDControl {
     CGFloat _maxWidth;
     CGFloat _maxHeight;
-    BOOL _lastPunctation;
 }
 
 @property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, assign) CGFloat maxHeight;
-@property (nonatomic, assign) BOOL lastPunctation;
 @property (nonatomic, readonly) BOOL hasHeightLimitation;
 @property (nonatomic, readonly) BOOL hasWidthLimitation;
 

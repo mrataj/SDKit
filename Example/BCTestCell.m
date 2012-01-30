@@ -17,7 +17,6 @@
     {
         _sentence = [[SDSentence alloc] init];
         [_sentence setMaxWidth:265];
-        [_sentence setLastPunctation:YES];
         [_placeholder addSubcontrol:_sentence];
         
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
@@ -81,10 +80,10 @@
 {
     [_image drawAtPoint:CGPointMake(5, 5)];    
     
-    CGSize precalculated = [_sentence sizeForPoint:CGPointMake(50, 5)];
+    //CGSize precalculated = [_sentence sizeForPoint:CGPointMake(50, 5)];
     CGSize real = [_sentence drawAtPoint:CGPointMake(50, 5)];
     
-    NSLog(@"%@", NSStringFromCGSize(precalculated));
+    //NSLog(@"%@", NSStringFromCGSize(precalculated));
     NSLog(@"%@", NSStringFromCGSize(real));
 }
 

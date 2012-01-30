@@ -20,7 +20,7 @@
 
 @implementation SDSentence
 
-@synthesize maxWidth=_maxWidth, maxHeight=_maxHeight, lastPunctation=_lastPunctation;
+@synthesize maxWidth=_maxWidth, maxHeight=_maxHeight;
 
 - (BOOL)doCharacterWrap:(NSString *)word label:(SDLabel *)label coordinate:(CGPoint *)coordinate atPoint:(CGPoint)point
 {
@@ -164,10 +164,6 @@
                 break;            
         }
         
-        // If possible, append space at the end.
-        if ([self canInsertSpace:i afterLabel:label])
-            [label setText:[NSString stringWithFormat:@"%@ ", label.text]];
-        
         // If not drawing, just get size of this label, otherwise do drawing, too.
         CGSize size = (!drawing) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
         
@@ -197,18 +193,6 @@
 {
     CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:NO];
     return CGSizeMakeFromPoint(endpoint);
-}
-
-- (BOOL)canInsertSpace:(NSInteger)elementIndex afterLabel:(SDLabel *)label
-{
-    BOOL beforePunctation = NO;
-    if (_lastPunctation)
-        beforePunctation = elementIndex + 2 == [subcontrols count];
-    
-    BOOL lastLabel = elementIndex + 1 == [subcontrols count];
-    BOOL hasSpace = [label.text hasSuffix:@" "];
-    
-    return !beforePunctation && !lastLabel && !hasSpace;
 }
 
 - (BOOL)hasHeightLimitation
