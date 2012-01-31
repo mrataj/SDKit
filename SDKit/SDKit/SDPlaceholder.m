@@ -74,7 +74,7 @@
     else
         _items = [items retain];
     
-    for (id item in _items)
+    for (SDControl *item in _items)
         [item setParent:_parent];
 }
 

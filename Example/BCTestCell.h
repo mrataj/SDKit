@@ -13,4 +13,7 @@
     SDImageView *_image;    
 }
 
+@property (nonatomic, retain) SDSentence *sentence;
+@property (nonatomic, retain) SDImageView *image;
+
 @end
