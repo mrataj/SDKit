@@ -26,12 +26,12 @@
 		114F4E9414D6E496004FDAF3 /* SDPlaceholder.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E7214D6DF61004FDAF3 /* SDPlaceholder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		114F4E9514D6E496004FDAF3 /* SDSentence.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E7414D6DF61004FDAF3 /* SDSentence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		114F4E9614D6E496004FDAF3 /* SDTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11DA253514D8754D0010A607 /* SDKit-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 11DA253414D8754D0010A607 /* SDKit-Prefix.pch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		114F4E5114D6DF34004FDAF3 /* libSDKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		114F4E5414D6DF34004FDAF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		114F4E5814D6DF34004FDAF3 /* SDKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDKit-Prefix.pch"; sourceTree = "<group>"; };
 		114F4E6714D6DF61004FDAF3 /* SDControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDControl.h; sourceTree = "<group>"; };
 		114F4E6814D6DF61004FDAF3 /* SDControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDControl.m; sourceTree = "<group>"; };
 		114F4E6914D6DF61004FDAF3 /* SDEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEvent.h; sourceTree = "<group>"; };
@@ -50,6 +50,7 @@
 		114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTableViewCell.h; sourceTree = "<group>"; };
 		114F4E7714D6DF61004FDAF3 /* SDTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTableViewCell.m; sourceTree = "<group>"; };
 		114F4E8914D6DFC7004FDAF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		11DA253414D8754D0010A607 /* SDKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKit-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,17 +112,17 @@
 				114F4E7514D6DF61004FDAF3 /* SDSentence.m */,
 				114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */,
 				114F4E7714D6DF61004FDAF3 /* SDTableViewCell.m */,
-				114F4E5714D6DF34004FDAF3 /* Supporting Files */,
+				11DA253314D8754D0010A607 /* Supporting Files */,
 			);
 			path = SDKit;
 			sourceTree = "<group>";
 		};
-		114F4E5714D6DF34004FDAF3 /* Supporting Files */ = {
+		11DA253314D8754D0010A607 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				114F4E5814D6DF34004FDAF3 /* SDKit-Prefix.pch */,
+				11DA253414D8754D0010A607 /* SDKit-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +141,7 @@
 				114F4E9514D6E496004FDAF3 /* SDSentence.h in Headers */,
 				114F4E9614D6E496004FDAF3 /* SDTableViewCell.h in Headers */,
 				114F4E8F14D6E478004FDAF3 /* SDHelper.h in Headers */,
+				11DA253514D8754D0010A607 /* SDKit-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +255,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/SDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SDKit/SDKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "SDKit/Supporting Files/SDKit-Prefix.pch";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -267,7 +269,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/SDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SDKit/SDKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "SDKit/Supporting Files/SDKit-Prefix.pch";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,6 +297,7 @@
 				114F4E6014D6DF34004FDAF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
