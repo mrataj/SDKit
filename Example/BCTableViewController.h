@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCTableViewController : UITableViewController
+@interface BCTableViewController : UITableViewController {
+    NSArray *dataSource;
+}
 
 @end

@@ -25,7 +25,12 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.viewController = [[[BCTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
-    self.window.rootViewController = [[[UINavigationController alloc] initWithRootViewController:self.viewController] autorelease];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    [navigationController.navigationBar setTintColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
+    self.window.rootViewController = navigationController;
+    [navigationController release];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
