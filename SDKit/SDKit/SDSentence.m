@@ -171,7 +171,7 @@
         CGPoint endpoint = CGEndpointFromCGRect(CGRectMakeFromOriginAndSize(coordinate, size));
         if (endpoint.x > maxEndpoint.x)
             maxEndpoint = CGPointMake(endpoint.x, maxEndpoint.y);
-        else if (endpoint.y > maxEndpoint.y)
+        if (endpoint.y > maxEndpoint.y)
             maxEndpoint = CGPointMake(maxEndpoint.x, endpoint.y);
         
         // Set coordinate for next control.

@@ -74,8 +74,9 @@
     else
         _items = [items retain];
     
-    for (SDControl *item in _items)
-        [item setParent:_parent];
+    if (_parent != nil)
+        for (SDControl *item in _items)
+            [item setParent:_parent];
 }
 
 #pragma mark - Touches
