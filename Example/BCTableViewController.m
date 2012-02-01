@@ -43,7 +43,14 @@
                           @"Larry Brin",
                           @".", nil];
         
-        dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, nil];
+        NSArray *item3 = [NSArray arrayWithObjects:@"Kate Cameron",
+                          @"has writen a hundred miles long exam about supermassive black holes, saved it to file",
+                          @"Seminar paper.pdf",
+                          @"and finally sent it to her professor of physics",
+                          @"dr. Gregory Watson",
+                          @".", nil];
+        
+        dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, nil];
     }
     return self;
 }
@@ -64,7 +71,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView setRowHeight:75.0];
 }
 
 - (void)viewDidUnload
@@ -106,7 +112,66 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [dataSource count];
+}
+
++ (NSMutableArray *)getSentenceItemsFromRow:(NSArray *)dataRow
+{
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    
+    SDLabel *sender = [[SDLabel alloc] init];
+    [sender setText:[dataRow objectAtIndex:0]];
+    [sender setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:sender.text]];
+    [sender setFont:[UIFont boldSystemFontOfSize:15.0]];
+    [sender setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
+    [items addObject:sender];
+    [sender release];
+    
+    SDLabel *description = [[SDLabel alloc] init];
+    [description setText:[dataRow objectAtIndex:1]];
+    [description setFont:[UIFont systemFontOfSize:15.0]];
+    [description setTextColor:[UIColor grayColor]];
+    [items addObject:description];
+    [description release];
+    
+    SDLabel *link = [[SDLabel alloc] init];
+    [link setText:[dataRow objectAtIndex:2]];
+    [link setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:link.text]];
+    [link setFont:[UIFont boldSystemFontOfSize:15.0]];
+    [link setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
+    [items addObject:link];
+    [link release];
+    
+    SDLabel *to = [[SDLabel alloc] init];
+    [to setText:[dataRow objectAtIndex:3]];
+    [to setFont:[UIFont systemFontOfSize:15.0]];
+    [to setTextColor:[UIColor grayColor]];
+    [items addObject:to];
+    [to release];
+    
+    SDLabel *receiver = [[SDLabel alloc] init];
+    [receiver setText:[dataRow objectAtIndex:4]];
+    [receiver setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:receiver.text]];
+    [receiver setFont:[UIFont boldSystemFontOfSize:15.0]];
+    [receiver setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
+    [items addObject:receiver];
+    [receiver release];
+    
+    SDLabel *ending = [[SDLabel alloc] init];
+    [ending setText:[dataRow objectAtIndex:5]];
+    [ending setFont:[UIFont systemFontOfSize:15.0]];
+    [ending setTextColor:[UIColor grayColor]];
+    [items addObject:ending];
+    [ending release];
+    
+    return [items autorelease];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *dataRow = [dataSource objectAtIndex:indexPath.row];
+    NSMutableArray *items = [BCTableViewController getSentenceItemsFromRow:dataRow];
+    return [BCTestCell heightForSentence:items];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,47 +187,8 @@
     
     [cell.image setImage:[UIImage imageNamed:@"woman.jpg"]];
     
-    SDLabel *sender = [[SDLabel alloc] init];
-    [sender setText:[dataRow objectAtIndex:0]];
-    [sender setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:sender.text]];
-    [sender setFont:[UIFont boldSystemFontOfSize:15.0]];
-    [sender setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
-    
-    SDLabel *description = [[SDLabel alloc] init];
-    [description setText:[dataRow objectAtIndex:1]];
-    [description setFont:[UIFont systemFontOfSize:15.0]];
-    [description setTextColor:[UIColor grayColor]];
-    
-    SDLabel *link = [[SDLabel alloc] init];
-    [link setText:[dataRow objectAtIndex:2]];
-    [link setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:link.text]];
-    [link setFont:[UIFont boldSystemFontOfSize:15.0]];
-    [link setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
-    
-    SDLabel *to = [[SDLabel alloc] init];
-    [to setText:[dataRow objectAtIndex:3]];
-    [to setFont:[UIFont systemFontOfSize:15.0]];
-    [to setTextColor:[UIColor grayColor]];
-    
-    SDLabel *receiver = [[SDLabel alloc] init];
-    [receiver setText:[dataRow objectAtIndex:4]];
-    [receiver setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:receiver.text]];
-    [receiver setFont:[UIFont boldSystemFontOfSize:15.0]];
-    [receiver setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
-    
-    SDLabel *ending = [[SDLabel alloc] init];
-    [ending setText:[dataRow objectAtIndex:5]];
-    [ending setFont:[UIFont systemFontOfSize:15.0]];
-    [ending setTextColor:[UIColor grayColor]];
-    
-    [cell.sentence setItems:[NSArray arrayWithObjects:sender, description, link, to, receiver, ending, nil]];
-    
-    [sender release];
-    [description release];
-    [link release];
-    [to release];
-    [receiver release];
-    [ending release];
+    NSMutableArray *items = [BCTableViewController getSentenceItemsFromRow:dataRow];
+    [cell.sentence setItems:items];    
     
     return cell;
 }

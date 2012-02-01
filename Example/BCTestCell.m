@@ -38,6 +38,19 @@
     [_sentence drawAtPoint:CGPointMake(50, 5)];
 }
 
++ (CGFloat)heightForSentence:(NSMutableArray *)items
+{
+    CGFloat height = 10.0;
+    
+    SDSentence *sentence = [[SDSentence alloc] init];
+    [sentence setMaxWidth:265];
+    [sentence setItems:items];
+    height += [sentence sizeForPoint:CGPointMake(50, 5)].height;
+    [sentence release];
+    
+    return height;
+}
+
 - (void)dealloc
 {
     [_image release];
