@@ -11,6 +11,7 @@
 
 @interface SDSentenceBuilder : NSObject <BBCodeParserDelegate> {
     NSMutableArray *_items;
+    NSMutableString *_mutable;
 }
 
 @property (nonatomic, readonly) NSArray *items;
