@@ -11,6 +11,8 @@
 
 @interface SDSentenceBuilder : NSObject <BBCodeParserDelegate> {
     NSMutableArray *_labels;
+    
+    BOOL _parsingTag;
 }
 
 @property (nonatomic, readonly) NSArray *labels;

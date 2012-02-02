@@ -50,20 +50,65 @@ static NSMutableDictionary *events;
     return [events objectForKey:name];
 }
 
-- (void)createForElement:(BBElement *)element
+- (void)addLabelForText:(NSString *)text
 {
+    if ([text length] == 0)
+        return;
+    
     SDLabel *label = [[SDLabel alloc] init];
     [label setTextColor:[UIColor grayColor]];
     [label setFont:[UIFont systemFontOfSize:15.0]];
     
-    [label setText:element.text];
+    [label setText:text];
     [_labels addObject:label];
     
     [label release];
+}
+
+- (void)createForElement:(BBElement *)element
+{
+    NSMutableString *temporary = [[NSMutableString alloc] init];
     
-    for (BBElement *subelement in element.elements)
+    NSInteger lastEndTagIndex = -1;
+    for (int i = 0; i < [element.text length]; i++)
     {
+        NSString *character = [element.text substringWithRange:NSMakeRange(i, 1)];
+        if ([character isEqualToString:@"["])
+        {
+            NSString *text = [element.text substringWithRange:NSMakeRange(lastEndTagIndex + 1, i - lastEndTagIndex - 1)];
+            [self addLabelForText:text];
+            
+            [temporary release];
+            temporary = [[NSMutableString alloc] init];            
+            
+            _parsingTag = YES;
+        }
+        else if ([character isEqualToString:@"]"])
+        {
+            NSInteger index = [temporary integerValue];
+            BBElement *subelement = [element.elements objectAtIndex:index];
+            [self createForElement:subelement];
+            
+            [temporary release];
+            temporary = [[NSMutableString alloc] init];  
+            
+            lastEndTagIndex = i;
+            _parsingTag = NO;
+        }
+        else
+        {
+            [temporary appendString:character];
+        }
     }
+    
+    if (lastEndTagIndex != -1)
+    {
+        NSString *text = [element.text substringFromIndex:lastEndTagIndex];
+        [self addLabelForText:text];
+    }
+    
+    if ([temporary length] > 0)
+        [self addLabelForText:temporary];
 }
 
 - (void)dealloc
