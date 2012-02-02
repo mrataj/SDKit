@@ -9,6 +9,7 @@
 #import "SDSentence.h"
 #import "SDHelper.h"
 #import "SDLabel.h"
+#import "SDSentenceBuilder.h"
 
 @implementation SDSentence
 
@@ -175,26 +176,6 @@
     return CGPointRound(CGSubstractTwoPoints(maxEndpoint, point));
 }
 
-- (NSArray *)getItemsForBBCode
-{
-    BBCodeParser *parser = [[BBCodeParser alloc] initWithCode:_BBCode];
-    [parser setDelegate:self];
-    [parser parse];
-    [parser release];
-    
-    return nil;
-}
-
-- (void)parser:(BBCodeParser *)parser didStartElementTag:(NSString *)tag attributes:(NSDictionary *)attributes
-{
-    
-}
-
-- (void)parser:(BBCodeParser *)parser didEndElement:(BBElement *)element
-{
-    
-}
-
 - (void)setBBCode:(NSString *)BBCode
 {
     if (BBCode == _BBCode)
@@ -203,8 +184,9 @@
     [_BBCode release];
     _BBCode = [BBCode retain];
     
-    NSArray *items = [self getItemsForBBCode];
-    [self setItems:items];
+    SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:BBCode];
+    [self setItems:sb.items];
+    [sb release];
 }
 
 - (CGSize)drawAtPoint:(CGPoint)point

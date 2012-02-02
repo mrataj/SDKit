@@ -11,9 +11,8 @@
 // Sentence is created with mutliple styled labels.
 
 #import "SDControl.h"
-#import "BBCodeParser.h"
 
-@interface SDSentence : SDControl <BBCodeParserDelegate> {
+@interface SDSentence : SDControl {
     CGFloat _maxWidth;
     CGFloat _maxHeight;
     NSString *_BBCode;
