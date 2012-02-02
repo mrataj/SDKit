@@ -62,16 +62,16 @@ static NSMutableDictionary *events;
         [self appendLabel:_mutable];
     
     [_mutable release];
-    _mutable = nil;
+    _mutable = [[NSMutableString alloc] init];
     
     
-    
+    // Create label within tag
     SDLabel *label = [[SDLabel alloc] init];
     [label setFont:[UIFont systemFontOfSize:15.0]];
     
     // Apply styles
     if (tag == @"quote")
-        [label setTextColor:[UIColor grayColor]];
+        [label setTextColor:[UIColor redColor]];
     else if (tag == @"bold")
         [label setFont:[UIFont boldSystemFontOfSize:label.font.pointSize]];
     
@@ -91,8 +91,8 @@ static NSMutableDictionary *events;
 
 - (void)parser:(BBCodeParser *)parser foundCharacters:(NSString *)string
 {
-    if (_mutable != nil)
-        [_mutable appendString:string];
+    //if (_mutable != nil)
+        //[_mutable appendString:string];
 }
 
 - (void)parser:(BBCodeParser *)parser didEndElement:(BBElement *)element
@@ -100,6 +100,7 @@ static NSMutableDictionary *events;
     SDLabel *label = [_items lastObject];
     [label setText:element.value];
     
+    [_mutable release];
     _mutable = [[NSMutableString alloc] init];
 }
 
