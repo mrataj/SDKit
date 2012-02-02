@@ -31,7 +31,7 @@ static NSMutableDictionary *events;
     return self;
 }
 
-- (SDEvent *)eventForAttributeName:(NSString *)name value:(NSString *)value
+- (SDEvent *)eventForTag:(NSString *)name
 {
     if (events == nil)
     {
@@ -56,16 +56,13 @@ static NSMutableDictionary *events;
         [label setFont:[UIFont boldSystemFontOfSize:label.font.pointSize]];
     
     // Apply event
-    for (NSString *key in attributes.allKeys)
+    SDEvent *event = [self eventForTag:tag];
+    if (event != nil)
     {
-        NSString *value = [attributes objectForKey:key];
-        SDEvent *event = [self eventForAttributeName:key value:value];
-        if (event != nil)
-        {
-            [label setEvent:event];
-            [label setTextColor:[UIColor redColor]];
-            [label setFont:[UIFont boldSystemFontOfSize:label.font.pointSize]];
-        }
+        [event setObject:attributes];
+        [label setEvent:event];
+        [label setTextColor:[UIColor redColor]];
+        [label setFont:[UIFont boldSystemFontOfSize:label.font.pointSize]];
     }
     
     [_items addObject:label];
