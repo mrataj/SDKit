@@ -184,8 +184,8 @@
     [_BBCode release];
     _BBCode = [BBCode retain];
     
-    SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:BBCode];
-    [self setItems:sb.items];
+    SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:_BBCode];
+    [self setItems:sb.labels];
     [sb release];
 }
 

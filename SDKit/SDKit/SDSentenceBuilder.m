@@ -12,21 +12,26 @@
 
 static NSMutableDictionary *events;
 
+@interface SDSentenceBuilder (private)
+- (void)createForElement:(BBElement *)element;
+@end
+
+
 @implementation SDSentenceBuilder
 
-@synthesize items=_items;
+@synthesize labels=_labels;
 
 - (id)initWithCode:(NSString *)code
 {
     self = [super init];
     if (self)
     {
-        _items = [[NSMutableArray alloc] init];
-        _mutable = [[NSMutableString alloc] init];
+        _labels = [[NSMutableArray alloc] init];
         
         BBCodeParser *parser = [[BBCodeParser alloc] initWithCode:code];
         [parser setDelegate:self];
         [parser parse];
+        [self createForElement:parser.element];
         [parser release];
     }
     return self;
@@ -45,75 +50,25 @@ static NSMutableDictionary *events;
     return [events objectForKey:name];
 }
 
-- (void)appendLabel:(NSString *)text
+- (void)createForElement:(BBElement *)element
 {
-    SDLabel *lbl = [[SDLabel alloc] init];
-    [lbl setFont:[UIFont systemFontOfSize:15.0]];
-    [lbl setText:text];
-    [lbl setTextColor:[UIColor grayColor]];
-    [_items addObject:lbl];
-    [lbl release];
-}
-
-- (void)parser:(BBCodeParser *)parser didStartElementTag:(NSString *)tag attributes:(NSDictionary *)attributes
-{
-    // Handle mutable hack first
-    if ([_mutable length] > 0)
-        [self appendLabel:_mutable];
-    
-    [_mutable release];
-    _mutable = [[NSMutableString alloc] init];
-    
-    
-    // Create label within tag
     SDLabel *label = [[SDLabel alloc] init];
+    [label setTextColor:[UIColor grayColor]];
     [label setFont:[UIFont systemFontOfSize:15.0]];
     
-    // Apply styles
-    if (tag == @"quote")
-        [label setTextColor:[UIColor redColor]];
-    else if (tag == @"bold")
-        [label setFont:[UIFont boldSystemFontOfSize:label.font.pointSize]];
+    [label setText:element.text];
+    [_labels addObject:label];
     
-    // Apply event
-    SDEvent *event = [self eventForTag:tag];
-    if (event != nil)
-    {
-        [event setObject:attributes];
-        [label setEvent:event];
-        [label setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
-        [label setFont:[UIFont boldSystemFontOfSize:label.font.pointSize]];
-    }
-    
-    [_items addObject:label];
     [label release];
-}
-
-- (void)parser:(BBCodeParser *)parser foundCharacters:(NSString *)string
-{
-    //if (_mutable != nil)
-        //[_mutable appendString:string];
-}
-
-- (void)parser:(BBCodeParser *)parser didEndElement:(BBElement *)element
-{
-    SDLabel *label = [_items lastObject];
-    [label setText:element.value];
     
-    [_mutable release];
-    _mutable = [[NSMutableString alloc] init];
-}
-
-- (void)parser:(BBCodeParser *)parser didFinishParsingCode:(NSString *)code
-{
-    if ([_mutable length] > 0)
-        [self appendLabel:_mutable];
+    for (BBElement *subelement in element.elements)
+    {
+    }
 }
 
 - (void)dealloc
 {
-    [_items release];
-    [_mutable release];
+    [_labels release];
     [super dealloc];
 }
 

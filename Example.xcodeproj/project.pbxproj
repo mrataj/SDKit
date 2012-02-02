@@ -46,7 +46,7 @@
 		113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCAppDelegate.m; path = Example/BCAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		113AEC8514D6FDEB006653D2 /* BCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCTableViewController.h; path = Example/BCTableViewController.h; sourceTree = SOURCE_ROOT; };
 		113AEC8614D6FDEB006653D2 /* BCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCTableViewController.m; path = Example/BCTableViewController.m; sourceTree = SOURCE_ROOT; };
-		113AEC8714D6FDEB006653D2 /* BCFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; name = BCFeedCell.h; path = Example/BCFeedCell.h; sourceTree = SOURCE_ROOT; };
+		113AEC8714D6FDEB006653D2 /* BCFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCFeedCell.h; path = Example/BCFeedCell.h; sourceTree = SOURCE_ROOT; };
 		113AEC8814D6FDEB006653D2 /* BCFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCFeedCell.m; path = Example/BCFeedCell.m; sourceTree = SOURCE_ROOT; };
 		114F4E6114D6DF34004FDAF3 /* SDKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDKit.xcodeproj; path = SDKit/SDKit.xcodeproj; sourceTree = "<group>"; };
 		1158E24014D45D4C00E31CD0 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };

@@ -10,11 +10,10 @@
 #import "BBCodeParser.h"
 
 @interface SDSentenceBuilder : NSObject <BBCodeParserDelegate> {
-    NSMutableArray *_items;
-    NSMutableString *_mutable;
+    NSMutableArray *_labels;
 }
 
-@property (nonatomic, readonly) NSArray *items;
+@property (nonatomic, readonly) NSArray *labels;
 
 - (id)initWithCode:(NSString *)code;
 
