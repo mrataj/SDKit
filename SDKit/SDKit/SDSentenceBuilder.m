@@ -45,18 +45,21 @@ static NSMutableDictionary *events;
     return [events objectForKey:name];
 }
 
+- (void)appendLabel:(NSString *)text
+{
+    SDLabel *lbl = [[SDLabel alloc] init];
+    [lbl setFont:[UIFont systemFontOfSize:15.0]];
+    [lbl setText:text];
+    [lbl setTextColor:[UIColor grayColor]];
+    [_items addObject:lbl];
+    [lbl release];
+}
+
 - (void)parser:(BBCodeParser *)parser didStartElementTag:(NSString *)tag attributes:(NSDictionary *)attributes
 {
     // Handle mutable hack first
     if ([_mutable length] > 0)
-    {
-        SDLabel *lbl = [[SDLabel alloc] init];
-        [lbl setFont:[UIFont systemFontOfSize:15.0]];
-        [lbl setText:_mutable];
-        [lbl setTextColor:[UIColor grayColor]];
-        [_items addObject:lbl];
-        [lbl release];
-    }
+        [self appendLabel:_mutable];
     
     [_mutable release];
     _mutable = nil;
@@ -98,6 +101,12 @@ static NSMutableDictionary *events;
     [label setText:element.value];
     
     _mutable = [[NSMutableString alloc] init];
+}
+
+- (void)parser:(BBCodeParser *)parser didFinishParsingCode:(NSString *)code
+{
+    if ([_mutable length] > 0)
+        [self appendLabel:_mutable];
 }
 
 - (void)dealloc
