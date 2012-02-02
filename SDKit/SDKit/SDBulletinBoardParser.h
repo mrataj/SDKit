@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SDBulletinBoardParser : NSObject
+@interface SDBulletinBoardParser : NSObject {
+    NSMutableArray *_items;
+}
+
+- (NSArray *)parseText:(NSString *)bbCode;
 
 @end

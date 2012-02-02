@@ -63,7 +63,7 @@
         [relatedItem addRelatedItem:item];
 }
 
-- (void)setItems:(NSMutableArray *)items
+- (void)setItems:(NSArray *)items
 {
     if (items == _items)
         return;
@@ -72,7 +72,7 @@
     if (![items isKindOfClass:[NSMutableArray class]])
         _items  = [[NSMutableArray alloc] initWithArray:items];
     else
-        _items = [items retain];
+        _items = [(NSMutableArray *)items retain];
     
     if (_parent != nil)
         for (SDControl *item in _items)

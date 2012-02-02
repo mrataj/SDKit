@@ -8,6 +8,7 @@
 
 #import "BCTableViewController.h"
 #import "BCTestCell.h"
+#import "SDKit.h"
 
 @implementation BCTableViewController
 
@@ -22,33 +23,10 @@
         [self.navigationItem setRightBarButtonItem:create];
         [create release];
         
-        NSArray *item0 = [NSArray arrayWithObjects:@"Kate Cameron",
-                          @"shared link",
-                          @"http://www.youtube.com",
-                          @"to person",
-                          @"Johnny English",
-                          @".", nil];
-        
-        NSArray *item1 = [NSArray arrayWithObjects:@"Kate Cameron",
-                          @"meet person",
-                          @"Guy Buckland",
-                          @"3 hours ago in",
-                          @"London",
-                          @".", nil];
-        
-        NSArray *item2 = [NSArray arrayWithObjects:@"Kate Cameron",
-                          @"created document",
-                          @"Example.doc",
-                          @"and sent it to person",
-                          @"Larry Brin",
-                          @".", nil];
-        
-        NSArray *item3 = [NSArray arrayWithObjects:@"Kate Cameron",
-                          @"has writen a hundred miles long exam about supermassive black holes, saved it to file",
-                          @"Seminar paper.pdf",
-                          @"and finally sent it to her professor of physics",
-                          @"dr. Gregory Watson",
-                          @".", nil];
+        NSString *item0 = @"[user]Kate Cameron[/user] shared link [link]http://www.youtube.com[/link] to person [user]Johnny English[/user].";
+        NSString *item1 = @"[user]Kate Cameron[/user] meet person [user]Guy Buckland[/user] 3 hours ago in [link]London[/link].";
+        NSString *item2 = @"[user]Kate Cameron[/user] created document [document]Example.doc[/document] and sent it to person [user]Larry Brin[/user].";
+        NSString *item3 = @"[user]Kate Cameron[/user] has writen a hundred miles long exam about supermassive black holes, saved it to file [document]Seminar paper.pdf[/document] and finally sent it to her professor of physics [user]dr. Gregory Watson[/user].";
         
         dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, nil];
     }
@@ -115,62 +93,16 @@
     return [dataSource count];
 }
 
-+ (NSMutableArray *)getSentenceItemsFromRow:(NSArray *)dataRow
++ (NSArray *)getSentenceItemsFromBBCode:(NSString *)bbCode
 {
-    NSMutableArray *items = [[NSMutableArray alloc] init];
-    
-    SDLabel *sender = [[SDLabel alloc] init];
-    [sender setText:[dataRow objectAtIndex:0]];
-    [sender setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:sender.text]];
-    [sender setFont:[UIFont boldSystemFontOfSize:15.0]];
-    [sender setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
-    [items addObject:sender];
-    [sender release];
-    
-    SDLabel *description = [[SDLabel alloc] init];
-    [description setText:[dataRow objectAtIndex:1]];
-    [description setFont:[UIFont systemFontOfSize:15.0]];
-    [description setTextColor:[UIColor grayColor]];
-    [items addObject:description];
-    [description release];
-    
-    SDLabel *link = [[SDLabel alloc] init];
-    [link setText:[dataRow objectAtIndex:2]];
-    [link setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:link.text]];
-    [link setFont:[UIFont boldSystemFontOfSize:15.0]];
-    [link setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
-    [items addObject:link];
-    [link release];
-    
-    SDLabel *to = [[SDLabel alloc] init];
-    [to setText:[dataRow objectAtIndex:3]];
-    [to setFont:[UIFont systemFontOfSize:15.0]];
-    [to setTextColor:[UIColor grayColor]];
-    [items addObject:to];
-    [to release];
-    
-    SDLabel *receiver = [[SDLabel alloc] init];
-    [receiver setText:[dataRow objectAtIndex:4]];
-    [receiver setEvent:[SDEvent eventForTarget:self selector:@selector(showText:) andObject:receiver.text]];
-    [receiver setFont:[UIFont boldSystemFontOfSize:15.0]];
-    [receiver setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
-    [items addObject:receiver];
-    [receiver release];
-    
-    SDLabel *ending = [[SDLabel alloc] init];
-    [ending setText:[dataRow objectAtIndex:5]];
-    [ending setFont:[UIFont systemFontOfSize:15.0]];
-    [ending setTextColor:[UIColor grayColor]];
-    [items addObject:ending];
-    [ending release];
-    
-    return [items autorelease];
+    SDBulletinBoardParser *parser = [[[SDBulletinBoardParser alloc] init] autorelease];
+    return [parser parseText:bbCode];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *dataRow = [dataSource objectAtIndex:indexPath.row];
-    NSMutableArray *items = [BCTableViewController getSentenceItemsFromRow:dataRow];
+    NSString *bbCode = [dataSource objectAtIndex:indexPath.row];
+    NSArray *items = [BCTableViewController getSentenceItemsFromBBCode:bbCode];
     return [BCTestCell heightForSentence:items];
 }
 
@@ -183,12 +115,11 @@
         cell = [[[BCTestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
     
-    NSArray *dataRow = [dataSource objectAtIndex:indexPath.row];
-    
     [cell.image setImage:[UIImage imageNamed:@"woman.jpg"]];
     
-    NSMutableArray *items = [BCTableViewController getSentenceItemsFromRow:dataRow];
-    [cell.sentence setItems:items];    
+    NSString *bbCode = [dataSource objectAtIndex:indexPath.row];
+    NSArray *items = [BCTableViewController getSentenceItemsFromBBCode:bbCode];
+    [cell.sentence setItems:[NSMutableArray arrayWithArray:items]];    
     
     return cell;
 }

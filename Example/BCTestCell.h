@@ -16,6 +16,6 @@
 @property (nonatomic, retain) SDSentence *sentence;
 @property (nonatomic, retain) SDImageView *image;
 
-+ (CGFloat)heightForSentence:(NSMutableArray *)items;
++ (CGFloat)heightForSentence:(NSArray *)items;
 
 @end
