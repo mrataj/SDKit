@@ -61,12 +61,17 @@ static NSMutableDictionary *events;
     {
         [event setObject:attributes];
         [label setEvent:event];
-        [label setTextColor:[UIColor redColor]];
+        [label setTextColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
         [label setFont:[UIFont boldSystemFontOfSize:label.font.pointSize]];
     }
     
     [_items addObject:label];
     [label release];
+}
+
+- (void)parser:(BBCodeParser *)parser foundCharacters:(NSString *)string
+{
+    
 }
 
 - (void)parser:(BBCodeParser *)parser didEndElement:(BBElement *)element
