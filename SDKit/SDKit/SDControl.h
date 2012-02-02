@@ -19,5 +19,6 @@
 
 - (CGSize)drawAtPoint:(CGPoint)point;
 - (CGSize)sizeForPoint:(CGPoint)point;
+- (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size;
 
 @end

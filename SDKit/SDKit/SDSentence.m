@@ -10,17 +10,9 @@
 #import "SDHelper.h"
 #import "SDLabel.h"
 
-@interface SDSentence (private)
-- (BOOL)canInsertSpace:(NSInteger)elementIndex afterLabel:(SDLabel *)label;
-@end
-
-@interface SDControl (protected)
-- (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size;
-@end
-
 @implementation SDSentence
 
-@synthesize maxWidth=_maxWidth, maxHeight=_maxHeight;
+@synthesize maxWidth=_maxWidth, maxHeight=_maxHeight, BBCode=_BBCode;
 
 - (BOOL)doCharacterWrap:(NSString *)word label:(SDLabel *)label coordinate:(CGPoint *)coordinate atPoint:(CGPoint)point
 {
@@ -183,6 +175,38 @@
     return CGPointRound(CGSubstractTwoPoints(maxEndpoint, point));
 }
 
+- (NSArray *)getItemsForBBCode
+{
+    BBCodeParser *parser = [[BBCodeParser alloc] initWithCode:_BBCode];
+    [parser setDelegate:self];
+    [parser parse];
+    [parser release];
+    
+    return nil;
+}
+
+- (void)parser:(BBCodeParser *)parser didStartElementTag:(NSString *)tag attributes:(NSDictionary *)attributes
+{
+    
+}
+
+- (void)parser:(BBCodeParser *)parser didEndElement:(BBElement *)element
+{
+    
+}
+
+- (void)setBBCode:(NSString *)BBCode
+{
+    if (BBCode == _BBCode)
+        return;
+    
+    [_BBCode release];
+    _BBCode = [BBCode retain];
+    
+    NSArray *items = [self getItemsForBBCode];
+    [self setItems:items];
+}
+
 - (CGSize)drawAtPoint:(CGPoint)point
 {
     CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:YES];    
@@ -207,6 +231,7 @@
 
 - (void)dealloc
 {
+    [_BBCode release];
     [super dealloc];
 }
 

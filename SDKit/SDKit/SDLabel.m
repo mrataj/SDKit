@@ -9,10 +9,6 @@
 #import "SDLabel.h"
 #import "SDEvent.h"
 
-@interface SDControl (protected)
-- (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size;
-@end
-
 @implementation SDLabel
 
 @synthesize text=_text, font=_font, textColor=_textColor, highlightedTextColor=_highlightedTextColor, event=_event;

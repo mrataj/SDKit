@@ -9,10 +9,6 @@
 #import "SDImageView.h"
 #import "SDEvent.h"
 
-@interface SDControl (protected)
-- (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size;
-@end
-
 @implementation SDImageView
 
 @synthesize size=_size, event=_event, image=_image;

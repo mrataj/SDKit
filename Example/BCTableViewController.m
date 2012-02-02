@@ -7,7 +7,7 @@
 //
 
 #import "BCTableViewController.h"
-#import "BCTestCell.h"
+#import "BCFeedCell.h"
 #import "SDKit.h"
 
 @implementation BCTableViewController
@@ -24,7 +24,7 @@
         [create release];
         
         NSString *item0 = @"[user]Kate Cameron[/user] shared link [link]http://www.youtube.com[/link] to person [user]Johnny English[/user].";
-        NSString *item1 = @"[user]Kate Cameron[/user] meet person [user]Guy Buckland[/user] 3 hours ago in [link]London[/link].";
+        NSString *item1 = @"[user]Kate Cameron[/user] meet person [user]Guy Buckland[/user] 3 hours ago in [link]London, UK.[/link].";
         NSString *item2 = @"[user]Kate Cameron[/user] created document [document]Example.doc[/document] and sent it to person [user]Larry Brin[/user].";
         NSString *item3 = @"[user]Kate Cameron[/user] has writen a hundred miles long exam about supermassive black holes, saved it to file [document]Seminar paper.pdf[/document] and finally sent it to her professor of physics [user]dr. Gregory Watson[/user].";
         
@@ -93,33 +93,25 @@
     return [dataSource count];
 }
 
-+ (NSArray *)getSentenceItemsFromBBCode:(NSString *)bbCode
-{
-    SDBulletinBoardParser *parser = [[[SDBulletinBoardParser alloc] init] autorelease];
-    return [parser parseText:bbCode];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *bbCode = [dataSource objectAtIndex:indexPath.row];
-    NSArray *items = [BCTableViewController getSentenceItemsFromBBCode:bbCode];
-    return [BCTestCell heightForSentence:items];
+    NSString *code = [dataSource objectAtIndex:indexPath.row];
+    return [BCFeedCell heightForCode:code];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
-    BCTestCell *cell = (BCTestCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    BCFeedCell *cell = (BCFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil)
     {
-        cell = [[[BCTestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[[BCFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
     
     [cell.image setImage:[UIImage imageNamed:@"woman.jpg"]];
     
-    NSString *bbCode = [dataSource objectAtIndex:indexPath.row];
-    NSArray *items = [BCTableViewController getSentenceItemsFromBBCode:bbCode];
-    [cell.sentence setItems:[NSMutableArray arrayWithArray:items]];    
+    NSString *code = [dataSource objectAtIndex:indexPath.row];
+    [cell.sentence setBBCode:code];
     
     return cell;
 }
