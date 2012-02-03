@@ -117,7 +117,7 @@
         if (exceed)
         {
             // If this word is longer than line, do character wrap.
-            if ([word isEqualToString:mutable])
+            if (size.width > _maxWidth)
                 return [self doCharacterWrap:word label:label coordinate:&(*coordinate) atPoint:point];
             else
                 return [self doWordWrap:word words:words label:label coordinate:&(*coordinate) atPoint:point];
