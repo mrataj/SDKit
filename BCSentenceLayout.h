@@ -9,7 +9,7 @@
 #import "SDKit.h"
 
 @interface BCSentenceLayout : SDSentenceLayout {
-    
+    NSDictionary *_events;
 }
 
 @end

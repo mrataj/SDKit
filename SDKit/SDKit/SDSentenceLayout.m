@@ -12,12 +12,20 @@
 
 @implementation SDSentenceLayout
 
+@synthesize eventResponder=_eventResponder;
+
 - (SDLabel *)getLayoutForElement:(BBElement *)element
 {
     SDLabel *label = [[SDLabel alloc] init];
     [label setTextColor:[UIColor blackColor]];
     [label setFont:[UIFont systemFontOfSize:12.0]];
     return [label autorelease];
+}
+
+- (void)dealloc
+{
+    _eventResponder = nil;
+    [super dealloc];
 }
 
 @end

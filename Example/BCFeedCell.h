@@ -9,7 +9,7 @@
 #import "SDKit.h"
 #import "BCFeedCellDelegate.h"
 
-@interface BCFeedCell : SDTableViewCell <BCFeedCellDelegate> {
+@interface BCFeedCell : SDTableViewCell {
     SDSentence *_sentence;
     SDImageView *_image;
     id<BCFeedCellDelegate> _delegate;

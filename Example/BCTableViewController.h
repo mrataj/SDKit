@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BCFeedCellDelegate.h"
 
-@interface BCTableViewController : UITableViewController {
+@interface BCTableViewController : UITableViewController <BCFeedCellDelegate> {
     NSArray *dataSource;
 }
 

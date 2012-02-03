@@ -9,10 +9,6 @@
 #import "BCFeedCell.h"
 #import "BCSentenceLayout.h"
 
-@interface BCFeedCell (private)
-+ (SDLabel *)sentenceElementlayout;
-@end
-
 @implementation BCFeedCell
 
 @synthesize sentence=_sentence, image=_image, delegate=_delegate;
@@ -22,10 +18,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
-        _sentence = [[SDSentence alloc] initWithLayout:layout];
+        _sentence = [[SDSentence alloc] init];
         [_sentence setMaxWidth:265];
-        [layout release];
         
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
         
@@ -34,35 +28,14 @@
     return self;
 }
 
-+ (SDLabel *)sentenceElementlayout
+- (void)setDelegate:(id)delegate
 {
-    SDLabel *label = [[SDLabel alloc] init];
-    [label setTextColor:[UIColor grayColor]];
-    [label setFont:[UIFont systemFontOfSize:15.0]];
-    return [label autorelease];
-}
-
-- (void)showParameters:(NSArray *)params
-{
-    for (BBAttribute *attribute in params)
-    {
-        NSLog(@"Key: %@, Value: ", attribute.name, attribute.value);
-    }
-}
-
-- (void)showUser:(id)params
-{
-    [self showParameters:params];
-}
-
-- (void)showDocument:(id)params
-{
-    [self showParameters:params];
-}
-
-- (void)showLink:(id)params
-{
-    [self showParameters:params];
+    _delegate = delegate;
+    
+    BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
+    [layout setEventResponder:_delegate];
+    [_sentence setLayout:layout];
+    [layout release];
 }
 
 - (void)drawRect:(CGRect)rect

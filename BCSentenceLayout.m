@@ -10,25 +10,30 @@
 #import "BBElement.h"
 
 
-static NSDictionary *__events;
 static NSDictionary *__colors;
 static NSDictionary *__fonts;
 
 
 @implementation BCSentenceLayout
 
-+ (SDEvent *)eventForTag:(NSString *)name
+- (SDEvent *)eventForTag:(NSString *)name
 {
-    if (__events == nil)
+    if (_events == nil)
     {
-        __events = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    [SDEvent eventForTarget:self selector:@selector(showUser:)], @"user",
-                    [SDEvent eventForTarget:self selector:@selector(showDocument:)], @"document",
-                    [SDEvent eventForTarget:self selector:@selector(showLink:)], @"link",
+        _events = [[NSDictionary alloc] initWithObjectsAndKeys:
+                    [SDEvent eventForTarget:_eventResponder selector:@selector(showUser:)], @"user",
+                    [SDEvent eventForTarget:_eventResponder selector:@selector(showDocument:)], @"document",
+                    [SDEvent eventForTarget:_eventResponder selector:@selector(showLink:)], @"link",
                     nil];
     }
     
-    return [__events objectForKey:name];
+    return [_events objectForKey:name];
+}
+
+- (SDEvent *)getEventRecursively:(BBElement *)element
+{
+    SDEvent *event = [self eventForTag:element.tag];
+    return event;
 }
 
 + (UIColor *)colorForTag:(NSString *)name
@@ -86,11 +91,13 @@ static NSDictionary *__fonts;
     SDLabel *label = [[SDLabel alloc] init];
     [label setTextColor:[BCSentenceLayout getTextColorRecursively:element]];
     [label setFont:[BCSentenceLayout getFontRecursively:element]];
+    [label setEvent:[self getEventRecursively:element]];
     return [label autorelease];
 }
 
 - (void)dealloc
 {
+    [_events release];
     [super dealloc];
 }
 

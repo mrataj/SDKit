@@ -44,6 +44,31 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Feed cell delegate methods
+
+- (void)showParameters:(NSArray *)params
+{
+    for (BBAttribute *attribute in params)
+    {
+        NSLog(@"Key: %@, Value: %@", attribute.name, attribute.value);
+    }
+}
+
+- (void)showUser:(id)params
+{
+    [self showParameters:params];
+}
+
+- (void)showDocument:(id)params
+{
+    [self showParameters:params];
+}
+
+- (void)showLink:(id)params
+{
+    [self showParameters:params];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -106,6 +131,7 @@
     if (cell == nil)
     {
         cell = [[[BCFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        [cell setDelegate:self];
     }
     
     [cell.image setImage:[UIImage imageNamed:@"woman.jpg"]];

@@ -12,8 +12,10 @@
 @class BBElement;
 
 @interface SDSentenceLayout : NSObject {
-    
+    id _eventResponder;
 }
+
+@property (nonatomic, assign) id eventResponder;
 
 - (SDLabel *)getLayoutForElement:(BBElement *)element;
 
