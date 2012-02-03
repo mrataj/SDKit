@@ -7,6 +7,7 @@
 //
 
 #import "BCSentenceLayout.h"
+#import "BBElement.h"
 
 
 static NSDictionary *__events;
@@ -46,24 +47,45 @@ static NSDictionary *__fonts;
     return [__colors objectForKey:name];
 }
 
-+ (UIColor *)fontForTag:(NSString *)name
++ (UIColor *)getTextColorRecursively:(BBElement *)element
+{
+    UIColor *color = [self colorForTag:element.tag];
+    if (color == nil && element.parent != nil)
+        return [self getTextColorRecursively:element.parent];
+    
+    return color;
+}
+
++ (UIFont *)fontForTag:(NSString *)name
 {
     if (__fonts == nil)
     {
         __fonts = [[NSDictionary alloc] initWithObjectsAndKeys:
+                   [UIFont boldSystemFontOfSize:15.0], @"user",
+                   [UIFont boldSystemFontOfSize:15.0], @"document",
+                   [UIFont boldSystemFontOfSize:15.0], @"link",
                    [UIFont boldSystemFontOfSize:15.0], @"bold",
                    [UIFont systemFontOfSize:15.0], @"",
                    nil];
     }
     
-    return [__colors objectForKey:name];
+    return [__fonts objectForKey:name];
+}
+
++ (UIFont *)getFontRecursively:(BBElement *)element
+{
+    UIFont *font = [self fontForTag:element.tag];
+    if (font == nil && element.parent != nil)
+        return [self getFontRecursively:element.parent];
+    
+    return font;
 }
 
 - (SDLabel *)getLayoutForElement:(BBElement *)element
 {
     SDLabel *label = [[SDLabel alloc] init];
-    [label setTextColor:[UIColor grayColor]];
-    [label setFont:[UIFont systemFontOfSize:15.0]];
+    [label setTextColor:[BCSentenceLayout getTextColorRecursively:element]];
+    [label setFont:[BCSentenceLayout getFontRecursively:element]];
     return [label autorelease];
 }
 
