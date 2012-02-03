@@ -69,13 +69,13 @@ static NSMutableDictionary *events;
 {
     NSMutableString *temporary = [[NSMutableString alloc] init];
     
-    NSInteger lastEndTagIndex = -1;
+    NSInteger endTagIndex = -1;
     for (int i = 0; i < [element.text length]; i++)
     {
         NSString *character = [element.text substringWithRange:NSMakeRange(i, 1)];
         if ([character isEqualToString:@"["])
         {
-            NSString *text = [element.text substringWithRange:NSMakeRange(lastEndTagIndex + 1, i - lastEndTagIndex - 1)];
+            NSString *text = [element.text substringWithRange:NSMakeRange(endTagIndex + 1, i - endTagIndex - 1)];
             [self addLabelForText:text];
             
             [temporary release];
@@ -92,19 +92,13 @@ static NSMutableDictionary *events;
             [temporary release];
             temporary = [[NSMutableString alloc] init];  
             
-            lastEndTagIndex = i;
+            endTagIndex = i;
             _parsingTag = NO;
         }
         else
         {
             [temporary appendString:character];
         }
-    }
-    
-    if (lastEndTagIndex != -1)
-    {
-        NSString *text = [element.text substringFromIndex:lastEndTagIndex];
-        [self addLabelForText:text];
     }
     
     if ([temporary length] > 0)
