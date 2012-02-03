@@ -7,20 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SDSentenceBuilderDelegate.h"
-#import "BBCodeParser.h"
 
-@interface SDSentenceBuilder : NSObject <BBCodeParserDelegate> {
+@class SDSentenceLayout;
+
+@interface SDSentenceBuilder : NSObject {
     NSMutableArray *_labels;
     NSString *_code;
     
     BOOL _parsingTag;
     
-    id<SDSentenceBuilderDelegate> _delegate;
+    SDSentenceLayout *_layout;
 }
 
 @property (nonatomic, readonly) NSArray *labels;
-@property (nonatomic, assign) id<SDSentenceBuilderDelegate> delegate;
+@property (nonatomic, retain) SDSentenceLayout *layout;
 
 - (id)initWithCode:(NSString *)code;
 - (void)build;

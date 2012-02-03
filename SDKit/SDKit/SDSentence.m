@@ -15,7 +15,7 @@
 
 @synthesize maxWidth=_maxWidth, maxHeight=_maxHeight, BBCode=_BBCode, layout=_layout;
 
-- (id)initWithLayout:(SDLabel *)layout
+- (id)initWithLayout:(SDSentenceLayout *)layout
 {
     self = [super init];
     if (self)
@@ -110,11 +110,6 @@
     return YES;
 }
 
-- (SDLabel *)layoutForElement:(BBElement *)element
-{
-    return _layout;
-}
-
 - (BOOL)splitWords:(SDLabel *)label point:(CGPoint)point coordinate:(CGPoint *)coordinate
 {
     // Splits words in two parts (in most cases finish current line and create new line).
@@ -200,7 +195,7 @@
     _BBCode = [BBCode retain];
     
     SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:_BBCode];
-    [sb setDelegate:self];
+    [sb setLayout:_layout];
     [sb build];
     [self setItems:sb.labels];
     [sb release];

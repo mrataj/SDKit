@@ -1,5 +1,5 @@
 //
-//  SDSentenceBuilderDelegate.h
+//  SDSentenceLayout.h
 //  SDKit
 //
 //  Created by Miha Rataj on 3.2.12.
@@ -11,6 +11,10 @@
 @class SDLabel;
 @class BBElement;
 
-@protocol SDSentenceBuilderDelegate <NSObject>
-- (SDLabel *)layoutForElement:(BBElement *)element;
+@interface SDSentenceLayout : NSObject {
+    
+}
+
+- (SDLabel *)getLayoutForElement:(BBElement *)element;
+
 @end

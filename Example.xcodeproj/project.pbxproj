@@ -17,6 +17,7 @@
 		1158E24514D45D4C00E31CD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24414D45D4C00E31CD0 /* UIKit.framework */; };
 		1158E24714D45D4C00E31CD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24614D45D4C00E31CD0 /* Foundation.framework */; };
 		1158E24914D45D4C00E31CD0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24814D45D4C00E31CD0 /* CoreGraphics.framework */; };
+		1172206214DC0016008F5B42 /* BCSentenceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1172206114DC0016008F5B42 /* BCSentenceLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		1158E24414D45D4C00E31CD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1158E24614D45D4C00E31CD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1158E24814D45D4C00E31CD0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1172206014DC0016008F5B42 /* BCSentenceLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSentenceLayout.h; sourceTree = SOURCE_ROOT; };
+		1172206114DC0016008F5B42 /* BCSentenceLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSentenceLayout.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				113AEC8714D6FDEB006653D2 /* BCFeedCell.h */,
 				113AEC8814D6FDEB006653D2 /* BCFeedCell.m */,
 				1158E24B14D45D4C00E31CD0 /* Supporting Files */,
+				1172206014DC0016008F5B42 /* BCSentenceLayout.h */,
+				1172206114DC0016008F5B42 /* BCSentenceLayout.m */,
 			);
 			name = Example;
 			path = Style;
@@ -217,6 +222,7 @@
 				113AEC8914D6FDEB006653D2 /* BCAppDelegate.m in Sources */,
 				113AEC8A14D6FDEB006653D2 /* BCTableViewController.m in Sources */,
 				113AEC8B14D6FDEB006653D2 /* BCFeedCell.m in Sources */,
+				1172206214DC0016008F5B42 /* BCSentenceLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

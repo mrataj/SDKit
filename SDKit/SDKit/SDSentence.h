@@ -11,21 +11,21 @@
 // Sentence is created with mutliple styled labels.
 
 #import "SDControl.h"
-#import "SDSentenceBuilderDelegate.h"
+#import "SDSentenceLayout.h"
 
-@interface SDSentence : SDControl <SDSentenceBuilderDelegate> {
+@interface SDSentence : SDControl {
     CGFloat _maxWidth;
     CGFloat _maxHeight;
     NSString *_BBCode;
-    SDLabel *_layout;
+    SDSentenceLayout *_layout;
 }
 
-- (id)initWithLayout:(SDLabel *)layout;
+- (id)initWithLayout:(SDSentenceLayout *)layout;
 
 @property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, assign) CGFloat maxHeight;
 @property (nonatomic, copy) NSString *BBCode;
-@property (nonatomic, retain) SDLabel *layout;
+@property (nonatomic, retain) SDSentenceLayout *layout;
 @property (nonatomic, readonly) BOOL hasHeightLimitation;
 @property (nonatomic, readonly) BOOL hasWidthLimitation;
 

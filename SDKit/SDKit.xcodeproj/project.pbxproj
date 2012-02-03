@@ -34,7 +34,8 @@
 		1156E5A414DAF673006B1A8E /* BBElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1156E59B14DAF673006B1A8E /* BBElement.m */; };
 		1156E5A514DAF673006B1A8E /* BBParsingElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1156E59C14DAF673006B1A8E /* BBParsingElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1156E5A614DAF673006B1A8E /* BBParsingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1156E59D14DAF673006B1A8E /* BBParsingElement.m */; };
-		1172205A14DBF87E008F5B42 /* SDSentenceBuilderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1172205914DBF87E008F5B42 /* SDSentenceBuilderDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1172205E14DBFF83008F5B42 /* SDSentenceLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1172205C14DBFF83008F5B42 /* SDSentenceLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1172205F14DBFF83008F5B42 /* SDSentenceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1172205D14DBFF83008F5B42 /* SDSentenceLayout.m */; };
 		1175796814DB0B4400ED4BA0 /* SDSentenceBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1175796614DB0B4400ED4BA0 /* SDSentenceBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1175796914DB0B4400ED4BA0 /* SDSentenceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1175796714DB0B4400ED4BA0 /* SDSentenceBuilder.m */; };
 		11DA253514D8754D0010A607 /* SDKit-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 11DA253414D8754D0010A607 /* SDKit-Prefix.pch */; };
@@ -70,7 +71,8 @@
 		1156E59B14DAF673006B1A8E /* BBElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBElement.m; sourceTree = "<group>"; };
 		1156E59C14DAF673006B1A8E /* BBParsingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBParsingElement.h; sourceTree = "<group>"; };
 		1156E59D14DAF673006B1A8E /* BBParsingElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBParsingElement.m; sourceTree = "<group>"; };
-		1172205914DBF87E008F5B42 /* SDSentenceBuilderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSentenceBuilderDelegate.h; sourceTree = "<group>"; };
+		1172205C14DBFF83008F5B42 /* SDSentenceLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSentenceLayout.h; sourceTree = "<group>"; };
+		1172205D14DBFF83008F5B42 /* SDSentenceLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSentenceLayout.m; sourceTree = "<group>"; };
 		1175796614DB0B4400ED4BA0 /* SDSentenceBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSentenceBuilder.h; sourceTree = "<group>"; };
 		1175796714DB0B4400ED4BA0 /* SDSentenceBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSentenceBuilder.m; sourceTree = "<group>"; };
 		11DA253414D8754D0010A607 /* SDKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKit-Prefix.pch"; sourceTree = "<group>"; };
@@ -134,9 +136,10 @@
 				114F4E7314D6DF61004FDAF3 /* SDPlaceholder.m */,
 				114F4E7414D6DF61004FDAF3 /* SDSentence.h */,
 				114F4E7514D6DF61004FDAF3 /* SDSentence.m */,
-				1172205914DBF87E008F5B42 /* SDSentenceBuilderDelegate.h */,
 				1175796614DB0B4400ED4BA0 /* SDSentenceBuilder.h */,
 				1175796714DB0B4400ED4BA0 /* SDSentenceBuilder.m */,
+				1172205C14DBFF83008F5B42 /* SDSentenceLayout.h */,
+				1172205D14DBFF83008F5B42 /* SDSentenceLayout.m */,
 				114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */,
 				114F4E7714D6DF61004FDAF3 /* SDTableViewCell.m */,
 				11DA253314D8754D0010A607 /* Supporting Files */,
@@ -185,8 +188,8 @@
 				1156E5A014DAF673006B1A8E /* BBCodeParser.h in Headers */,
 				1156E5A214DAF673006B1A8E /* BBCodeParserDelegate.h in Headers */,
 				1156E5A314DAF673006B1A8E /* BBElement.h in Headers */,
+				1172205E14DBFF83008F5B42 /* SDSentenceLayout.h in Headers */,
 				1175796814DB0B4400ED4BA0 /* SDSentenceBuilder.h in Headers */,
-				1172205A14DBF87E008F5B42 /* SDSentenceBuilderDelegate.h in Headers */,
 				1156E5A514DAF673006B1A8E /* BBParsingElement.h in Headers */,
 				114F4E9514D6E496004FDAF3 /* SDSentence.h in Headers */,
 				114F4E9614D6E496004FDAF3 /* SDTableViewCell.h in Headers */,
@@ -258,6 +261,7 @@
 				1156E5A414DAF673006B1A8E /* BBElement.m in Sources */,
 				1156E5A614DAF673006B1A8E /* BBParsingElement.m in Sources */,
 				1175796914DB0B4400ED4BA0 /* SDSentenceBuilder.m in Sources */,
+				1172205F14DBFF83008F5B42 /* SDSentenceLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

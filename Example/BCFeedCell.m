@@ -7,12 +7,11 @@
 //
 
 #import "BCFeedCell.h"
+#import "BCSentenceLayout.h"
 
 @interface BCFeedCell (private)
 + (SDLabel *)sentenceElementlayout;
 @end
-
-static NSMutableDictionary *__events;
 
 @implementation BCFeedCell
 
@@ -23,27 +22,16 @@ static NSMutableDictionary *__events;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        _sentence = [[SDSentence alloc] initWithLayout:[BCFeedCell sentenceElementlayout]];
+        BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
+        _sentence = [[SDSentence alloc] initWithLayout:layout];
         [_sentence setMaxWidth:265];
+        [layout release];
         
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
         
         [_placeholder setItems:[NSArray arrayWithObjects:_image, _sentence, nil]];
     }
     return self;
-}
-
-+ (SDEvent *)eventForTag:(NSString *)name
-{
-    if (__events == nil)
-    {
-        __events = [[NSMutableDictionary alloc] init];
-        [__events setObject:[SDEvent eventForTarget:self selector:@selector(showUser:)] forKey:@"user"];
-        [__events setObject:[SDEvent eventForTarget:self selector:@selector(showDocument:)] forKey:@"document"];
-        [__events setObject:[SDEvent eventForTarget:self selector:@selector(showLink:)] forKey:@"link"];
-    }
-    
-    return [__events objectForKey:name];
 }
 
 + (SDLabel *)sentenceElementlayout
@@ -69,13 +57,13 @@ static NSMutableDictionary *__events;
 {
     CGFloat height = 10.0;
     
-    SDLabel *layout = [BCFeedCell sentenceElementlayout];
-    
+    BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
     SDSentence *sentence = [[SDSentence alloc] initWithLayout:layout];
     [sentence setMaxWidth:265];
     [sentence setBBCode:code];
     height += [sentence sizeForPoint:CGPointMake(50, 5)].height;
     [sentence release];
+    [layout release];
     
     return height;
 }

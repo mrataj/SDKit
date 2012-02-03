@@ -9,6 +9,8 @@
 #import "SDSentenceBuilder.h"
 #import "SDEvent.h"
 #import "SDLabel.h"
+#import "BBCodeParser.h"
+#import "SDSentenceLayout.h"
 
 @interface SDSentenceBuilder (private)
 - (void)createForElement:(BBElement *)element;
@@ -17,7 +19,7 @@
 
 @implementation SDSentenceBuilder
 
-@synthesize labels=_labels, delegate=_delegate;
+@synthesize labels=_labels, layout=_layout;
 
 - (id)initWithCode:(NSString *)code
 {
@@ -33,7 +35,6 @@
 - (void)build
 {
     BBCodeParser *parser = [[BBCodeParser alloc] initWithCode:_code];
-    [parser setDelegate:self];
     [parser parse];
     [self createForElement:parser.element];
     [parser release];
@@ -44,7 +45,7 @@
     if ([text length] == 0)
         return;
     
-    SDLabel *layout = [self.delegate layoutForElement:element];
+    SDLabel *layout = [_layout getLayoutForElement:element];
     
     SDLabel *label = [[SDLabel alloc] init];
     [label setTextColor:layout.textColor];
@@ -97,7 +98,7 @@
 
 - (void)dealloc
 {
-    _delegate = nil;
+    [_layout release];
     [_code release];
     [_labels release];
     [super dealloc];
