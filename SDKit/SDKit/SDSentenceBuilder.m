@@ -49,7 +49,7 @@
     SDLabel *label = [[SDLabel alloc] init];
     [label setTextColor:layout.textColor];
     [label setFont:layout.font];
-    [label setEvent:label.event];
+    [label setEvent:layout.event];
     [label setText:text];
     [_labels addObject:label];
     [label release];

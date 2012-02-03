@@ -33,6 +33,9 @@ static NSDictionary *__fonts;
 - (SDEvent *)getEventRecursively:(BBElement *)element
 {
     SDEvent *event = [self eventForTag:element.tag];
+    if (event != nil)
+        [event setObject:element.attributes];
+    
     return event;
 }
 
