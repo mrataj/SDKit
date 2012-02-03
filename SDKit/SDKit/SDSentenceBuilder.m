@@ -10,8 +10,6 @@
 #import "SDEvent.h"
 #import "SDLabel.h"
 
-static NSMutableDictionary *events;
-
 @interface SDSentenceBuilder (private)
 - (void)createForElement:(BBElement *)element;
 @end
@@ -19,7 +17,7 @@ static NSMutableDictionary *events;
 
 @implementation SDSentenceBuilder
 
-@synthesize labels=_labels;
+@synthesize labels=_labels, delegate=_delegate;
 
 - (id)initWithCode:(NSString *)code
 {
@@ -27,41 +25,33 @@ static NSMutableDictionary *events;
     if (self)
     {
         _labels = [[NSMutableArray alloc] init];
-        
-        BBCodeParser *parser = [[BBCodeParser alloc] initWithCode:code];
-        [parser setDelegate:self];
-        [parser parse];
-        [self createForElement:parser.element];
-        [parser release];
+        _code = [code copy];
     }
     return self;
 }
 
-- (SDEvent *)eventForTag:(NSString *)name
+- (void)build
 {
-    if (events == nil)
-    {
-        events = [[NSMutableDictionary alloc] init];
-        [events setObject:[SDEvent eventForTarget:self selector:@selector(showUser:)] forKey:@"user"];
-        [events setObject:[SDEvent eventForTarget:self selector:@selector(showDocument:)] forKey:@"document"];
-        [events setObject:[SDEvent eventForTarget:self selector:@selector(showLink:)] forKey:@"link"];
-    }
-    
-    return [events objectForKey:name];
+    BBCodeParser *parser = [[BBCodeParser alloc] initWithCode:_code];
+    [parser setDelegate:self];
+    [parser parse];
+    [self createForElement:parser.element];
+    [parser release];
 }
 
-- (void)addLabelForText:(NSString *)text
+- (void)createLabel:(NSString *)text forElement:(BBElement *)element
 {
     if ([text length] == 0)
         return;
     
-    SDLabel *label = [[SDLabel alloc] init];
-    [label setTextColor:[UIColor grayColor]];
-    [label setFont:[UIFont systemFontOfSize:15.0]];
+    SDLabel *layout = [self.delegate layoutForElement:element];
     
+    SDLabel *label = [[SDLabel alloc] init];
+    [label setTextColor:layout.textColor];
+    [label setFont:layout.font];
+    [label setEvent:label.event];
     [label setText:text];
     [_labels addObject:label];
-    
     [label release];
 }
 
@@ -76,7 +66,7 @@ static NSMutableDictionary *events;
         if ([character isEqualToString:@"["])
         {
             NSString *text = [element.text substringWithRange:NSMakeRange(endTagIndex + 1, i - endTagIndex - 1)];
-            [self addLabelForText:text];
+            [self createLabel:text forElement:element];
             
             [temporary release];
             temporary = [[NSMutableString alloc] init];            
@@ -102,11 +92,13 @@ static NSMutableDictionary *events;
     }
     
     if ([temporary length] > 0)
-        [self addLabelForText:temporary];
+        [self createLabel:temporary forElement:element];
 }
 
 - (void)dealloc
 {
+    _delegate = nil;
+    [_code release];
     [_labels release];
     [super dealloc];
 }

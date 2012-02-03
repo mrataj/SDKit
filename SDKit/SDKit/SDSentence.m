@@ -13,7 +13,17 @@
 
 @implementation SDSentence
 
-@synthesize maxWidth=_maxWidth, maxHeight=_maxHeight, BBCode=_BBCode;
+@synthesize maxWidth=_maxWidth, maxHeight=_maxHeight, BBCode=_BBCode, layout=_layout;
+
+- (id)initWithLayout:(SDLabel *)layout
+{
+    self = [super init];
+    if (self)
+    {
+        self.layout = layout;
+    }
+    return self;
+}
 
 - (BOOL)doCharacterWrap:(NSString *)word label:(SDLabel *)label coordinate:(CGPoint *)coordinate atPoint:(CGPoint)point
 {
@@ -98,6 +108,11 @@
     [nextLabel release];
     
     return YES;
+}
+
+- (SDLabel *)layoutForElement:(BBElement *)element
+{
+    return _layout;
 }
 
 - (BOOL)splitWords:(SDLabel *)label point:(CGPoint)point coordinate:(CGPoint *)coordinate
@@ -185,6 +200,8 @@
     _BBCode = [BBCode retain];
     
     SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:_BBCode];
+    [sb setDelegate:self];
+    [sb build];
     [self setItems:sb.labels];
     [sb release];
 }
@@ -213,6 +230,7 @@
 
 - (void)dealloc
 {
+    [_layout release];
     [_BBCode release];
     [super dealloc];
 }
