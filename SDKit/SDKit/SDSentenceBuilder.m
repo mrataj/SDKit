@@ -9,7 +9,6 @@
 #import "SDSentenceBuilder.h"
 #import "SDEvent.h"
 #import "SDLabel.h"
-#import "BBCodeParser.h"
 #import "SDSentenceLayout.h"
 
 @interface SDSentenceBuilder (private)

@@ -7,14 +7,17 @@
 //
 
 #import "SDKit.h"
+#import "BCFeedCellDelegate.h"
 
-@interface BCFeedCell : SDTableViewCell {
+@interface BCFeedCell : SDTableViewCell <BCFeedCellDelegate> {
     SDSentence *_sentence;
-    SDImageView *_image;    
+    SDImageView *_image;
+    id<BCFeedCellDelegate> _delegate;
 }
 
 @property (nonatomic, retain) SDSentence *sentence;
 @property (nonatomic, retain) SDImageView *image;
+@property (nonatomic, assign) id<BCFeedCellDelegate> delegate;
 
 + (CGFloat)heightForCode:(NSString *)code;
 

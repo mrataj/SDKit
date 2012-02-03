@@ -11,6 +11,7 @@
 // Sentence is created with mutliple styled labels.
 
 #import "SDControl.h"
+#import "SDSentenceBuilder.h"
 #import "SDSentenceLayout.h"
 
 @interface SDSentence : SDControl {

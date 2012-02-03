@@ -36,7 +36,6 @@ static NSDictionary *__fonts;
     if (__colors == nil)
     {
         __colors = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    [UIColor redColor], @"quote",
                     [UIColor grayColor], @"",
                     [UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0], @"user",
                     [UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0], @"document",
@@ -65,6 +64,7 @@ static NSDictionary *__fonts;
                    [UIFont boldSystemFontOfSize:15.0], @"document",
                    [UIFont boldSystemFontOfSize:15.0], @"link",
                    [UIFont boldSystemFontOfSize:15.0], @"bold",
+                   [UIFont italicSystemFontOfSize:15.0], @"quote",
                    [UIFont systemFontOfSize:15.0], @"",
                    nil];
     }

@@ -15,7 +15,7 @@
 
 @implementation BCFeedCell
 
-@synthesize sentence=_sentence, image=_image;
+@synthesize sentence=_sentence, image=_image, delegate=_delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -42,9 +42,27 @@
     return [label autorelease];
 }
 
-- (void)showText:(NSString *)text
+- (void)showParameters:(NSArray *)params
 {
-    NSLog(@"%@", text);
+    for (BBAttribute *attribute in params)
+    {
+        NSLog(@"Key: %@, Value: ", attribute.name, attribute.value);
+    }
+}
+
+- (void)showUser:(id)params
+{
+    [self showParameters:params];
+}
+
+- (void)showDocument:(id)params
+{
+    [self showParameters:params];
+}
+
+- (void)showLink:(id)params
+{
+    [self showParameters:params];
 }
 
 - (void)drawRect:(CGRect)rect

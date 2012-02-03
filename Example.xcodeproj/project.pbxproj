@@ -56,6 +56,7 @@
 		1158E24814D45D4C00E31CD0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1172206014DC0016008F5B42 /* BCSentenceLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSentenceLayout.h; sourceTree = SOURCE_ROOT; };
 		1172206114DC0016008F5B42 /* BCSentenceLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSentenceLayout.m; sourceTree = SOURCE_ROOT; };
+		1172206614DC0465008F5B42 /* BCFeedCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCFeedCellDelegate.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +117,12 @@
 				113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */,
 				113AEC8514D6FDEB006653D2 /* BCTableViewController.h */,
 				113AEC8614D6FDEB006653D2 /* BCTableViewController.m */,
+				1172206614DC0465008F5B42 /* BCFeedCellDelegate.h */,
 				113AEC8714D6FDEB006653D2 /* BCFeedCell.h */,
 				113AEC8814D6FDEB006653D2 /* BCFeedCell.m */,
-				1158E24B14D45D4C00E31CD0 /* Supporting Files */,
 				1172206014DC0016008F5B42 /* BCSentenceLayout.h */,
 				1172206114DC0016008F5B42 /* BCSentenceLayout.m */,
+				1158E24B14D45D4C00E31CD0 /* Supporting Files */,
 			);
 			name = Example;
 			path = Style;

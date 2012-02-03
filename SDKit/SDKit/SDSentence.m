@@ -9,7 +9,6 @@
 #import "SDSentence.h"
 #import "SDHelper.h"
 #import "SDLabel.h"
-#import "SDSentenceBuilder.h"
 
 @implementation SDSentence
 
