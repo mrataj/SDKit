@@ -63,3 +63,17 @@ CGSize CGSizeMakeFromPoint(CGPoint point)
 {
     return CGSizeMake(point.x, point.y);
 }
+
+static void CGContextAddRoundedRect(CGContextRef c, CGRect rect, CGFloat radius)
+{
+    CGFloat minX = CGRectGetMinX(rect);
+    CGFloat maxX = CGRectGetMaxX(rect);
+    CGFloat minY = CGRectGetMinY(rect);
+    CGFloat maxY = CGRectGetMaxY(rect);
+    
+    CGContextMoveToPoint(c, minX + radius, minY);
+    CGContextAddArcToPoint(c, maxX, minY, maxX, minY + radius, radius);
+    CGContextAddArcToPoint(c, maxX, maxY, maxX - radius, maxY, radius);
+    CGContextAddArcToPoint(c, minX, maxY, minX, maxY - radius, radius);
+    CGContextAddArcToPoint(c, minX, minY, minX + radius, minY, radius);
+}

@@ -11,13 +11,15 @@
 		113AEC7E14D6FDCD006653D2 /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 113AEC7B14D6FDCD006653D2 /* woman.jpg */; };
 		113AEC8214D6FDE2006653D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 113AEC8014D6FDE2006653D2 /* InfoPlist.strings */; };
 		113AEC8914D6FDEB006653D2 /* BCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */; };
-		113AEC8A14D6FDEB006653D2 /* BCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC8614D6FDEB006653D2 /* BCTableViewController.m */; };
+		113AEC8A14D6FDEB006653D2 /* BCFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC8614D6FDEB006653D2 /* BCFeedViewController.m */; };
 		113AEC8B14D6FDEB006653D2 /* BCFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC8814D6FDEB006653D2 /* BCFeedCell.m */; };
 		114F4E9914D6E4E5004FDAF3 /* libSDKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 114F4E6614D6DF36004FDAF3 /* libSDKit.a */; };
 		1158E24514D45D4C00E31CD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24414D45D4C00E31CD0 /* UIKit.framework */; };
 		1158E24714D45D4C00E31CD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24614D45D4C00E31CD0 /* Foundation.framework */; };
 		1158E24914D45D4C00E31CD0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24814D45D4C00E31CD0 /* CoreGraphics.framework */; };
 		1172206214DC0016008F5B42 /* BCSentenceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1172206114DC0016008F5B42 /* BCSentenceLayout.m */; };
+		1181E59414DDE9D4001FF7DE /* BCNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181E59314DDE9D4001FF7DE /* BCNavigationViewController.m */; };
+		1181E59714DDEAF3001FF7DE /* BCRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181E59614DDEAF3001FF7DE /* BCRequestsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +47,8 @@
 		113AEC8114D6FDE2006653D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Example/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		113AEC8314D6FDEB006653D2 /* BCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCAppDelegate.h; path = Example/BCAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCAppDelegate.m; path = Example/BCAppDelegate.m; sourceTree = SOURCE_ROOT; };
-		113AEC8514D6FDEB006653D2 /* BCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCTableViewController.h; path = Example/BCTableViewController.h; sourceTree = SOURCE_ROOT; };
-		113AEC8614D6FDEB006653D2 /* BCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCTableViewController.m; path = Example/BCTableViewController.m; sourceTree = SOURCE_ROOT; };
+		113AEC8514D6FDEB006653D2 /* BCFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCFeedViewController.h; path = Example/BCFeedViewController.h; sourceTree = SOURCE_ROOT; };
+		113AEC8614D6FDEB006653D2 /* BCFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCFeedViewController.m; path = Example/BCFeedViewController.m; sourceTree = SOURCE_ROOT; };
 		113AEC8714D6FDEB006653D2 /* BCFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCFeedCell.h; path = Example/BCFeedCell.h; sourceTree = SOURCE_ROOT; };
 		113AEC8814D6FDEB006653D2 /* BCFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCFeedCell.m; path = Example/BCFeedCell.m; sourceTree = SOURCE_ROOT; };
 		114F4E6114D6DF34004FDAF3 /* SDKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDKit.xcodeproj; path = SDKit/SDKit.xcodeproj; sourceTree = "<group>"; };
@@ -57,6 +59,10 @@
 		1172206014DC0016008F5B42 /* BCSentenceLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSentenceLayout.h; sourceTree = SOURCE_ROOT; };
 		1172206114DC0016008F5B42 /* BCSentenceLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSentenceLayout.m; sourceTree = SOURCE_ROOT; };
 		1172206614DC0465008F5B42 /* BCFeedCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCFeedCellDelegate.h; sourceTree = SOURCE_ROOT; };
+		1181E59214DDE9D4001FF7DE /* BCNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNavigationViewController.h; sourceTree = SOURCE_ROOT; };
+		1181E59314DDE9D4001FF7DE /* BCNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNavigationViewController.m; sourceTree = SOURCE_ROOT; };
+		1181E59514DDEAF3001FF7DE /* BCRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRequestsViewController.h; sourceTree = SOURCE_ROOT; };
+		1181E59614DDEAF3001FF7DE /* BCRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRequestsViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,14 +121,18 @@
 			children = (
 				113AEC8314D6FDEB006653D2 /* BCAppDelegate.h */,
 				113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */,
-				113AEC8514D6FDEB006653D2 /* BCTableViewController.h */,
-				113AEC8614D6FDEB006653D2 /* BCTableViewController.m */,
+				113AEC8514D6FDEB006653D2 /* BCFeedViewController.h */,
+				113AEC8614D6FDEB006653D2 /* BCFeedViewController.m */,
 				1172206614DC0465008F5B42 /* BCFeedCellDelegate.h */,
 				113AEC8714D6FDEB006653D2 /* BCFeedCell.h */,
 				113AEC8814D6FDEB006653D2 /* BCFeedCell.m */,
 				1172206014DC0016008F5B42 /* BCSentenceLayout.h */,
 				1172206114DC0016008F5B42 /* BCSentenceLayout.m */,
 				1158E24B14D45D4C00E31CD0 /* Supporting Files */,
+				1181E59214DDE9D4001FF7DE /* BCNavigationViewController.h */,
+				1181E59314DDE9D4001FF7DE /* BCNavigationViewController.m */,
+				1181E59514DDEAF3001FF7DE /* BCRequestsViewController.h */,
+				1181E59614DDEAF3001FF7DE /* BCRequestsViewController.m */,
 			);
 			name = Example;
 			path = Style;
@@ -222,9 +232,11 @@
 			files = (
 				113AEC7D14D6FDCD006653D2 /* main.m in Sources */,
 				113AEC8914D6FDEB006653D2 /* BCAppDelegate.m in Sources */,
-				113AEC8A14D6FDEB006653D2 /* BCTableViewController.m in Sources */,
+				113AEC8A14D6FDEB006653D2 /* BCFeedViewController.m in Sources */,
 				113AEC8B14D6FDEB006653D2 /* BCFeedCell.m in Sources */,
 				1172206214DC0016008F5B42 /* BCSentenceLayout.m in Sources */,
+				1181E59414DDE9D4001FF7DE /* BCNavigationViewController.m in Sources */,
+				1181E59714DDEAF3001FF7DE /* BCRequestsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

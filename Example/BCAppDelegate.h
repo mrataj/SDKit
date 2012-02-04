@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class BCTableViewController;
+@class BCNavigationViewController;
 
 @interface BCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) BCTableViewController *viewController;
+@property (strong, nonatomic) BCNavigationViewController *viewController;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "BCAppDelegate.h"
-#import "BCTableViewController.h"
+#import "BCNavigationViewController.h"
 
 @implementation BCAppDelegate
 
@@ -24,7 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.viewController = [[[BCTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+    self.viewController = [[[BCNavigationViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     [navigationController.navigationBar setTintColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
