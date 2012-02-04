@@ -34,4 +34,4 @@ CGPoint CGAggregateTwoPoints(CGPoint point1, CGPoint point2);
 
 CGSize CGSizeMakeFromPoint(CGPoint point);
 
-static void CGContextAddRoundedRect(CGContextRef c, CGRect rect, CGFloat radius);
+void CGContextAddRoundedRect(CGContextRef c, CGRect rect, CGFloat radius);

@@ -38,7 +38,7 @@
 		1172205F14DBFF83008F5B42 /* SDSentenceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1172205D14DBFF83008F5B42 /* SDSentenceLayout.m */; };
 		1175796814DB0B4400ED4BA0 /* SDSentenceBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1175796614DB0B4400ED4BA0 /* SDSentenceBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1175796914DB0B4400ED4BA0 /* SDSentenceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1175796714DB0B4400ED4BA0 /* SDSentenceBuilder.m */; };
-		1181E58214DDE7E6001FF7DE /* SDButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 1181E58014DDE7E6001FF7DE /* SDButton.h */; };
+		1181E58214DDE7E6001FF7DE /* SDButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 1181E58014DDE7E6001FF7DE /* SDButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1181E58314DDE7E6001FF7DE /* SDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181E58114DDE7E6001FF7DE /* SDButton.m */; };
 		11DA253514D8754D0010A607 /* SDKit-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 11DA253414D8754D0010A607 /* SDKit-Prefix.pch */; };
 /* End PBXBuildFile section */
@@ -196,11 +196,11 @@
 				1156E5A314DAF673006B1A8E /* BBElement.h in Headers */,
 				1172205E14DBFF83008F5B42 /* SDSentenceLayout.h in Headers */,
 				1175796814DB0B4400ED4BA0 /* SDSentenceBuilder.h in Headers */,
+				1181E58214DDE7E6001FF7DE /* SDButton.h in Headers */,
 				1156E5A514DAF673006B1A8E /* BBParsingElement.h in Headers */,
 				114F4E9514D6E496004FDAF3 /* SDSentence.h in Headers */,
 				114F4E9614D6E496004FDAF3 /* SDTableViewCell.h in Headers */,
 				11DA253514D8754D0010A607 /* SDKit-Prefix.pch in Headers */,
-				1181E58214DDE7E6001FF7DE /* SDButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

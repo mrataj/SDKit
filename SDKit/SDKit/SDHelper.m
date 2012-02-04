@@ -64,7 +64,7 @@ CGSize CGSizeMakeFromPoint(CGPoint point)
     return CGSizeMake(point.x, point.y);
 }
 
-static void CGContextAddRoundedRect(CGContextRef c, CGRect rect, CGFloat radius)
+void CGContextAddRoundedRect(CGContextRef c, CGRect rect, CGFloat radius)
 {
     CGFloat minX = CGRectGetMinX(rect);
     CGFloat maxX = CGRectGetMaxX(rect);

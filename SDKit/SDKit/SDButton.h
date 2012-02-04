@@ -16,6 +16,9 @@
     UIFont *_font;
     UIColor *_textColor;
     UIColor *_backgroundColor;
+    UIColor *_highlightedBackgroundColor;
+    UIColor *_highlightedTextColor;
+    NSString *_text;
 }
 
 @property (nonatomic, assign) CGSize size;
@@ -23,5 +26,8 @@
 @property (nonatomic, retain) UIFont *font;
 @property (nonatomic, retain) UIColor *textColor;
 @property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic, retain) UIColor *highlightedBackgroundColor;
+@property (nonatomic, retain) UIColor *highlightedTextColor;
+@property (nonatomic, copy) NSString *text;
 
 @end

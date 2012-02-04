@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11101E0614DDF45700A7FF96 /* BCRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11101E0514DDF45700A7FF96 /* BCRequestCell.m */; };
 		113AEC7D14D6FDCD006653D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC7A14D6FDCD006653D2 /* main.m */; };
 		113AEC7E14D6FDCD006653D2 /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 113AEC7B14D6FDCD006653D2 /* woman.jpg */; };
 		113AEC8214D6FDE2006653D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 113AEC8014D6FDE2006653D2 /* InfoPlist.strings */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11101E0414DDF45700A7FF96 /* BCRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRequestCell.h; sourceTree = SOURCE_ROOT; };
+		11101E0514DDF45700A7FF96 /* BCRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRequestCell.m; sourceTree = SOURCE_ROOT; };
 		113AEC7814D6FDCD006653D2 /* Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Example-Info.plist"; path = "Example/Example-Info.plist"; sourceTree = SOURCE_ROOT; };
 		113AEC7914D6FDCD006653D2 /* Example-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Example-Prefix.pch"; path = "Example/Example-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		113AEC7A14D6FDCD006653D2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Example/main.m; sourceTree = SOURCE_ROOT; };
@@ -133,6 +136,8 @@
 				1181E59314DDE9D4001FF7DE /* BCNavigationViewController.m */,
 				1181E59514DDEAF3001FF7DE /* BCRequestsViewController.h */,
 				1181E59614DDEAF3001FF7DE /* BCRequestsViewController.m */,
+				11101E0414DDF45700A7FF96 /* BCRequestCell.h */,
+				11101E0514DDF45700A7FF96 /* BCRequestCell.m */,
 			);
 			name = Example;
 			path = Style;
@@ -237,6 +242,7 @@
 				1172206214DC0016008F5B42 /* BCSentenceLayout.m in Sources */,
 				1181E59414DDE9D4001FF7DE /* BCNavigationViewController.m in Sources */,
 				1181E59714DDEAF3001FF7DE /* BCRequestsViewController.m in Sources */,
+				11101E0614DDF45700A7FF96 /* BCRequestCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

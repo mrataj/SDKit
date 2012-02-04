@@ -12,7 +12,7 @@
 
 @implementation SDButton
 
-@synthesize size=_size, event=_event, font=_font, textColor=_textColor, backgroundColor=_backgroundColor;
+@synthesize size=_size, event=_event, font=_font, textColor=_textColor, backgroundColor=_backgroundColor, text=_text, highlightedTextColor=_highlightedTextColor, highlightedBackgroundColor=_highlightedBackgroundColor;
 
 - (id)init
 {
@@ -23,26 +23,64 @@
         _event = nil;
         _font = [[UIFont boldSystemFontOfSize:14.0] retain];
         _textColor = [[UIColor whiteColor] retain];
+        _highlightedTextColor = [[UIColor whiteColor] retain];
         _backgroundColor = [[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0] retain];
+        _highlightedBackgroundColor = [[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:182.0/255.0 alpha:1.0] retain];
+        _text = nil;
     }
     return self;
 }
 
+- (UIColor *)getTextColor
+{
+    if (_highlighted && _event != nil)
+        return _highlightedTextColor;
+    
+    return _textColor;
+}
+
+- (UIColor *)getBackgroundColor
+{
+    if (_highlighted && _event != nil)
+        return _highlightedBackgroundColor;
+    
+    return _backgroundColor;
+}
+
 - (CGPoint)getEndpointForDrawingAtPoint:(CGPoint)point doDrawing:(BOOL)drawing
 {
-    return CGPointZero;
+    if (drawing)
+    {
+        // Background
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [self getBackgroundColor].CGColor);
+        CGRect buttonRect = CGRectMake(point.x, point.y, _size.width, _size.height);
+        CGContextAddRoundedRect(context, buttonRect, 3.0);
+        CGContextFillPath(context);
+        
+        // Text
+        
+        [[self getTextColor] set];
+        [_text drawInRect:CGRectMake(buttonRect.origin.x, floor(buttonRect.size.height / 2.0 - [_font capHeight] / 2.0), buttonRect.size.width, [_font capHeight])
+                 withFont:_font
+            lineBreakMode:UILineBreakModeTailTruncation
+                alignment:UITextAlignmentCenter];
+    }
+    
+    return CGPointMake(_size.width, _size.height);
 }
 
 - (CGSize)drawAtPoint:(CGPoint)point
 {
     CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:YES];    
-    return [self createdAtPoint:point withSize:CGSizeMakeFromPoint(CGSubstractTwoPoints(endpoint, point))];
+    return [self createdAtPoint:point withSize:CGSizeMakeFromPoint(endpoint)];
 }
 
 - (CGSize)sizeForPoint:(CGPoint)point
 {
     CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:NO];
-    return CGSizeMakeFromPoint(CGSubstractTwoPoints(endpoint, point));
+    return CGSizeMakeFromPoint(endpoint);
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location
@@ -57,6 +95,9 @@
     [_font release];
     [_textColor release];
     [_backgroundColor release];
+    [_highlightedTextColor release];
+    [_highlightedBackgroundColor release];
+    [_text release];
     [super dealloc];
 }
 @end
