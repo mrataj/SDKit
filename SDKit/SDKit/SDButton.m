@@ -62,7 +62,11 @@
         // Text
         
         [[self getTextColor] set];
-        [_text drawInRect:CGRectMake(buttonRect.origin.x, floor(buttonRect.size.height / 2.0 - [_font capHeight] / 2.0), buttonRect.size.width, [_font capHeight])
+        CGRect textRect = CGRectMake(buttonRect.origin.x,
+                                     point.y + floor(buttonRect.size.height / 2.0 - [_font capHeight] / 2.0),
+                                     buttonRect.size.width,
+                                     [_font capHeight]);
+        [_text drawInRect:textRect
                  withFont:_font
             lineBreakMode:UILineBreakModeTailTruncation
                 alignment:UITextAlignmentCenter];
