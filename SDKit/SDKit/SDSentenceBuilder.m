@@ -57,7 +57,7 @@
 
 - (void)createForElement:(BBElement *)element
 {
-    NSMutableString *temporary = [[NSMutableString alloc] init];
+    NSMutableString *temporary = [NSMutableString string];
     
     NSInteger endTagIndex = -1;
     for (int i = 0; i < [element.text length]; i++)
@@ -68,8 +68,7 @@
             NSString *text = [element.text substringWithRange:NSMakeRange(endTagIndex + 1, i - endTagIndex - 1)];
             [self createLabel:text forElement:element];
             
-            [temporary release];
-            temporary = [[NSMutableString alloc] init];            
+            temporary = [NSMutableString string];            
             
             _parsingTag = YES;
         }
@@ -79,8 +78,7 @@
             BBElement *subelement = [element.elements objectAtIndex:index];
             [self createForElement:subelement];
             
-            [temporary release];
-            temporary = [[NSMutableString alloc] init];  
+            temporary = [NSMutableString string];  
             
             endTagIndex = i;
             _parsingTag = NO;
