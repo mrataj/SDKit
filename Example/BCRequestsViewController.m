@@ -17,6 +17,7 @@
     if (self)
     {
         [self setTitle:@"Requests"];
+        [self.tableView setRowHeight:100.0];
     }
     return self;
 }

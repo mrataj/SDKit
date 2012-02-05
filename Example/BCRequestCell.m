@@ -16,7 +16,7 @@
     if (self)
     {
         _button = [[SDButton alloc] init];
-        [_button setSize:CGSizeMake(70, 30)];
+        [_button setSize:CGSizeMake(70, 26)];
         [_button setText:@"Push"];
         [_button setEvent:[SDEvent eventForTarget:self selector:@selector(showText)]];
         
@@ -32,7 +32,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [_button drawAtPoint:CGPointMake(4, 4)];
+    [_button drawAtPoint:CGPointMake(4, 15)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

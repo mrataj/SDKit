@@ -63,9 +63,9 @@
         
         [[self getTextColor] set];
         CGRect textRect = CGRectMake(buttonRect.origin.x,
-                                     point.y + floor(buttonRect.size.height / 2.0 - [_font capHeight] / 2.0),
+                                     point.y + floor(buttonRect.size.height / 2.0) - floor([_font ascender] / 2.0) - 2.0,
                                      buttonRect.size.width,
-                                     [_font capHeight]);
+                                     [_font ascender]);
         [_text drawInRect:textRect
                  withFont:_font
             lineBreakMode:UILineBreakModeTailTruncation
