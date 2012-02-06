@@ -39,9 +39,9 @@
 - (void)dealloc
 {
     _parent = nil;
-    [_items release];
     [_highlightedItems release];
     [_relatedItems release];
+    [_items release];
     [super dealloc];
 }
 
@@ -50,17 +50,23 @@
 - (void)addRelatedItem:(SDPlaceholder *)item
 {
     // If control already exist in list, do nothing.
-    for (id exiting in _relatedItems)
-        if (exiting == item)
+    for (NSValue *exitingValue in _relatedItems)
+    {
+        SDPlaceholder *exitingControl = [exitingValue nonretainedObjectValue];
+        if (exitingControl == item)
             return;
+    }
     
     // If one control is related to another, the other control is also related to this control.
-    [_relatedItems addObject:item];
+    [_relatedItems addObject:[NSValue valueWithNonretainedObject:item]];
     [item addRelatedItem:self];
     
     // Also, make all other related controls related to that control.
-    for (SDControl *relatedItem in _relatedItems)
+    for (NSValue *relatedItemValue in _relatedItems)
+    {
+        SDPlaceholder *relatedItem = [relatedItemValue nonretainedObjectValue];
         [relatedItem addRelatedItem:item];
+    }
 }
 
 - (void)setItems:(NSArray *)items
@@ -97,14 +103,17 @@
     for (SDControl *item in items)
     {
         [item touchBeganAtLocation:location];
-        [_highlightedItems addObject:item];        
+        [_highlightedItems addObject:[NSValue valueWithNonretainedObject:item]];        
     }
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location
 {
-    for (SDControl *control in _highlightedItems)
+    for (NSValue *value in _highlightedItems)
+    {
+        SDPlaceholder *control = [value nonretainedObjectValue];
         [control touchEndedAtLocation:location];
+    }
     
     [_highlightedItems removeAllObjects];
 }
@@ -118,8 +127,11 @@
 
 - (void)touchCanceledAtLocation:(CGPoint)location
 {
-    for (SDControl *control in _highlightedItems)
+    for (NSValue *value in _highlightedItems)
+    {
+        SDPlaceholder *control = [value nonretainedObjectValue];
         [control touchCanceledAtLocation:location];
+    }
     
     [_highlightedItems removeAllObjects];
 }

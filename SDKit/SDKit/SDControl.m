@@ -46,8 +46,11 @@
 - (void)setHighlightEffect:(NSNumber *)highlight
 {
     _highlighted = [highlight boolValue];
-    for (SDControl *item in _relatedItems)
+    for (NSValue *relatedItemValue in _relatedItems)
+    {
+        SDControl *item = [relatedItemValue nonretainedObjectValue];
         [item setHighlighted:[highlight boolValue]];
+    }
     
     [_parent setNeedsDisplay];
 }

@@ -35,6 +35,12 @@
     [_button drawAtPoint:CGPointMake(4, 15)];
 }
 
+- (void)dealloc
+{
+    [_button release];
+    [super dealloc];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
