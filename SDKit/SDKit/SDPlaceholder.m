@@ -31,17 +31,17 @@
     self = [self init];
     if (self)
     {
-        _parent = [parent retain];
+        _parent = parent;
     }
     return self;
 }
 
 - (void)dealloc
 {
+    _parent = nil;
     [_items release];
     [_highlightedItems release];
     [_relatedItems release];
-    [_parent release];
     [super dealloc];
 }
 

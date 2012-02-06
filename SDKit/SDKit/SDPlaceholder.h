@@ -18,7 +18,7 @@
     UIView *_parent;
 }
 
-@property (nonatomic, retain) UIView *parent;
+@property (nonatomic, assign) UIView *parent;
 @property (nonatomic, retain) NSArray *items;
 
 - (id)initWithParent:(UIView *)parent;
