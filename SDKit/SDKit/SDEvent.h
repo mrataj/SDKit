@@ -14,7 +14,7 @@
     id _object;
 }
 
-@property (nonatomic, retain) id target;
+@property (nonatomic, assign) id target;
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, retain) id object;
 

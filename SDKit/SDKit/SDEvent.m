@@ -35,8 +35,8 @@
 - (void)dealloc
 {
     _selector = nil;
+    _target = nil;
     [_object release];
-    [_target release];
     [super dealloc];
 }
 
