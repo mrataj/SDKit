@@ -49,7 +49,7 @@
     for (NSValue *relatedItemValue in _relatedItems)
     {
         SDControl *item = [relatedItemValue nonretainedObjectValue];
-        [item setHighlighted:[highlight boolValue]];
+        [item setHighlighted:_highlighted];
     }
     
     [_parent setNeedsDisplay];

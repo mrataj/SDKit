@@ -122,17 +122,25 @@
             if ([parts count] > 1)
             {
                 NSString *part2 = [parts objectAtIndex:1];
-                SDLabel *nextLabel = [[SDLabel alloc] init];
-                [nextLabel setFont:label.font];
-                [nextLabel setText:part2];
-                [nextLabel setEvent:label.event];
-                [nextLabel setTextColor:label.textColor];
-                [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-                [nextLabel addRelatedItem:label];
-                [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
-                [nextLabel release];
-                
-                newLine = YES;
+                if ([part1 length] == 0)
+                {
+                    [label setText:part2];
+                    coordinate = CGPointMakeAndRound(point.x, coordinate.y + [label.font lineHeight]);
+                }
+                else
+                {
+                    SDLabel *nextLabel = [[SDLabel alloc] init];
+                    [nextLabel setFont:label.font];
+                    [nextLabel setText:part2];
+                    [nextLabel setEvent:label.event];
+                    [nextLabel setTextColor:label.textColor];
+                    [nextLabel setHighlightedTextColor:label.highlightedTextColor];
+                    [nextLabel addRelatedItem:label];
+                    [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
+                    [nextLabel release];
+                    
+                    newLine = YES;
+                }
             }
         }
         

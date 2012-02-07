@@ -24,14 +24,11 @@
         [create release];
         
         NSString *item0 = @"[quote]Person [user id=\"42\"]Kate Cameron[/user] shared link [link src=\"http://www.youtube.com\"]http://www.youtube.com[/link] to person [user id=\"13\"]Johnny English[/user].[/quote] [bold]You guys are idiots.[/bold] True story.";
-        
-        /*
         NSString *item1 = @"[user id=\"42\"]Kate Cameron[/user] meet person [user id=\"12\"]Guy Buckland[/user] 3 hours ago in [link]London, UK[/link].";
-        NSString *item2 = @"[user id=\"42\"]Kate Cameron[/user] created document [document id=\"23241\"]Example.doc[/document] and\nwith a really long delay and text because of testing\nbullshit he was doing some sent\nit to person [user id=\"22\"]Larry Brin[/user].";
+        NSString *item2 = @"[user id=\"42\"]Kate Cameron[/user] created document [document id=\"23241\"]Example.doc[/document] and sent it to person [user id=\"22\"]Larry Brin[/user].";
         NSString *item3 = @"[user id=\"42\"]Kate Cameron[/user] has writen a hundred miles long exam about supermassive black holes, saved it to file [document id=\"23089\"]Seminar paper.pdf[/document] and finally sent it to her professor of physics [user id=\"78\"]dr. Gregory Watson[/user].";
-        */
         
-        dataSource = [[NSArray alloc] initWithObjects:item0, /*item1, item2, item3,*/ nil];
+        dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, nil];
     }
     return self;
 }
@@ -122,7 +119,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{return 100;
+{
     NSString *code = [dataSource objectAtIndex:indexPath.row];
     return [BCFeedCell heightForCode:code];
 }
