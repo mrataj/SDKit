@@ -120,7 +120,16 @@
             
             SDLabel *nextLabel = [[SDLabel alloc] init];
             [nextLabel setFont:label.font];
-            [nextLabel setText:part2];
+            
+            NSMutableString *mutable = [NSMutableString string];
+            for (int i = 1; i < [components count]; i++)
+            {
+                [mutable appendString:[components objectAtIndex:i]];
+                if (i + 1 != [components count])
+                    [mutable appendString:@"\n"];
+            }
+            
+            [nextLabel setText:mutable];            
             [nextLabel setEvent:label.event];
             [nextLabel setTextColor:label.textColor];
             [nextLabel setHighlightedTextColor:label.highlightedTextColor];
