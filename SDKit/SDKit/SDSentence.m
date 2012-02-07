@@ -151,6 +151,15 @@
         if (![label isKindOfClass:[SDLabel class]])
             continue;
         
+        NSRange range = [label.text rangeOfString:@"\n"];
+        if (range.location != NSNotFound)
+        {
+            NSString *currentWord = [label.text substringToIndex:range.location];
+            NSString *nextWord = [label.text substringFromIndex:range.location];
+            
+            [self doWordWrap:currentWord nextWord:nextWord label:label coordinate:&coordinate atPoint:point];
+        }
+        
         // Check if label size will exceed maximum width.
         // In that case, split text and draw next word in new line.
         BOOL newLine = NO;

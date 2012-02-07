@@ -36,13 +36,16 @@
 - (CGSize)drawAtPoint:(CGPoint)point
 {
     [[self getColor] set];
-    CGSize size = [_text drawAtPoint:point withFont:_font];
+    
+    NSString *textToDraw = [_text stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    CGSize size = [textToDraw drawAtPoint:point withFont:_font];
     return [super createdAtPoint:point withSize:size];
 }
 
 - (CGSize)sizeForPoint:(CGPoint)point
 {
-    return [_text sizeWithFont:_font];
+    NSString *textToDraw = [_text stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return [textToDraw sizeWithFont:_font];
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location
