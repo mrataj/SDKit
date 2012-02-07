@@ -12,6 +12,8 @@
 
 @property (nonatomic, readonly, getter=isURL) BOOL isURL;
 
+- (NSString *)trim;
+
 @end
 
 @interface NSMutableString (BCStyleHelper)

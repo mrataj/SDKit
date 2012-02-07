@@ -15,6 +15,11 @@
     return [self hasPrefix:@"http"] && [self rangeOfString:@"://"].location != NSNotFound;
 }
 
+- (NSString *)trim
+{
+    return [self stringByReplacingOccurrencesOfString:@" +" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
+}
+
 @end
 
 @implementation NSMutableString (BCStyleHelper)

@@ -24,103 +24,49 @@
     return self;
 }
 
-- (BOOL)doCharacterWrap:(NSString *)word label:(SDLabel *)label coordinate:(CGPoint *)coordinate atPoint:(CGPoint)point
+- (NSArray *)divideWithCharactersWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
 {
-    for (NSInteger j = 1; j < [word length] + 1; j++)
+    for (NSInteger j = 1; j < [label.text length] + 1; j++)
     {
-        NSString *trimmed = [word substringToIndex:j];
+        NSString *trimmed = [label.text substringToIndex:j];
         
         [label setText:trimmed];
-        CGSize size = [label sizeForPoint:*coordinate];
+        CGSize size = [label sizeForPoint:CGPointZero];
         
-        BOOL exceed = (coordinate->x + size.width > point.x + _maxWidth);
+        BOOL exceed = (coordinate.x + size.width > _maxWidth);
         if (exceed)
         {
-            NSString *currentWord = [word substringToIndex:j - 1];
-            NSString *nextWord = [word substringFromIndex:j - 1];                            
-            
-            // If current word is empty string, don't create new label, just go to new line.
-            if ([currentWord length] < 1)
-            {
-                *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
-                [label setText:nextWord];
-                return NO;
-            }
-            // Otherwise, fill as much text as it goes to this line, and create new label (for new line).
-            else
-            {
-                [label setText:currentWord];
-            }
-            
-            // TODO: This has to be done with NSCopying
-            SDLabel *nextLabel = [[SDLabel alloc] init];
-            [nextLabel setFont:label.font];
-            [nextLabel setText:nextWord];
-            [nextLabel setEvent:label.event];
-            [nextLabel setTextColor:label.textColor];
-            [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-            [nextLabel addRelatedItem:label];
-            [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
-            [nextLabel release];
-            
-            return YES;
+            NSString *currentWord = [label.text substringToIndex:j - 1];
+            NSString *nextWord = [label.text substringFromIndex:j - 1];
+            return [NSArray arrayWithObjects:[currentWord trim], [nextWord trim], nil];
         }
     }
     
-    return NO;
+    // Only if text does not exceed width.
+    return [NSArray arrayWithObject:[label.text trim]];
 }
 
-- (BOOL)doWordWrap:(NSString *)currentWord nextWord:(NSString *)nextWord label:(SDLabel *)label coordinate:(CGPoint *)coordinate atPoint:(CGPoint)point
-{    
-    // Add as much text as it goes to current line.
-    if ([currentWord length] < 1)
-    { 
-        [label setText:nextWord];
-        *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
-        return NO;
-    }
-    else
-    {
-        [label setText:currentWord];
-    }
-    
-    // Create new label with the rest of the text.
-    // TODO: This has to be done with NSCopying
-    SDLabel *nextLabel = [[SDLabel alloc] init];
-    [nextLabel setFont:label.font];
-    [nextLabel setText:nextWord];
-    [nextLabel setEvent:label.event];
-    [nextLabel setTextColor:label.textColor];
-    [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-    [nextLabel addRelatedItem:label];
-    [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
-    [nextLabel release];
-    
-    return YES;
-}
-
-- (BOOL)splitWords:(SDLabel *)label point:(CGPoint)point coordinate:(CGPoint *)coordinate
+- (NSArray *)divideWithWordWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
 {
-    // Splits words in two parts (in most cases finish current line and create new line).
-    // Returns coordinate of current drawn word and flag, if next word has to be created in new line.
+    NSMutableString *mutable = [NSMutableString string];
     
     NSArray *words = [label.text componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSMutableString *mutable = [NSMutableString string];
     for (NSString *word in words)
     {
         [mutable appendWord:word withSpace:[words indexOfObject:word] + 1 != [words count]];
         [label setText:mutable];
-        CGSize size = [label sizeForPoint:*coordinate];
+        CGSize size = [label sizeForPoint:CGPointZero];
         
-        BOOL exceed = (coordinate->x + size.width > point.x + _maxWidth);
+        BOOL exceed = (coordinate.x + size.width > _maxWidth);
         if (exceed)
         {
-            // If this word is longer than line, do character wrap.
+            // If first word is longer than _maxWidth, do character wrap, because word wrap is impossible in that case.
             if ([mutable isEqualToString:word] && size.width > _maxWidth)
             {
-                return [self doCharacterWrap:word label:label coordinate:&(*coordinate) atPoint:point];
+                return [self divideWithCharactersWrap:label forDrawingAt:coordinate];
             }
             else
+            // Otherwise, do word wrap.
             {
                 // Text which will fill current line.
                 NSMutableString *currentWord = [NSMutableString string];
@@ -132,12 +78,26 @@
                 for (NSInteger j = [words indexOfObject:word]; j < [words count]; j++)
                     [nextWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
                 
-                return [self doWordWrap:currentWord nextWord:nextWord label:label coordinate:&(*coordinate) atPoint:point];
+                return [NSArray arrayWithObjects:[currentWord trim], [nextWord trim], nil];
             }
         }
     }
     
-    return NO;
+    // Only if text does not exceed width.
+    return [NSArray arrayWithObject:[label.text trim]];
+}
+
+- (NSArray *)divideLabel:(SDLabel *)label forDrawingAt:(CGPoint)coordinate lineBreakMode:(UILineBreakMode)mode
+{
+    switch (mode)
+    {
+        case UILineBreakModeWordWrap:
+            return [self divideWithWordWrap:label forDrawingAt:coordinate];
+        case UILineBreakModeCharacterWrap:
+            return [self divideWithCharactersWrap:label forDrawingAt:coordinate];
+        default:
+            @throw [NSException exceptionWithName:@"Not supported line break mode." reason:@"This line break mode isn't yet supported." userInfo:nil];
+    }
 }
 
 - (CGPoint)getEndpointForDrawingAtPoint:(CGPoint)point doDrawing:(BOOL)drawing
@@ -151,24 +111,29 @@
         if (![label isKindOfClass:[SDLabel class]])
             continue;
         
-        NSRange range = [label.text rangeOfString:@"\n"];
-        if (range.location != NSNotFound)
-        {
-            NSString *currentWord = [label.text substringToIndex:range.location];
-            NSString *nextWord = [label.text substringFromIndex:range.location];
-            
-            [self doWordWrap:currentWord nextWord:nextWord label:label coordinate:&coordinate atPoint:point];
-        }
-        
-        // Check if label size will exceed maximum width.
-        // In that case, split text and draw next word in new line.
         BOOL newLine = NO;
         if (self.hasWidthLimitation)
         {
-            CGSize size = [label sizeForPoint:coordinate];
-            BOOL exceed = (coordinate.x + size.width > point.x + _maxWidth);
-            if (exceed)
-                newLine = [self splitWords:label point:point coordinate:&coordinate];
+            NSArray *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
+            
+            NSString *part1 = [parts objectAtIndex:0];
+            [label setText:part1];
+            
+            if ([parts count] > 1)
+            {
+                NSString *part2 = [parts objectAtIndex:1];
+                SDLabel *nextLabel = [[SDLabel alloc] init];
+                [nextLabel setFont:label.font];
+                [nextLabel setText:part2];
+                [nextLabel setEvent:label.event];
+                [nextLabel setTextColor:label.textColor];
+                [nextLabel setHighlightedTextColor:label.highlightedTextColor];
+                [nextLabel addRelatedItem:label];
+                [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
+                [nextLabel release];
+                
+                newLine = YES;
+            }
         }
         
         // If label size exceed maximum height, finish drawing immediately.
@@ -178,7 +143,7 @@
             if (exceed)
                 break;            
         }
-        
+                
         // If not drawing, just get size of this label, otherwise do drawing, too.
         CGSize size = (!drawing) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
         
