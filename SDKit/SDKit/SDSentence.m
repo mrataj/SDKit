@@ -100,6 +100,41 @@
     }
 }
 
+- (BOOL)splitLabel:(SDLabel *)label byComponents:(NSArray *)components coordinate:(CGPoint *)coordinate point:(CGPoint)point
+{
+    NSString *part1 = [components objectAtIndex:0];
+    [label setText:part1];
+    
+    if ([components count] > 1)
+    {
+        NSString *part2 = [components objectAtIndex:1];
+        if ([part1 length] == 0)
+        {
+            [label setText:part2];
+            *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
+        }
+        else
+        {
+            // Keep new line tag for redrawing.
+            [label setText:[NSString stringWithFormat:@"%@\n", part1]];
+            
+            SDLabel *nextLabel = [[SDLabel alloc] init];
+            [nextLabel setFont:label.font];
+            [nextLabel setText:part2];
+            [nextLabel setEvent:label.event];
+            [nextLabel setTextColor:label.textColor];
+            [nextLabel setHighlightedTextColor:label.highlightedTextColor];
+            [nextLabel addRelatedItem:label];
+            [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
+            [nextLabel release];
+            
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 - (CGPoint)getEndpointForDrawingAtPoint:(CGPoint)point doDrawing:(BOOL)drawing
 {
     CGPoint coordinate = point;
@@ -112,37 +147,15 @@
             continue;
         
         BOOL newLine = NO;
+        
+        NSArray *split = [label.text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        newLine = [self splitLabel:label byComponents:split coordinate:&coordinate point:point];
+        
         if (self.hasWidthLimitation)
         {
             NSString *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
             NSArray *components = [parts componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-            
-            NSString *part1 = [components objectAtIndex:0];
-            [label setText:part1];
-            
-            if ([components count] > 1)
-            {
-                NSString *part2 = [components objectAtIndex:1];
-                if ([part1 length] == 0)
-                {
-                    [label setText:part2];
-                    coordinate = CGPointMakeAndRound(point.x, coordinate.y + [label.font lineHeight]);
-                }
-                else
-                {
-                    SDLabel *nextLabel = [[SDLabel alloc] init];
-                    [nextLabel setFont:label.font];
-                    [nextLabel setText:part2];
-                    [nextLabel setEvent:label.event];
-                    [nextLabel setTextColor:label.textColor];
-                    [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-                    [nextLabel addRelatedItem:label];
-                    [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
-                    [nextLabel release];
-                    
-                    newLine = YES;
-                }
-            }
+            newLine = [self splitLabel:label byComponents:components coordinate:&coordinate point:point];
         }
         
         // If label size exceed maximum height, finish drawing immediately.
