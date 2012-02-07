@@ -70,23 +70,13 @@
     return NO;
 }
 
-- (BOOL)doWordWrap:(NSString *)word words:(NSArray *)words label:(SDLabel *)label coordinate:(CGPoint *)coordinate atPoint:(CGPoint)point
-{
-    // Text which will fill current line.
-    NSMutableString *currentWord = [NSMutableString string];
-    for (NSInteger j = 0; j < [words indexOfObject:word]; j++)
-        [currentWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words indexOfObject:word]];
-    
-    // The rest of the text (for new line)
-    NSMutableString *nextWord = [NSMutableString string];
-    for (NSInteger j = [words indexOfObject:word]; j < [words count]; j++)
-        [nextWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
-    
+- (BOOL)doWordWrap:(NSString *)currentWord nextWord:(NSString *)nextWord label:(SDLabel *)label coordinate:(CGPoint *)coordinate atPoint:(CGPoint)point
+{    
     // Add as much text as it goes to current line.
     if ([currentWord length] < 1)
-    {
-        *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
+    { 
         [label setText:nextWord];
+        *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
         return NO;
     }
     else
@@ -127,9 +117,23 @@
         {
             // If this word is longer than line, do character wrap.
             if ([mutable isEqualToString:word] && size.width > _maxWidth)
+            {
                 return [self doCharacterWrap:word label:label coordinate:&(*coordinate) atPoint:point];
+            }
             else
-                return [self doWordWrap:word words:words label:label coordinate:&(*coordinate) atPoint:point];
+            {
+                // Text which will fill current line.
+                NSMutableString *currentWord = [NSMutableString string];
+                for (NSInteger j = 0; j < [words indexOfObject:word]; j++)
+                    [currentWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words indexOfObject:word]];
+                
+                // The rest of the text (for new line)
+                NSMutableString *nextWord = [NSMutableString string];
+                for (NSInteger j = [words indexOfObject:word]; j < [words count]; j++)
+                    [nextWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
+                
+                return [self doWordWrap:currentWord nextWord:nextWord label:label coordinate:&(*coordinate) atPoint:point];
+            }
         }
     }
     
