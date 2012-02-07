@@ -115,7 +115,7 @@
         }
         else
         {
-            // Keep new line tag for redrawing.
+            // Keep new line tag at the end for redrawing.
             [label setText:[NSString stringWithFormat:@"%@\n", part1]];
             
             SDLabel *nextLabel = [[SDLabel alloc] init];
@@ -148,11 +148,13 @@
         
         BOOL newLine = NO;
         
+        // Split label, if it has new line characters included.
         NSArray *split = [label.text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         newLine = [self splitLabel:label byComponents:split coordinate:&coordinate point:point];
         
         if (self.hasWidthLimitation)
         {
+            // Split label, if it's too long.
             NSString *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
             NSArray *components = [parts componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
             newLine = [self splitLabel:label byComponents:components coordinate:&coordinate point:point];
