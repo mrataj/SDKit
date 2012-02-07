@@ -24,7 +24,7 @@
     return self;
 }
 
-- (NSArray *)divideWithCharactersWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
+- (NSString *)divideWithCharactersWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
 {
     for (NSInteger j = 1; j < [label.text length] + 1; j++)
     {
@@ -38,15 +38,15 @@
         {
             NSString *currentWord = [label.text substringToIndex:j - 1];
             NSString *nextWord = [label.text substringFromIndex:j - 1];
-            return [NSArray arrayWithObjects:[currentWord trim], [nextWord trim], nil];
+            return [NSString stringWithFormat:@"%@\n%@", [currentWord trim], [nextWord trim]];
         }
     }
     
     // Only if text does not exceed width.
-    return [NSArray arrayWithObject:[label.text trim]];
+    return [label.text trim];
 }
 
-- (NSArray *)divideWithWordWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
+- (NSString *)divideWithWordWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
 {
     NSMutableString *mutable = [NSMutableString string];
     
@@ -78,16 +78,16 @@
                 for (NSInteger j = [words indexOfObject:word]; j < [words count]; j++)
                     [nextWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
                 
-                return [NSArray arrayWithObjects:[currentWord trim], [nextWord trim], nil];
+                return [NSString stringWithFormat:@"%@\n%@", [currentWord trim], [nextWord trim]];
             }
         }
     }
     
     // Only if text does not exceed width.
-    return [NSArray arrayWithObject:[label.text trim]];
+    return [label.text trim];
 }
 
-- (NSArray *)divideLabel:(SDLabel *)label forDrawingAt:(CGPoint)coordinate lineBreakMode:(UILineBreakMode)mode
+- (NSString *)divideLabel:(SDLabel *)label forDrawingAt:(CGPoint)coordinate lineBreakMode:(UILineBreakMode)mode
 {
     switch (mode)
     {
@@ -114,14 +114,15 @@
         BOOL newLine = NO;
         if (self.hasWidthLimitation)
         {
-            NSArray *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
+            NSString *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
+            NSArray *components = [parts componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
             
-            NSString *part1 = [parts objectAtIndex:0];
+            NSString *part1 = [components objectAtIndex:0];
             [label setText:part1];
             
-            if ([parts count] > 1)
+            if ([components count] > 1)
             {
-                NSString *part2 = [parts objectAtIndex:1];
+                NSString *part2 = [components objectAtIndex:1];
                 if ([part1 length] == 0)
                 {
                     [label setText:part2];
