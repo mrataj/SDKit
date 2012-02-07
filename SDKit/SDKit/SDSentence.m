@@ -117,6 +117,8 @@
         {
             // Keep new line tag at the end for redrawing.
             [label setText:[NSString stringWithFormat:@"%@\n", part1]];
+            if ([part2 length] == 0)
+                return YES;
             
             SDLabel *nextLabel = [[SDLabel alloc] init];
             [nextLabel setFont:label.font];
