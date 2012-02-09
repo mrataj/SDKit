@@ -18,5 +18,6 @@
 @property (nonatomic, assign) id eventResponder;
 
 - (SDLabel *)getLayoutForElement:(BBElement *)element;
+- (NSArray *)getTags;
 
 @end

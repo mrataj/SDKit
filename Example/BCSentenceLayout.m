@@ -98,6 +98,16 @@ static NSDictionary *__fonts;
     return [label autorelease];
 }
 
+- (NSArray *)getTags
+{
+    static NSArray *tags;
+    if (tags == nil)
+    {
+        tags = [[NSArray alloc] initWithObjects:@"user", @"quote", @"link", @"bold", @"document", nil];
+    }
+    return tags;
+}
+
 - (void)dealloc
 {
     [_events release];

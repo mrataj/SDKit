@@ -33,7 +33,8 @@
 
 - (void)build
 {
-    BBCodeParser *parser = [[BBCodeParser alloc] initWithCode:_code];
+    BBCodeParser *parser = [[BBCodeParser alloc] initWithTags:[_layout getTags]];
+    [parser setCode:_code];
     [parser parse];
     [self createForElement:parser.element];
     [parser release];
@@ -60,19 +61,19 @@
     NSMutableString *temporary = [NSMutableString string];
     
     NSInteger endTagIndex = -1;
-    for (int i = 0; i < [element.text length]; i++)
+    for (int i = 0; i < [element.format length]; i++)
     {
-        NSString *character = [element.text substringWithRange:NSMakeRange(i, 1)];
-        if ([character isEqualToString:@"["])
+        NSString *character = [element.format substringWithRange:NSMakeRange(i, 1)];
+        if ([character isEqualToString:@"{"])
         {
-            NSString *text = [element.text substringWithRange:NSMakeRange(endTagIndex + 1, i - endTagIndex - 1)];
+            NSString *text = [element.format substringWithRange:NSMakeRange(endTagIndex + 1, i - endTagIndex - 1)];
             [self createLabel:text forElement:element];
             
             temporary = [NSMutableString string];            
             
             _parsingTag = YES;
         }
-        else if ([character isEqualToString:@"]"])
+        else if ([character isEqualToString:@"}"])
         {
             NSInteger index = [temporary integerValue];
             BBElement *subelement = [element.elements objectAtIndex:index];

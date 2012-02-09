@@ -22,6 +22,11 @@
     return [label autorelease];
 }
 
+- (NSArray *)getTags
+{
+    @throw [NSException exceptionWithName:@"This method should be overrided." reason:@"You should override getTags method!" userInfo:nil];
+}
+
 - (void)dealloc
 {
     _eventResponder = nil;
