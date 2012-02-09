@@ -51,6 +51,7 @@
     NSMutableString *mutable = [NSMutableString string];
     
     NSArray *words = [label.text componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSInteger i = 0;
     for (NSString *word in words)
     {
         [mutable appendWord:word withSpace:[words indexOfObject:word] + 1 != [words count]];
@@ -70,17 +71,19 @@
             {
                 // Text which will fill current line.
                 NSMutableString *currentWord = [NSMutableString string];
-                for (NSInteger j = 0; j < [words indexOfObject:word]; j++)
-                    [currentWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words indexOfObject:word]];
+                for (NSInteger j = 0; j < i; j++)
+                    [currentWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
                 
                 // The rest of the text (for new line)
                 NSMutableString *nextWord = [NSMutableString string];
-                for (NSInteger j = [words indexOfObject:word]; j < [words count]; j++)
+                for (NSInteger j = i; j < [words count]; j++)
                     [nextWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
                 
                 return [NSString stringWithFormat:@"%@\n%@", [currentWord trim], [nextWord trim]];
             }
         }
+        
+        i++;
     }
     
     // Only if text does not exceed width.
@@ -100,18 +103,46 @@
     }
 }
 
+- (void)createLabel:(NSString *)text afterLabel:(SDLabel *)label
+{
+    SDLabel *nextLabel = [[SDLabel alloc] init];
+    [nextLabel setFont:label.font];
+    [nextLabel setText:text];            
+    [nextLabel setEvent:label.event];
+    [nextLabel setTextColor:label.textColor];
+    [nextLabel setHighlightedTextColor:label.highlightedTextColor];
+    [nextLabel addRelatedItem:label];
+    [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
+    [nextLabel release];
+}
+
 - (BOOL)splitLabel:(SDLabel *)label byComponents:(NSArray *)components coordinate:(CGPoint *)coordinate point:(CGPoint)point
 {
     NSString *part1 = [components objectAtIndex:0];
     [label setText:part1];
     
     if ([components count] > 1)
-    {
+    {        
         NSString *part2 = [components objectAtIndex:1];
         if ([part1 length] == 0)
         {
-            [label setText:part2];
-            *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
+            [label setText:[NSString stringWithFormat:@"\n%@", part2]];
+            
+            if ([components count] > 2)
+            {
+                NSMutableString *mutable = [NSMutableString string];
+                for (int i = 2; i < [components count]; i++)
+                {
+                    [mutable appendString:@"\n"];
+                    [mutable appendString:[components objectAtIndex:i]];
+                }
+                
+                [self createLabel:mutable afterLabel:label];
+            }
+            
+            // TODO: Ugly fix if already in new line
+            if (coordinate->x != point.x)
+                *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
         }
         else
         {
@@ -119,10 +150,7 @@
             [label setText:[NSString stringWithFormat:@"%@\n", part1]];
             if ([part2 length] == 0)
                 return YES;
-            
-            SDLabel *nextLabel = [[SDLabel alloc] init];
-            [nextLabel setFont:label.font];
-            
+                        
             NSMutableString *mutable = [NSMutableString string];
             for (int i = 1; i < [components count]; i++)
             {
@@ -131,14 +159,7 @@
                     [mutable appendString:@"\n"];
             }
             
-            [nextLabel setText:mutable];            
-            [nextLabel setEvent:label.event];
-            [nextLabel setTextColor:label.textColor];
-            [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-            [nextLabel addRelatedItem:label];
-            [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
-            [nextLabel release];
-            
+            [self createLabel:mutable afterLabel:label];            
             return YES;
         }
     }
@@ -165,10 +186,15 @@
         
         if (self.hasWidthLimitation)
         {
-            // Split label, if it's too long.
-            NSString *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
-            NSArray *components = [parts componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-            newLine = [self splitLabel:label byComponents:components coordinate:&coordinate point:point];
+            CGSize size = [label sizeForPoint:CGPointZero];
+            BOOL exceed = (coordinate.x + size.width > _maxWidth);
+            if (exceed)
+            {
+                // Split label, if it's too long.
+                NSString *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
+                NSArray *components = [parts componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+                newLine = [self splitLabel:label byComponents:components coordinate:&coordinate point:point];
+            }
         }
         
         // If label size exceed maximum height, finish drawing immediately.
