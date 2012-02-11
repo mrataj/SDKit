@@ -63,7 +63,7 @@
         if (exceed)
         {
             // If first word is longer than _maxWidth, do character wrap, because word wrap is impossible in that case.
-            if ([mutable isEqualToString:word] && size.width > _maxWidth)
+            if (i == 0 && size.width > _maxWidth)
             {
                 return [self divideWithCharactersWrap:label forDrawingAt:coordinate];
             }
@@ -175,6 +175,12 @@
     
     for (NSInteger i = 0; i < [_items count]; i++)
     {
+        if ([_items count] > 100)
+        {
+            NSLog(@"This should not happen.");
+        }
+        
+        
         SDLabel *label = [_items objectAtIndex:i];
         if (![label isKindOfClass:[SDLabel class]])
             continue;
