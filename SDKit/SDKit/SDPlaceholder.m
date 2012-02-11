@@ -21,7 +21,6 @@
     {
         _items = [[NSMutableArray alloc] init];
         _highlightedItems = [[NSMutableArray alloc] init];
-        _relatedItems = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -40,34 +39,11 @@
 {
     _parent = nil;
     [_highlightedItems release];
-    [_relatedItems release];
     [_items release];
     [super dealloc];
 }
 
-#pragma mark - Subcontrols and siblings
-
-- (void)addRelatedItem:(SDPlaceholder *)item
-{
-    // If control already exist in list, do nothing.
-    for (NSValue *exitingValue in _relatedItems)
-    {
-        SDPlaceholder *exitingControl = [exitingValue nonretainedObjectValue];
-        if (exitingControl == item)
-            return;
-    }
-    
-    // If one control is related to another, the other control is also related to this control.
-    [_relatedItems addObject:[NSValue valueWithNonretainedObject:item]];
-    [item addRelatedItem:self];
-    
-    // Also, make all other related controls related to that control.
-    for (NSValue *relatedItemValue in _relatedItems)
-    {
-        SDPlaceholder *relatedItem = [relatedItemValue nonretainedObjectValue];
-        [relatedItem addRelatedItem:item];
-    }
-}
+#pragma mark - Properties
 
 - (void)setItems:(NSArray *)items
 {

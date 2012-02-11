@@ -12,13 +12,19 @@
 @interface SDControl : SDPlaceholder {
     CGRect _frame;
     BOOL _highlighted;
+    
+    SDControl *_previousControl;
+    SDControl *_nextControl;
 }
 
 @property (nonatomic, readonly) CGRect frame;
 @property (nonatomic, assign) BOOL highlighted;
+@property (nonatomic, assign) SDControl *previousControl;
+@property (nonatomic, assign) SDControl *nextControl;
 
 - (CGSize)drawAtPoint:(CGPoint)point;
 - (CGSize)sizeForPoint:(CGPoint)point;
 - (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size;
+- (void)setHighlightEffect:(NSNumber *)highlight;
 
 @end

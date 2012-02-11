@@ -13,7 +13,6 @@
 @interface SDPlaceholder : NSObject {
     NSMutableArray *_items;
     NSMutableArray *_highlightedItems;
-    NSMutableArray *_relatedItems;
     
     UIView *_parent;
 }
@@ -22,8 +21,6 @@
 @property (nonatomic, retain) NSArray *items;
 
 - (id)initWithParent:(UIView *)parent;
-
-- (void)addRelatedItem:(SDPlaceholder *)item;
 
 - (void)touchBeganAtLocation:(CGPoint)location;
 - (void)touchEndedAtLocation:(CGPoint)location;

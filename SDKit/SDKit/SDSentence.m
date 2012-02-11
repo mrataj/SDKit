@@ -26,9 +26,10 @@
 
 - (NSString *)divideWithCharactersWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
 {
-    for (NSInteger j = 1; j < [label.text length] + 1; j++)
+    NSString *defaultText = label.text;
+    for (NSInteger j = 1; j < [defaultText length] + 1; j++)
     {
-        NSString *trimmed = [label.text substringToIndex:j];
+        NSString *trimmed = [defaultText substringToIndex:j];
         
         [label setText:trimmed];
         CGSize size = [label sizeForPoint:CGPointZero];
@@ -36,14 +37,14 @@
         BOOL exceed = (coordinate.x + size.width > _maxWidth);
         if (exceed)
         {
-            NSString *currentWord = [label.text substringToIndex:j - 1];
-            NSString *nextWord = [label.text substringFromIndex:j - 1];
+            NSString *currentWord = [defaultText substringToIndex:j - 1];
+            NSString *nextWord = [defaultText substringFromIndex:j - 1];
             return [NSString stringWithFormat:@"%@\n%@", [currentWord trim], [nextWord trim]];
         }
     }
     
     // Only if text does not exceed width.
-    return [label.text trim];
+    return [defaultText trim];
 }
 
 - (NSString *)divideWithWordWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
@@ -111,7 +112,7 @@
     [nextLabel setEvent:label.event];
     [nextLabel setTextColor:label.textColor];
     [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-    [nextLabel addRelatedItem:label];
+    [nextLabel setPreviousControl:label];
     [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
     [nextLabel release];
 }
