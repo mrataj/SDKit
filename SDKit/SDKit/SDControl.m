@@ -43,8 +43,8 @@
 
 - (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size
 {
-    _frame = CGRectMake(point.x, point.y, size.width, size.height);
-    return size;
+    _frame = CGRectMake(point.x, point.y, ceilf(size.width), ceilf(size.height));
+    return _frame.size;
 }
 
 #pragma mark - Properties

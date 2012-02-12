@@ -174,13 +174,7 @@
     CGPoint maxEndpoint = CGPointZero;
     
     for (NSInteger i = 0; i < [_items count]; i++)
-    {
-        if ([_items count] > 100)
-        {
-            NSLog(@"This should not happen.");
-        }
-        
-        
+    {        
         SDLabel *label = [_items objectAtIndex:i];
         if (![label isKindOfClass:[SDLabel class]])
             continue;
@@ -194,7 +188,7 @@
         if (self.hasWidthLimitation)
         {
             CGSize size = [label sizeForPoint:CGPointZero];
-            BOOL exceed = (coordinate.x + size.width > _maxWidth);
+            BOOL exceed = (coordinate.x - point.x + size.width > _maxWidth);
             if (exceed)
             {
                 // Split label, if it's too long.
