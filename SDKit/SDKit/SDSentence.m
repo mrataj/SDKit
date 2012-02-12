@@ -26,7 +26,7 @@
 
 - (NSString *)divideWithCharactersWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
 {
-    NSString *defaultText = label.text;
+    NSString *defaultText = [NSString stringWithString:label.text];
     for (NSInteger j = 1; j < [defaultText length] + 1; j++)
     {
         NSString *trimmed = [defaultText substringToIndex:j];
