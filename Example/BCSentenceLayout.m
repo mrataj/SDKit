@@ -95,7 +95,7 @@ static NSDictionary *__fonts;
     [label setTextColor:[BCSentenceLayout getTextColorRecursively:element]];
     [label setFont:[BCSentenceLayout getFontRecursively:element]];
     [label setEvent:[self getEventRecursively:element]];
-    [label setTouchInset:UIEdgeInsetsMake(0, 20, 0, 20)];
+    [label setTouchInset:UIEdgeInsetsMake(0, -20, 0, -20)];
     return [label autorelease];
 }
 

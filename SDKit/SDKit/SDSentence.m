@@ -106,11 +106,13 @@
 
 - (void)createLabel:(NSString *)text afterLabel:(SDLabel *)label
 {
+    // TODO: Do this with NSCopying
     SDLabel *nextLabel = [[SDLabel alloc] init];
     [nextLabel setFont:label.font];
     [nextLabel setText:text];            
     [nextLabel setEvent:label.event];
     [nextLabel setTextColor:label.textColor];
+    [nextLabel setTouchInset:label.touchInset];
     [nextLabel setHighlightedTextColor:label.highlightedTextColor];
     [nextLabel setPreviousControl:label];
     [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
