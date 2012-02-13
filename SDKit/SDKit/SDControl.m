@@ -11,7 +11,7 @@
 
 @implementation SDControl
 
-@synthesize frame=_frame, highlighted=_highlighted;
+@synthesize frame=_frame, highlighted=_highlighted, touchInset=_touchInset;
 
 - (id)init
 {

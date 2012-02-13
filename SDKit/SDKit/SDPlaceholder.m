@@ -91,8 +91,11 @@
 {    
     NSMutableArray *respondingControls = [NSMutableArray array];
     for (SDControl *item in _items)
-        if (CGRectContainsPoint(item.frame, location))
+    {
+        CGRect touchFrame = UIEdgeInsetsInsetRect(item.frame, item.touchInset);        
+        if (CGRectContainsPoint(touchFrame, location))
             [respondingControls addObject:item];
+    }
     
     return respondingControls;
 }

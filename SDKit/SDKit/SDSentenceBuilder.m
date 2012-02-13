@@ -47,10 +47,12 @@
     
     SDLabel *layout = [_layout getLayoutForElement:element];
     
+    // TODO: Do this with NSCopying
     SDLabel *label = [[SDLabel alloc] init];
     [label setTextColor:layout.textColor];
     [label setFont:layout.font];
     [label setEvent:layout.event];
+    [label setTouchInset:layout.touchInset];
     [label setText:text];
     [_labels addObject:label];
     [label release];

@@ -12,10 +12,12 @@
 @interface SDControl : SDPlaceholder {
     CGRect _frame;
     BOOL _highlighted;
+    UIEdgeInsets _touchInset;
 }
 
 @property (nonatomic, readonly) CGRect frame;
 @property (nonatomic, assign) BOOL highlighted;
+@property (nonatomic, assign) UIEdgeInsets touchInset;
 
 - (CGSize)drawAtPoint:(CGPoint)point;
 - (CGSize)sizeForPoint:(CGPoint)point;
