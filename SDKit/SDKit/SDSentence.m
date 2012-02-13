@@ -26,9 +26,10 @@
 
 - (NSString *)divideWithCharactersWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
 {
-    for (NSInteger j = 1; j < [label.text length] + 1; j++)
+    NSString *defaultText = [NSString stringWithString:label.text];
+    for (NSInteger j = 1; j < [defaultText length] + 1; j++)
     {
-        NSString *trimmed = [label.text substringToIndex:j];
+        NSString *trimmed = [defaultText substringToIndex:j];
         
         [label setText:trimmed];
         CGSize size = [label sizeForPoint:CGPointZero];
@@ -36,14 +37,14 @@
         BOOL exceed = (coordinate.x + size.width > _maxWidth);
         if (exceed)
         {
-            NSString *currentWord = [label.text substringToIndex:j - 1];
-            NSString *nextWord = [label.text substringFromIndex:j - 1];
+            NSString *currentWord = [defaultText substringToIndex:j - 1];
+            NSString *nextWord = [defaultText substringFromIndex:j - 1];
             return [NSString stringWithFormat:@"%@\n%@", [currentWord trim], [nextWord trim]];
         }
     }
     
     // Only if text does not exceed width.
-    return [label.text trim];
+    return [defaultText trim];
 }
 
 - (NSString *)divideWithWordWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
@@ -62,7 +63,7 @@
         if (exceed)
         {
             // If first word is longer than _maxWidth, do character wrap, because word wrap is impossible in that case.
-            if ([mutable isEqualToString:word] && size.width > _maxWidth)
+            if (i == 0 && size.width > _maxWidth)
             {
                 return [self divideWithCharactersWrap:label forDrawingAt:coordinate];
             }
@@ -111,7 +112,7 @@
     [nextLabel setEvent:label.event];
     [nextLabel setTextColor:label.textColor];
     [nextLabel setHighlightedTextColor:label.highlightedTextColor];
-    [nextLabel addRelatedItem:label];
+    [nextLabel setPreviousControl:label];
     [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
     [nextLabel release];
 }
@@ -173,7 +174,7 @@
     CGPoint maxEndpoint = CGPointZero;
     
     for (NSInteger i = 0; i < [_items count]; i++)
-    {
+    {        
         SDLabel *label = [_items objectAtIndex:i];
         if (![label isKindOfClass:[SDLabel class]])
             continue;
@@ -187,7 +188,7 @@
         if (self.hasWidthLimitation)
         {
             CGSize size = [label sizeForPoint:CGPointZero];
-            BOOL exceed = (coordinate.x + size.width > _maxWidth);
+            BOOL exceed = (coordinate.x - point.x + size.width > _maxWidth);
             if (exceed)
             {
                 // Split label, if it's too long.
