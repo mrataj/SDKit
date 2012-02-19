@@ -11,9 +11,9 @@
 @class SDControl;
 
 @interface SDPlaceholder : NSObject {
+@protected
     NSMutableArray *_items;
     NSMutableArray *_highlightedItems;
-    
     UIView *_parent;
 }
 

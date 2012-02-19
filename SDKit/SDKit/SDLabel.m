@@ -8,6 +8,7 @@
 
 #import "SDLabel.h"
 #import "SDEvent.h"
+#import "SDHelper.h"
 
 @implementation SDLabel
 
@@ -46,6 +47,15 @@
     {
         return [textToDraw sizeWithFont:_font];
     }
+}
+
+- (void)setText:(NSString *)text
+{
+    if (text == _text)
+        return;
+    
+    [_text release];
+    _text = [[text trim] retain];
 }
 
 - (NSInteger)numberOfLines

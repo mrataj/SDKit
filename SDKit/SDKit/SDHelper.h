@@ -17,12 +17,6 @@
 
 @end
 
-@interface NSMutableString (BCStyleHelper)
-
-- (void)appendWord:(NSString *)word withSpace:(BOOL)space;
-
-@end
-
 CGPoint CGEndpointFromCGRect(CGRect rect);
 CGPoint CGPointRound(CGPoint point);
 CGSize CGSizeRound(CGSize size);

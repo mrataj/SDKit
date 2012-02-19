@@ -54,18 +54,6 @@
 
 @end
 
-@implementation NSMutableString (BCStyleHelper)
-
-- (void)appendWord:(NSString *)word withSpace:(BOOL)space
-{
-    if (space)
-        [self appendFormat:@"%@ ", word];
-    else
-        [self appendString:word];
-}
-
-@end
-
 CGPoint CGEndpointFromCGRect(CGRect rect)
 {
     return CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
