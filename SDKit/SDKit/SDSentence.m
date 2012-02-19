@@ -48,14 +48,25 @@
     return labels;
 }
 
+- (CGSize)resize:(CGSize)size toFit:(CGRect)frame forDrawAt:(CGPoint)point
+{
+    CGPoint endpoint = CGEndpointFromCGRect(frame);
+    if (endpoint.x - point.x > size.width)
+        size = CGSizeMake(endpoint.x - point.x, size.height);
+    if (endpoint.y - point.y > size.height)
+        size = CGSizeMake(size.width, endpoint.y - point.y);
+    return size;
+}
+
 - (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw
 {
     CGPoint coordinate = point;
     CGSize size = CGSizeZero;
     
-    for (NSInteger i = 0; i < [_items count]; i++)
+    NSArray *items = [self createSentence:_items];
+    for (NSInteger i = 0; i < [items count]; i++)
     {        
-        SDLabel *label = [_items objectAtIndex:i];
+        SDLabel *label = [items objectAtIndex:i];
         if (![label isKindOfClass:[SDLabel class]])
             continue;
         
@@ -69,16 +80,9 @@
             
         }
         
-        CGSize size = (!draw) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
-        
-        // Resize sentence control if needed.
-        CGRect frame = CGRectMake(coordinate.x, coordinate.y, size.width, size.height);
-        CGPoint endpoint = CGEndpointFromCGRect(frame);
-        
-        if (endpoint.x - point.x > size.width)
-            size = CGSizeMake(endpoint.x - point.x, size.height);
-        if (endpoint.y - point.y > size.height)
-            size = CGSizeMake(size.width, endpoint.y - point.y);
+        CGSize itemSize = (!draw) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
+        CGRect frame = CGRectMake(coordinate.x, coordinate.y, itemSize.width, itemSize.height);
+        size = [self resize:size toFit:frame forDrawAt:point];
     }
     
     return CGSizeRound(size);
@@ -95,10 +99,7 @@
     SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:_BBCode];
     [sb setLayout:_layout];
     [sb build];
-    
-    NSArray *sentenceItems = [self createSentence:sb.labels];
-    [self setItems:sentenceItems];
-    
+    [self setItems:sb.labels];
     [sb release];
 }
 
