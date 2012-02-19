@@ -47,9 +47,9 @@
     return _backgroundColor;
 }
 
-- (CGPoint)getEndpointForDrawingAtPoint:(CGPoint)point doDrawing:(BOOL)drawing
+- (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw
 {
-    if (drawing)
+    if (draw)
     {
         // Background
         
@@ -72,19 +72,7 @@
                 alignment:UITextAlignmentCenter];
     }
     
-    return CGPointMake(_size.width, _size.height);
-}
-
-- (CGSize)drawAtPoint:(CGPoint)point
-{
-    CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:YES];    
-    return [self createdAtPoint:point withSize:CGSizeMakeFromPoint(endpoint)];
-}
-
-- (CGSize)sizeForPoint:(CGPoint)point
-{
-    CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:NO];
-    return CGSizeMakeFromPoint(endpoint);
+    return _size;
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location

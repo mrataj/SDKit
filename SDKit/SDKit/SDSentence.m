@@ -24,86 +24,6 @@
     return self;
 }
 
-- (NSString *)divideWithCharactersWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
-{
-    NSString *defaultText = [NSString stringWithString:label.text];
-    for (NSInteger j = 1; j < [defaultText length] + 1; j++)
-    {
-        NSString *trimmed = [defaultText substringToIndex:j];
-        
-        [label setText:trimmed];
-        CGSize size = [label sizeForPoint:CGPointZero];
-        
-        BOOL exceed = (coordinate.x + size.width > _maxWidth);
-        if (exceed)
-        {
-            NSString *currentWord = [defaultText substringToIndex:j - 1];
-            NSString *nextWord = [defaultText substringFromIndex:j - 1];
-            return [NSString stringWithFormat:@"%@\n%@", [currentWord trim], [nextWord trim]];
-        }
-    }
-    
-    // Only if text does not exceed width.
-    return [defaultText trim];
-}
-
-- (NSString *)divideWithWordWrap:(SDLabel *)label forDrawingAt:(CGPoint)coordinate
-{
-    NSMutableString *mutable = [NSMutableString string];
-    
-    NSArray *words = [label.text componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSInteger i = 0;
-    for (NSString *word in words)
-    {
-        [mutable appendWord:word withSpace:[words indexOfObject:word] + 1 != [words count]];
-        [label setText:mutable];
-        CGSize size = [label sizeForPoint:CGPointZero];
-        
-        BOOL exceed = (coordinate.x + size.width > _maxWidth);
-        if (exceed)
-        {
-            // If first word is longer than _maxWidth, do character wrap, because word wrap is impossible in that case.
-            if (i == 0 && size.width > _maxWidth)
-            {
-                return [self divideWithCharactersWrap:label forDrawingAt:coordinate];
-            }
-            else
-            // Otherwise, do word wrap.
-            {
-                // Text which will fill current line.
-                NSMutableString *currentWord = [NSMutableString string];
-                for (NSInteger j = 0; j < i; j++)
-                    [currentWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
-                
-                // The rest of the text (for new line)
-                NSMutableString *nextWord = [NSMutableString string];
-                for (NSInteger j = i; j < [words count]; j++)
-                    [nextWord appendWord:[words objectAtIndex:j] withSpace:j + 1 != [words count]];
-                
-                return [NSString stringWithFormat:@"%@\n%@", [currentWord trim], [nextWord trim]];
-            }
-        }
-        
-        i++;
-    }
-    
-    // Only if text does not exceed width.
-    return [label.text trim];
-}
-
-- (NSString *)divideLabel:(SDLabel *)label forDrawingAt:(CGPoint)coordinate lineBreakMode:(UILineBreakMode)mode
-{
-    switch (mode)
-    {
-        case UILineBreakModeWordWrap:
-            return [self divideWithWordWrap:label forDrawingAt:coordinate];
-        case UILineBreakModeCharacterWrap:
-            return [self divideWithCharactersWrap:label forDrawingAt:coordinate];
-        default:
-            @throw [NSException exceptionWithName:@"Not supported line break mode." reason:@"This line break mode isn't yet supported." userInfo:nil];
-    }
-}
-
 - (void)createLabel:(NSString *)text afterLabel:(SDLabel *)label
 {
     // TODO: Do this with NSCopying
@@ -119,61 +39,19 @@
     [nextLabel release];
 }
 
-- (BOOL)splitLabel:(SDLabel *)label byComponents:(NSArray *)components coordinate:(CGPoint *)coordinate point:(CGPoint)point
+- (NSArray *)createSentence:(NSArray *)items
 {
-    NSString *part1 = [components objectAtIndex:0];
-    [label setText:part1];
+    NSMutableArray *labels = [NSMutableArray array];
     
-    if ([components count] > 1)
-    {        
-        NSString *part2 = [components objectAtIndex:1];
-        if ([part1 length] == 0)
-        {
-            [label setText:[NSString stringWithFormat:@"\n%@", part2]];
-            
-            if ([components count] > 2)
-            {
-                NSMutableString *mutable = [NSMutableString string];
-                for (int i = 2; i < [components count]; i++)
-                {
-                    [mutable appendString:@"\n"];
-                    [mutable appendString:[components objectAtIndex:i]];
-                }
-                
-                [self createLabel:mutable afterLabel:label];
-            }
-            
-            // TODO: Ugly fix if already in new line
-            if (coordinate->x != point.x)
-                *coordinate = CGPointMakeAndRound(point.x, coordinate->y + [label.font lineHeight]);
-        }
-        else
-        {
-            // Keep new line tag at the end for redrawing.
-            [label setText:[NSString stringWithFormat:@"%@\n", part1]];
-            if ([part2 length] == 0)
-                return YES;
-                        
-            NSMutableString *mutable = [NSMutableString string];
-            for (int i = 1; i < [components count]; i++)
-            {
-                [mutable appendString:[components objectAtIndex:i]];
-                if (i + 1 != [components count])
-                    [mutable appendString:@"\n"];
-            }
-            
-            [self createLabel:mutable afterLabel:label];            
-            return YES;
-        }
-    }
     
-    return NO;
+    
+    return labels;
 }
 
-- (CGPoint)getEndpointForDrawingAtPoint:(CGPoint)point doDrawing:(BOOL)drawing
+- (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw
 {
     CGPoint coordinate = point;
-    CGPoint maxEndpoint = CGPointZero;
+    CGSize size = CGSizeZero;
     
     for (NSInteger i = 0; i < [_items count]; i++)
     {        
@@ -181,50 +59,29 @@
         if (![label isKindOfClass:[SDLabel class]])
             continue;
         
-        BOOL newLine = NO;
-        
-        // Split label, if it has new line characters included.
-        NSArray *split = [label.text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        newLine = [self splitLabel:label byComponents:split coordinate:&coordinate point:point];
-        
         if (self.hasWidthLimitation)
         {
-            CGSize size = [label sizeForPoint:CGPointZero];
-            BOOL exceed = (coordinate.x - point.x + size.width > _maxWidth);
-            if (exceed)
-            {
-                // Split label, if it's too long.
-                NSString *parts = [self divideLabel:label forDrawingAt:CGSubstractTwoPoints(coordinate, point) lineBreakMode:UILineBreakModeWordWrap];
-                NSArray *components = [parts componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-                newLine = [self splitLabel:label byComponents:components coordinate:&coordinate point:point];
-            }
+            
         }
         
-        // If label size exceed maximum height, finish drawing immediately.
         if (self.hasHeightLimitation)
         {
-            BOOL exceed = ([label sizeForPoint:coordinate].height + coordinate.y > _maxHeight);
-            if (exceed)
-                break;            
+            
         }
-                
-        // If not drawing, just get size of this label, otherwise do drawing, too.
-        CGSize size = (!drawing) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
+        
+        CGSize size = (!draw) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
         
         // Resize sentence control if needed.
-        CGPoint endpoint = CGEndpointFromCGRect(CGRectMakeFromOriginAndSize(coordinate, size));
-        if (endpoint.x > maxEndpoint.x)
-            maxEndpoint = CGPointMake(endpoint.x, maxEndpoint.y);
-        if (endpoint.y > maxEndpoint.y)
-            maxEndpoint = CGPointMake(maxEndpoint.x, endpoint.y);
+        CGRect frame = CGRectMake(coordinate.x, coordinate.y, size.width, size.height);
+        CGPoint endpoint = CGEndpointFromCGRect(frame);
         
-        // Set coordinate for next control.
-        coordinate = (newLine)
-        ? CGPointMakeAndRound(point.x, coordinate.y + [label.font lineHeight])
-        : CGPointMakeAndRound(endpoint.x, coordinate.y);
+        if (endpoint.x - point.x > size.width)
+            size = CGSizeMake(endpoint.x - point.x, size.height);
+        if (endpoint.y - point.y > size.height)
+            size = CGSizeMake(size.width, endpoint.y - point.y);
     }
     
-    return CGPointRound(CGSubstractTwoPoints(maxEndpoint, point));
+    return CGSizeRound(size);
 }
 
 - (void)setBBCode:(NSString *)BBCode
@@ -238,20 +95,11 @@
     SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:_BBCode];
     [sb setLayout:_layout];
     [sb build];
-    [self setItems:sb.labels];
+    
+    NSArray *sentenceItems = [self createSentence:sb.labels];
+    [self setItems:sentenceItems];
+    
     [sb release];
-}
-
-- (CGSize)drawAtPoint:(CGPoint)point
-{
-    CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:YES];    
-    return [self createdAtPoint:point withSize:CGSizeMakeFromPoint(endpoint)];
-}
-
-- (CGSize)sizeForPoint:(CGPoint)point
-{
-    CGPoint endpoint = [self getEndpointForDrawingAtPoint:point doDrawing:NO];
-    return CGSizeMakeFromPoint(endpoint);
 }
 
 - (BOOL)hasHeightLimitation

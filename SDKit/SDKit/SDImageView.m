@@ -23,10 +23,12 @@
     return self;
 }
 
-- (CGSize)drawAtPoint:(CGPoint)point
+- (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw
 {
-    [_image drawInRect:CGRectMake(point.x, point.y, _size.width, _size.height)];
-    return [self createdAtPoint:point withSize:_size];
+    if (draw)
+        [_image drawInRect:CGRectMake(point.x, point.y, _size.width, _size.height)];
+    
+    return _size;    
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location

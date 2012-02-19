@@ -33,19 +33,19 @@
     return _textColor;
 }
 
-- (CGSize)drawAtPoint:(CGPoint)point
+- (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw
 {
-    [[self getColor] set];
+    NSString *textToDraw = [_text stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
-    NSString *textToDraw = [_text stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    CGSize size = [textToDraw drawAtPoint:point withFont:_font];
-    return [super createdAtPoint:point withSize:size];
-}
-
-- (CGSize)sizeForPoint:(CGPoint)point
-{
-    NSString *textToDraw = [_text stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    return [textToDraw sizeWithFont:_font];
+    if (draw)
+    {
+        [[self getColor] set];
+        return [textToDraw drawAtPoint:point withFont:_font];
+    }
+    else
+    {
+        return [textToDraw sizeWithFont:_font];
+    }
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location

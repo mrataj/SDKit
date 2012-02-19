@@ -31,20 +31,21 @@
 
 #pragma mark - For override
 
+- (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw
+{
+    @throw [NSException exceptionWithName:@"This has to be overriden." reason:@"This has to be overriden." userInfo:nil];
+}
+
 - (CGSize)drawAtPoint:(CGPoint)point
 {
-    return CGSizeZero;
+    CGSize size = [self sizeForDrawingAtPoint:point draw:YES];
+    _frame = CGRectMake(point.x, point.y, ceilf(size.width), ceilf(size.height));
+    return size;
 }
 
 - (CGSize)sizeForPoint:(CGPoint)point
 {
-    return CGSizeZero;
-}
-
-- (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size
-{
-    _frame = CGRectMake(point.x, point.y, ceilf(size.width), ceilf(size.height));
-    return _frame.size;
+    return [self sizeForDrawingAtPoint:point draw:NO];
 }
 
 #pragma mark - Properties

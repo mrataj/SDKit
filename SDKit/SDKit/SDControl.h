@@ -24,9 +24,9 @@
 @property (nonatomic, assign) SDControl *previousControl;
 @property (nonatomic, assign) SDControl *nextControl;
 
+- (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw;
 - (CGSize)drawAtPoint:(CGPoint)point;
 - (CGSize)sizeForPoint:(CGPoint)point;
-- (CGSize)createdAtPoint:(CGPoint)point withSize:(CGSize)size;
 - (void)setHighlightEffect:(NSNumber *)highlight;
 
 @end
