@@ -38,7 +38,7 @@
     return [nextLabel autorelease];
 }
 
-- (NSArray *)sentenceFrom:(NSArray *)items forDrawAt:(CGPoint)point
+- (NSArray *)sentenceFrom:(NSArray *)items
 {
     NSMutableArray *labels = [NSMutableArray array];
     
@@ -48,15 +48,23 @@
             continue;
         
         // Create new labels for new lines.
-        
         NSArray *components = [label.text componentsSeparatedByString:@"\n" includeSeparator:YES];
-        for (NSString *component in components)
-            NSLog(@"%@", component);
-        
+        [label setText:[components objectAtIndex:0]];
         [labels addObject:label];
+        
+        for (NSInteger i = 1; i < [components count]; i++)
+        {
+            SDLabel *nextLabel = [self createLabel:[components objectAtIndex:i] afterLabel:label];
+            [labels addObject:nextLabel];
+        }
     }
     
     return labels;
+}
+
+- (void)setItems:(NSArray *)items
+{
+    [super setItems:[self sentenceFrom:items]];
 }
 
 - (CGSize)resize:(CGSize)size toFit:(CGRect)frame forDrawAt:(CGPoint)point
@@ -74,8 +82,7 @@
     CGPoint coordinate = point;
     CGSize size = CGSizeZero;
     
-    NSArray *items = [self sentenceFrom:_items forDrawAt:(CGPoint)point];
-    for (SDLabel *item in items)
+    for (SDLabel *item in _items)
     {
         if (self.hasWidthLimitation)
         {

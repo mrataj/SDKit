@@ -39,7 +39,8 @@
         NSRange range = [match range];
         
         NSString *word = [self substringWithRange:NSMakeRange(previousIndex, range.location - previousIndex)];
-        [words addObject:word];
+        if ([word length] > 0)
+            [words addObject:word];
         
         previousIndex = range.location;
     }
