@@ -48,6 +48,14 @@
     }
 }
 
+- (NSInteger)numberOfLines
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n"
+                                                                           options:0
+                                                                             error:nil];
+    return [regex numberOfMatchesInString:_text options:0 range:NSMakeRange(0, [_text length])];
+}
+
 - (void)touchEndedAtLocation:(CGPoint)location
 {
     [super touchEndedAtLocation:location];

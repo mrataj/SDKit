@@ -94,6 +94,9 @@
             
         }
         
+        CGFloat topMargin = [item numberOfLines] * [item.font lineHeight];
+        coordinate = CGPointMake(coordinate.x, coordinate.y + topMargin);
+        
         CGSize itemSize = (!draw) ? [item sizeForPoint:coordinate] : [item drawAtPoint:coordinate];
         CGRect frame = CGRectMake(coordinate.x, coordinate.y, itemSize.width, itemSize.height);
         size = [self resize:size toFit:frame forDrawAt:point];

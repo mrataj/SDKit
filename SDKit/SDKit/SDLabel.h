@@ -23,5 +23,6 @@
 @property (nonatomic, retain) UIColor *textColor;
 @property (nonatomic, retain) UIColor *highlightedTextColor;
 @property (nonatomic, retain) SDEvent *event;
+@property (nonatomic, readonly) NSInteger numberOfLines;
 
 @end
