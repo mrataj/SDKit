@@ -13,6 +13,7 @@
 @property (nonatomic, readonly, getter=isURL) BOOL isURL;
 
 - (NSString *)trim;
+- (NSArray *)componentsSeparatedByString:(NSString *)separator includeSeparator:(BOOL)include;
 
 @end
 

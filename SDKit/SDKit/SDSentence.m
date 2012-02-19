@@ -24,7 +24,7 @@
     return self;
 }
 
-- (void)createLabel:(NSString *)text afterLabel:(SDLabel *)label
+- (SDLabel *)createLabel:(NSString *)text afterLabel:(SDLabel *)label
 {
     // TODO: Do this with NSCopying
     SDLabel *nextLabel = [[SDLabel alloc] init];
@@ -35,15 +35,26 @@
     [nextLabel setTouchInset:label.touchInset];
     [nextLabel setHighlightedTextColor:label.highlightedTextColor];
     [nextLabel setPreviousControl:label];
-    [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
-    [nextLabel release];
+    return [nextLabel autorelease];
 }
 
-- (NSArray *)createSentence:(NSArray *)items
+- (NSArray *)sentenceFrom:(NSArray *)items forDrawAt:(CGPoint)point
 {
     NSMutableArray *labels = [NSMutableArray array];
     
-    
+    for (SDLabel *label in items)
+    {
+        if (![label isKindOfClass:[SDLabel class]])
+            continue;
+        
+        // Create new labels for new lines.
+        
+        NSArray *components = [label.text componentsSeparatedByString:@"\n" includeSeparator:YES];
+        for (NSString *component in components)
+            NSLog(@"%@", component);
+        
+        [labels addObject:label];
+    }
     
     return labels;
 }
@@ -63,13 +74,9 @@
     CGPoint coordinate = point;
     CGSize size = CGSizeZero;
     
-    NSArray *items = [self createSentence:_items];
-    for (NSInteger i = 0; i < [items count]; i++)
-    {        
-        SDLabel *label = [items objectAtIndex:i];
-        if (![label isKindOfClass:[SDLabel class]])
-            continue;
-        
+    NSArray *items = [self sentenceFrom:_items forDrawAt:(CGPoint)point];
+    for (SDLabel *item in items)
+    {
         if (self.hasWidthLimitation)
         {
             
@@ -80,7 +87,7 @@
             
         }
         
-        CGSize itemSize = (!draw) ? [label sizeForPoint:coordinate] : [label drawAtPoint:coordinate];
+        CGSize itemSize = (!draw) ? [item sizeForPoint:coordinate] : [item drawAtPoint:coordinate];
         CGRect frame = CGRectMake(coordinate.x, coordinate.y, itemSize.width, itemSize.height);
         size = [self resize:size toFit:frame forDrawAt:point];
     }

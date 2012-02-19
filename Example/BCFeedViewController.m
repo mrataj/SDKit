@@ -23,7 +23,7 @@
         [self.navigationItem setRightBarButtonItem:create];
         [create release];
         
-        NSString *item0 = @"[quote]Person [user id=\"42\"]Kate Cameron[/user] shared\nlink\n[link src=\"http://www.youtube.com\"]http://www.youtube.com[/link]\nto person [user id=\"13\"]Johnny English[/user].[/quote] [bold]You guys are idiots.[/bold] True story.";
+        NSString *item0 = @"\nPerson\n\n\nJames Newille created\nthis text.\n\n";
         
         /*
         NSString *item1 = @"[user id=\"42\"]Kate Cameron[/user] meet person [user id=\"12\"]Guy Buckland[/user] 3 hours ago in [link]London, UK[/link].";

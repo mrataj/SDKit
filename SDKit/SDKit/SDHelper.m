@@ -20,6 +20,37 @@
     return [self stringByReplacingOccurrencesOfString:@" +" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
 }
 
+- (NSArray *)componentsSeparatedByString:(NSString *)separator includeSeparator:(BOOL)include
+{
+    if (!include)
+        return [self componentsSeparatedByString:separator];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@+", separator]
+                                                                           options:0
+                                                                             error:nil];
+    NSArray *matches = [regex matchesInString:self options:0 range:NSMakeRange(0, [self length])];
+    if ([matches count] < 1)
+        return [NSArray arrayWithObject:self];
+    
+    NSMutableArray *words = [NSMutableArray array];
+    NSInteger previousIndex = 0;
+    for (NSTextCheckingResult *match in matches)
+    {
+        NSRange range = [match range];
+        
+        NSString *word = [self substringWithRange:NSMakeRange(previousIndex, range.location - previousIndex)];
+        [words addObject:word];
+        
+        previousIndex = range.location;
+    }
+    
+    NSString *word = [self substringFromIndex:previousIndex];
+    if ([word length] > 0)
+        [words addObject:word];
+    
+    return words;
+}
+
 @end
 
 @implementation NSMutableString (BCStyleHelper)
