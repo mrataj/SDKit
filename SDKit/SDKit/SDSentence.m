@@ -62,19 +62,19 @@
     return labels;
 }
 
-- (void)splitText:(NSString *)text withLabel:(SDLabel *)label
+- (void)splitText:(NSString *)text atIndex:(NSInteger)index withLabel:(SDLabel *)label
 {
-    NSArray *lines = [text componentsSeparatedByString:@"\n" includeSeparator:YES];
+    NSArray *lines = [text componentsSeparatedAtIndex:index];
     [label setText:[lines objectAtIndex:0]];
     
     for (NSInteger i = 1; i < [lines count]; i++)
     {
         SDLabel *nextLabel = [self createLabel:[lines objectAtIndex:i] afterLabel:label];
-        [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + 1];
+        [_items insertObject:nextLabel atIndex:[_items indexOfObject:label] + i];
     }
 }
 
-- (void)doCharacterWrap:(SDLabel *)label
+- (void)doCharacterWrap:(SDLabel *)label forWidth:(CGFloat)maxWidth
 {
     NSMutableString *original = [NSMutableString stringWithString:label.text];
     NSMutableString *ms = [NSMutableString string];
@@ -84,16 +84,16 @@
         [label setText:ms];
         
         CGSize expected = [label sizeForPoint:CGPointZero];
-        if (expected.width > _maxWidth)
+        if (expected.width > maxWidth)
         {
             [original replaceCharactersInRange:NSMakeRange(i - 1, 0) withString:@"\n"];
-            [self splitText:original withLabel:label];
+            [self splitText:original atIndex:i - 1 withLabel:label];
             return;
         }
     }
 }
 
-- (void)doWordWrap:(SDLabel *)label
+- (void)doWordWrap:(SDLabel *)label forWidth:(CGFloat)maxWidth
 {
     NSMutableString *original = [NSMutableString stringWithString:label.text];
     NSMutableString *ms = [NSMutableString string];
@@ -106,7 +106,7 @@
         [label setText:ms];
         
         CGSize expected = [label sizeForPoint:CGPointZero];
-        if (expected.width > _maxWidth)
+        if (expected.width > maxWidth)
         {
             [label setText:component];
             expected = [label sizeForPoint:CGPointZero];
@@ -115,12 +115,12 @@
             if (expected.width > _maxWidth)
             {
                 [label setText:original];
-                [self doCharacterWrap:label];
+                [self doCharacterWrap:label forWidth:maxWidth];
             }
             else
             {
-                [original replaceCharactersInRange:NSMakeRange(length, 1) withString:@"\n"];
-                [self splitText:original withLabel:label];
+                [original replaceCharactersInRange:NSMakeRange(length, (length == 0) ? 0 : 1) withString:@"\n"];
+                [self splitText:original atIndex:length withLabel:label];
             }
             
             return;
@@ -130,15 +130,15 @@
     }
 }
 
-- (void)wrapLabel:(SDLabel *)label mode:(UILineBreakMode)mode
+- (void)wrapLabel:(SDLabel *)label forWidth:(CGFloat)maxWidth mode:(UILineBreakMode)mode
 {
     switch (mode)
     {
         case UILineBreakModeCharacterWrap:
-            [self doCharacterWrap:label];
+            [self doCharacterWrap:label forWidth:maxWidth];
             break;
         case UILineBreakModeWordWrap:
-            [self doWordWrap:label];
+            [self doWordWrap:label forWidth:maxWidth];
             break;
         default:
             @throw [NSException exceptionWithName:@"Not supported." reason:@"Not supported line break mode." userInfo:nil];
@@ -173,14 +173,15 @@
         if (self.hasWidthLimitation)
         {
             CGSize expected = [item sizeForPoint:coordinate];
-            if (expected.width > _maxWidth)
-                [self wrapLabel:item mode:UILineBreakModeWordWrap];
+            CGFloat maxWidth = _maxWidth + point.x - coordinate.x;
+            if (expected.width > maxWidth)
+                [self wrapLabel:item forWidth:maxWidth mode:UILineBreakModeWordWrap];
         }
         
         if (self.hasHeightLimitation)
         {
             CGSize expected = [item sizeForPoint:coordinate];
-            if (expected.height > _maxHeight)
+            if (coordinate.y + expected.height > _maxHeight)
                 break;
         }
                 

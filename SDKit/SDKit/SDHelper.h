@@ -14,6 +14,7 @@
 
 - (NSString *)trim;
 - (NSArray *)componentsSeparatedByString:(NSString *)separator includeSeparator:(BOOL)include;
+- (NSArray *)componentsSeparatedAtIndex:(NSInteger)index;
 
 @end
 

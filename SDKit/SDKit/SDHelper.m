@@ -39,8 +39,7 @@
         NSRange range = [match range];
         
         NSString *word = [self substringWithRange:NSMakeRange(previousIndex, range.location - previousIndex)];
-        if ([word length] > 0)
-            [words addObject:word];
+        [words addObject:word];
         
         previousIndex = range.location;
     }
@@ -50,6 +49,13 @@
         [words addObject:word];
     
     return words;
+}
+
+- (NSArray *)componentsSeparatedAtIndex:(NSInteger)index
+{
+    NSString *part1 = [self substringToIndex:index];
+    NSString *part2 = [self substringFromIndex:index];
+    return [NSArray arrayWithObjects:part1, part2, nil];
 }
 
 @end
