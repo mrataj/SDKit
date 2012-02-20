@@ -124,7 +124,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *code = [dataSource objectAtIndex:indexPath.row];
-    return [BCFeedCell heightForCode:code];
+    return [BCFeedCell heightForCode:code andWidth:self.view.bounds.size.width];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,6 +143,13 @@
     [cell.sentence setBBCode:code];
     
     return cell;
+}
+
+#pragma mark - Orientation
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self.tableView reloadData];
 }
 
 @end

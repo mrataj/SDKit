@@ -19,6 +19,6 @@
 @property (nonatomic, retain) SDImageView *image;
 @property (nonatomic, assign) id<BCFeedCellDelegate> delegate;
 
-+ (CGFloat)heightForCode:(NSString *)code;
++ (CGFloat)heightForCode:(NSString *)code andWidth:(CGFloat)width;
 
 @end

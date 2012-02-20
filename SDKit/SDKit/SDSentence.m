@@ -197,11 +197,11 @@
 
 - (void)setBBCode:(NSString *)BBCode
 {
-    if (BBCode == _BBCode)
-        return;
-    
-    [_BBCode release];
-    _BBCode = [BBCode retain];
+    if (BBCode != _BBCode)
+    {
+        [_BBCode release];
+        _BBCode = [BBCode retain];
+    }
     
     SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:_BBCode];
     [sb setLayout:_layout];

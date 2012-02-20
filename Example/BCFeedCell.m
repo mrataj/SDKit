@@ -19,8 +19,6 @@
     if (self)
     {
         _sentence = [[SDSentence alloc] init];
-        [_sentence setMaxWidth:265];
-        
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
         
         [_placeholder setItems:[NSArray arrayWithObjects:_image, _sentence, nil]];
@@ -40,17 +38,19 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [_image drawAtPoint:CGPointMake(5, 5)];    
+    [_image drawAtPoint:CGPointMake(5, 5)];
+    
+    [_sentence setMaxWidth:rect.size.width - 55];
     [_sentence drawAtPoint:CGPointMake(50, 5)];
 }
 
-+ (CGFloat)heightForCode:(NSString *)code
++ (CGFloat)heightForCode:(NSString *)code andWidth:(CGFloat)width
 {
     CGFloat height = 10.0;
     
     BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
     SDSentence *sentence = [[SDSentence alloc] initWithLayout:layout];
-    [sentence setMaxWidth:265];
+    [sentence setMaxWidth:width - 55];
     [sentence setBBCode:code];
     height += [sentence sizeForPoint:CGPointMake(50, 5)].height;
     [sentence release];
