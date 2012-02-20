@@ -114,11 +114,7 @@
             // If whole word is longer than _maxWidth, do character wrap.
             if (expected.width > _maxWidth)
             {
-                [ms setString:@""];
-                for (int i = [components indexOfObject:component]; i < [components count]; i++)
-                    [ms appendString:[components objectAtIndex:i]];
-                
-                [label setText:ms];
+                [label setText:original];
                 [self doCharacterWrap:label];
             }
             else
@@ -171,7 +167,8 @@
             continue;
         
         CGFloat topMargin = [item numberOfLines] * [item.font lineHeight];
-        coordinate = CGPointMake(coordinate.x, coordinate.y + topMargin);
+        if (topMargin > 0)
+            coordinate = CGPointMake(point.x, coordinate.y + topMargin);
         
         if (self.hasWidthLimitation)
         {
@@ -190,6 +187,8 @@
         CGSize itemSize = (!draw) ? [item sizeForPoint:coordinate] : [item drawAtPoint:coordinate];
         CGRect frame = CGRectMake(coordinate.x, coordinate.y, itemSize.width, itemSize.height);
         size = [self resize:size toFit:frame forDrawAt:point];
+        
+        coordinate = CGPointMake(CGEndpointFromCGRect(frame).x, coordinate.y);
     }
     
     return CGSizeRound(size);
