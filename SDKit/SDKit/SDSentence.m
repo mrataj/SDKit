@@ -208,6 +208,8 @@
     [sb build];
     [self setItems:sb.labels];
     [sb release];
+    
+    [_parent setNeedsDisplay];
 }
 
 - (void)setItems:(NSArray *)items
