@@ -23,15 +23,13 @@
         [self.navigationItem setRightBarButtonItem:create];
         [create release];
         
-        NSString *item0 = @"\nPerson\n\n\nJames Newille created this text yesterday morning.\n\nhttp://www.youtube.com/watch?v=6llmuNxyIxg&feature=related - you've got to see this!\n\nThat's it.";
-        
-        /*
+        NSString *item0 = @"Person James Newille said:\nI created this text yesterday morning.";
         NSString *item1 = @"[user id=\"42\"]Kate Cameron[/user] meet person [user id=\"12\"]Guy Buckland[/user] 3 hours ago in [link]London, UK[/link].";
         NSString *item2 = @"[user id=\"42\"]Kate Cameron[/user] created document [document id=\"23241\"]Example.doc[/document] and sent it to person [user id=\"22\"]Larry Brin[/user].";
-        NSString *item3 = @"[user id=\"42\"]Kate Cameron[/user] has\nwriten\na\nhundred miles\nlong exam about supermassive black holes, saved it to file [document id=\"23089\"]Seminar paper.pdf[/document] and finally sent it to her professor of physics [user id=\"78\"]dr. Gregory Watson[/user].";
-         */
+        NSString *item3 = @"[user id=\"42\"]Kate Cameron[/user] has writen a hundred miles long exam about supermassive black holes, saved it to file [document id=\"23089\"]Seminar paper.pdf[/document] and finally sent it to her professor of physics [user id=\"78\"]dr. Gregory Watson[/user].";
+        NSString *item4 = @"1. line\n2. line\n3. line\n\nThis is just an example to see how sentence control handle multiline text.";
         
-        dataSource = [[NSArray alloc] initWithObjects:item0, /* item1, item2, item3, */ nil];
+        dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, item4, nil];
     }
     return self;
 }
