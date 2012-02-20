@@ -59,6 +59,8 @@
     if (_parent != nil)
         for (SDControl *item in _items)
             [item setParent:_parent];
+    
+    [_parent setNeedsDisplay];
 }
 
 #pragma mark - Touches
