@@ -86,8 +86,8 @@
         CGSize expected = [label sizeForPoint:CGPointZero];
         if (expected.width > maxWidth)
         {
-            [original replaceCharactersInRange:NSMakeRange(i - 1, 0) withString:@"\n"];
-            [self splitText:original atIndex:i - 1 withLabel:label];
+            [original replaceCharactersInRange:NSMakeRange(i, 0) withString:@"\n"];
+            [self splitText:original atIndex:i withLabel:label];
             return;
         }
     }
