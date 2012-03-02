@@ -60,6 +60,9 @@
 
 - (NSInteger)numberOfLines
 {
+    if (_text == nil)
+        return 0;
+    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\n"
                                                                            options:0
                                                                              error:nil];
