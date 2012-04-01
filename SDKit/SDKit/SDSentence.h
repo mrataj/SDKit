@@ -9,6 +9,7 @@
 // Used for displaying sentences with clickable words.
 // For example: Miha Rataj confirmed task to check to person Bostjan Bregar.
 // Sentence is created with mutliple styled labels.
+// IMPORTANT! Never set BBCode when drawing parent control, always before!
 
 #import "SDControl.h"
 #import "SDSentenceBuilder.h"
