@@ -10,6 +10,7 @@
 
 @interface BCRequestCell : SDTableViewCell {
     SDButton *_button;
+    SDLabel *_title;
 }
 
 @end
