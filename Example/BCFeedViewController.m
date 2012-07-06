@@ -23,15 +23,16 @@
         [self.navigationItem setRightBarButtonItem:create];
         [create release];
         
-        NSString *item0 = @"Hack za https s server trust\n- (id)initWithAddress:(NSString *)anAddress\n\n{\n\nif((self = [self init])) {\n\nself.address = [NSURL URLWithString:anAddress];\n\nNSDictionary *serverTrust = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0], kValidateResult, nil];\n[self setAuthenticationProperties:[NSDictionary dictionaryWithObject:serverTrust forKey:NSURLAuthenticationMethodServerTrust]];\n\n}\n\n\nreturn self;\n\n}V ExternalProvider.svc.m file";
+        NSString *item0 = @"Person James Newille said:\nI created this text yesterday morning.";
         NSString *item1 = @"[user id=\"42\"]Kate Cameron[/user] meet person [user id=\"12\"]Guy Buckland[/user] 3 hours ago in [link]London, UK[/link].";
         NSString *item2 = @"[user id=\"42\"]Kate Cameron[/user] created document [document id=\"23241\"]Example.doc[/document] and sent it to person [user id=\"22\"]Larry Brin[/user].";
         NSString *item3 = @"[user id=\"42\"]Kate Cameron[/user] has writen a hundred miles long exam about supermassive black holes, saved it to file [document id=\"23089\"]Seminar paper.pdf[/document] and finally sent it to her professor of physics [user id=\"78\"]dr. Gregory Watson[/user].";
         NSString *item4 = @"1. line\n2. line\n3. line\n\nThis is just an example to see how sentence control handle multiline text.";
         NSString *item5 = @"This line is a text to see how sentence control can handle multiline space between lines.\n\n\n\nThere should be visible 3 empty lines.";
         NSString *item6 = @"\nThere should be one empty line on top on one empty line on bottom.\n\n";
+        NSString *item7 = @"{0} {~} {}";
         
-        dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, item4, item5, item6, nil];
+        dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, item4, item5, item6, item7, nil];
     }
     return self;
 }
