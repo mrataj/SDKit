@@ -23,7 +23,7 @@
         [self.navigationItem setRightBarButtonItem:create];
         [create release];
         
-        NSString *item0 = @"Person James Newille said:\nI created this text yesterday morning.";
+        NSString *item0 = @"Hack za https s server trust\n- (id)initWithAddress:(NSString *)anAddress\n\n{\n\nif((self = [self init])) {\n\nself.address = [NSURL URLWithString:anAddress];\n\nNSDictionary *serverTrust = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0], kValidateResult, nil];\n[self setAuthenticationProperties:[NSDictionary dictionaryWithObject:serverTrust forKey:NSURLAuthenticationMethodServerTrust]];\n\n}\n\n\nreturn self;\n\n}V ExternalProvider.svc.m file";
         NSString *item1 = @"[user id=\"42\"]Kate Cameron[/user] meet person [user id=\"12\"]Guy Buckland[/user] 3 hours ago in [link]London, UK[/link].";
         NSString *item2 = @"[user id=\"42\"]Kate Cameron[/user] created document [document id=\"23241\"]Example.doc[/document] and sent it to person [user id=\"22\"]Larry Brin[/user].";
         NSString *item3 = @"[user id=\"42\"]Kate Cameron[/user] has writen a hundred miles long exam about supermassive black holes, saved it to file [document id=\"23089\"]Seminar paper.pdf[/document] and finally sent it to her professor of physics [user id=\"78\"]dr. Gregory Watson[/user].";

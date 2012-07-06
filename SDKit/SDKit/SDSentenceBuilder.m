@@ -59,41 +59,41 @@
 }
 
 - (void)createForElement:(BBElement *)element
-{
-    NSMutableString *temporary = [NSMutableString string];
-    
-    NSInteger endTagIndex = -1;
-    for (int i = 0; i < [element.format length]; i++)
+{    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[BBCodeParser tagRegexPattern] options:0 error:nil];
+    NSArray *matches = [regex matchesInString:element.format options:0 range:NSMakeRange(0, [element.format length])];
+    if ([matches count] < 1)
     {
-        NSString *character = [element.format substringWithRange:NSMakeRange(i, 1)];
-        if ([character isEqualToString:@"{"])
-        {
-            NSString *text = [element.format substringWithRange:NSMakeRange(endTagIndex + 1, i - endTagIndex - 1)];
-            [self createLabel:text forElement:element];
-            
-            temporary = [NSMutableString string];            
-            
-            _parsingTag = YES;
-        }
-        else if ([character isEqualToString:@"}"])
-        {
-            NSInteger index = [temporary integerValue];
-            BBElement *subelement = [element.elements objectAtIndex:index];
-            [self createForElement:subelement];
-            
-            temporary = [NSMutableString string];  
-            
-            endTagIndex = i;
-            _parsingTag = NO;
-        }
-        else
-        {
-            [temporary appendString:character];
-        }
+        [self createLabel:element.text forElement:element];
+        return;
     }
     
-    if ([temporary length] > 0)
-        [self createLabel:temporary forElement:element];
+    NSInteger previousIndex = 0;
+    for (NSTextCheckingResult *match in matches)
+    {
+        NSRange range = [match range];
+        
+        NSString *word = [element.format substringWithRange:NSMakeRange(previousIndex, range.location - previousIndex)];        
+        [self createLabel:word forElement:element];
+        
+        NSString *tag = [element.format substringWithRange:range];
+        
+        NSRegularExpression *tagIndexRegex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]+"
+                                                                              options:0
+                                                                                error:nil];
+        
+        NSTextCheckingResult *tagIndexResult = [[tagIndexRegex matchesInString:tag options:0 range:NSMakeRange(0, tag.length)] objectAtIndex:0];
+        NSInteger index = [[tag substringWithRange:tagIndexResult.range] integerValue];
+        
+        BBElement *subelement = [element.elements objectAtIndex:index];
+        [self createForElement:subelement];
+        
+        previousIndex = range.location + range.length;
+    }
+    
+    NSString *word = [element.format substringFromIndex:previousIndex];
+    if ([word length] > 0)
+        [self createLabel:word forElement:element];
 }
 
 - (void)dealloc

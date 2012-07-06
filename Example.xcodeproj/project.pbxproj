@@ -182,7 +182,7 @@
 		1158E23714D45D4B00E31CD0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Marg, d.o.o.";
 			};
 			buildConfigurationList = 1158E23A14D45D4B00E31CD0 /* Build configuration list for PBXProject "Example" */;
