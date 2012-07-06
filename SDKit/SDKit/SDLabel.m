@@ -12,7 +12,7 @@
 
 @implementation SDLabel
 
-@synthesize text=_text, font=_font, textColor=_textColor, highlightedTextColor=_highlightedTextColor, event=_event;
+@synthesize text=_text, font=_font, textColor=_textColor, highlightedTextColor=_highlightedTextColor, event=_event, maxWidth=_maxWidth;
 
 - (id)init
 {
@@ -22,6 +22,7 @@
         _font = [[UIFont systemFontOfSize:12.0] retain];
         _textColor = [[UIColor blackColor] retain];
         _highlightedTextColor = [[UIColor blackColor] retain];
+        _maxWidth = CGFLOAT_MAX;
     }
     return self;
 }
@@ -41,11 +42,11 @@
     if (draw)
     {
         [[self getColor] set];
-        return [textToDraw drawAtPoint:point withFont:_font];
+        return [textToDraw drawAtPoint:point forWidth:_maxWidth withFont:_font lineBreakMode:UILineBreakModeTailTruncation];
     }
     else
     {
-        return [textToDraw sizeWithFont:_font];
+        return [textToDraw sizeWithFont:_font forWidth:_maxWidth lineBreakMode:UILineBreakModeTailTruncation];
     }
 }
 

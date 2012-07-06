@@ -16,6 +16,7 @@
     UIColor *_textColor;
     UIColor *_highlightedTextColor;
     SDEvent *_event;
+    CGFloat _maxWidth;
 }
 
 @property (nonatomic, copy) NSString *text;
@@ -24,5 +25,6 @@
 @property (nonatomic, retain) UIColor *highlightedTextColor;
 @property (nonatomic, retain) SDEvent *event;
 @property (nonatomic, readonly) NSInteger numberOfLines;
+@property (nonatomic, assign) CGFloat maxWidth;
 
 @end

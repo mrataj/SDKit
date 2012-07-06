@@ -20,6 +20,11 @@
         [_button setText:@"Push"];
         [_button setEvent:[SDEvent eventForTarget:self selector:@selector(showText)]];
         
+        _title = [[SDLabel alloc] init];
+        [_title setText:@"Long title test."];
+        [_title setFont:[UIFont systemFontOfSize:18.0]];
+        [_title setMaxWidth:100.0];
+        
         [_placeholder setItems:[NSArray arrayWithObject:_button]];
     }
     return self;
@@ -33,11 +38,13 @@
 - (void)drawRect:(CGRect)rect
 {
     [_button drawAtPoint:CGPointMake(4, 15)];
+    [_title drawAtPoint:CGPointMake(4, 50)];
 }
 
 - (void)dealloc
 {
     [_button release];
+    [_title release];
     [super dealloc];
 }
 
