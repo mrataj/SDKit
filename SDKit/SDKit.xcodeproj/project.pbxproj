@@ -237,7 +237,7 @@
 		114F4E4814D6DF34004FDAF3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Marg, d.o.o.";
 			};
 			buildConfigurationList = 114F4E4B14D6DF34004FDAF3 /* Build configuration list for PBXProject "SDKit" */;
