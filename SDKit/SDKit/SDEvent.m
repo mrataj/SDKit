@@ -7,6 +7,7 @@
 //
 
 #import "SDEvent.h"
+#import <objc/message.h>
 
 @implementation SDEvent
 
@@ -29,7 +30,11 @@
 - (void)performEvent
 {
     if ([_target respondsToSelector:_selector])
-        [_target performSelector:_selector withObject:_object];
+    {
+        objc_msgSend(_target, _selector, _object); // this is because code below causes a compiler warning
+        
+        // [_target performSelector:_selector withObject:_object];
+    }
 }
 
 - (void)dealloc
