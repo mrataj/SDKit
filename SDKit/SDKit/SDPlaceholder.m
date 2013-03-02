@@ -38,9 +38,6 @@
 - (void)dealloc
 {
     _parent = nil;
-    [_highlightedItems release];
-    [_items release];
-    [super dealloc];
 }
 
 #pragma mark - Properties
@@ -50,11 +47,10 @@
     if (items == _items)
         return;
     
-    [_items release];
     if (![items isKindOfClass:[NSMutableArray class]])
         _items  = [[NSMutableArray alloc] initWithArray:items];
     else
-        _items = [(NSMutableArray *)items retain];
+        _items = (NSMutableArray *)items;
     
     if (_parent != nil)
         for (SDControl *item in _items)

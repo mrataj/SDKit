@@ -20,10 +20,10 @@
 }
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, retain) UIFont *font;
-@property (nonatomic, retain) UIColor *textColor;
-@property (nonatomic, retain) UIColor *highlightedTextColor;
-@property (nonatomic, retain) SDEvent *event;
+@property (nonatomic, strong) UIFont *font;
+@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *highlightedTextColor;
+@property (nonatomic, strong) SDEvent *event;
 @property (nonatomic, readonly) NSInteger numberOfLines;
 @property (nonatomic, assign) CGFloat maxWidth;
 

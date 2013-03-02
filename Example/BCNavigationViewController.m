@@ -82,7 +82,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     [cell.textLabel setText:[NSString stringWithFormat:@"%d. example", indexPath.row + 1]];
@@ -105,7 +105,6 @@
     }
     
     [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

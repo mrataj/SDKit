@@ -33,7 +33,6 @@
     BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
     [layout setEventResponder:_delegate];
     [_sentence setLayout:layout];
-    [layout release];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -53,18 +52,10 @@
     [sentence setMaxWidth:width - 55];
     [sentence setBBCode:code];
     height += [sentence sizeForPoint:CGPointMake(50, 5)].height;
-    [sentence release];
-    [layout release];
     
     return height;
 }
 
-- (void)dealloc
-{
-    [_image release];
-    [_sentence release];
-    [super dealloc];
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

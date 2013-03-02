@@ -21,11 +21,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [_placeholder release];
-    [super dealloc];
-}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

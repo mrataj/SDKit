@@ -35,7 +35,7 @@
     [nextLabel setTouchInset:label.touchInset];
     [nextLabel setHighlightedTextColor:label.highlightedTextColor];
     [nextLabel setPreviousControl:label];
-    return [nextLabel autorelease];
+    return nextLabel;
 }
 
 - (NSArray *)extractNewLinesFrom:(NSArray *)items
@@ -199,15 +199,13 @@
 {
     if (BBCode != _BBCode)
     {
-        [_BBCode release];
-        _BBCode = [BBCode retain];
+        _BBCode = BBCode;
     }
     
     SDSentenceBuilder *sb = [[SDSentenceBuilder alloc] initWithCode:_BBCode];
     [sb setLayout:_layout];
     [sb build];
     [self setItems:sb.labels];
-    [sb release];
 }
 
 - (void)setItems:(NSArray *)items
@@ -225,11 +223,5 @@
     return _maxWidth > 0;
 }
 
-- (void)dealloc
-{
-    [_layout release];
-    [_BBCode release];
-    [super dealloc];
-}
 
 @end

@@ -19,9 +19,9 @@
     self = [super init];
     if (self)
     {
-        _font = [[UIFont systemFontOfSize:12.0] retain];
-        _textColor = [[UIColor blackColor] retain];
-        _highlightedTextColor = [[UIColor blackColor] retain];
+        _font = [UIFont systemFontOfSize:12.0];
+        _textColor = [UIColor blackColor];
+        _highlightedTextColor = [UIColor blackColor];
         _maxWidth = CGFLOAT_MAX;
     }
     return self;
@@ -55,8 +55,7 @@
     if (text == _text)
         return;
     
-    [_text release];
-    _text = [[text trim] retain];
+    _text = [text trim];
 }
 
 - (NSInteger)numberOfLines
@@ -76,14 +75,5 @@
     [_event performEvent];
 }
 
-- (void)dealloc
-{
-    [_font release];
-    [_text release];
-    [_textColor release];
-    [_highlightedTextColor release];
-    [_event release];
-    [super dealloc];
-}
 
 @end

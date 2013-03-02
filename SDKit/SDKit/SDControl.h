@@ -14,15 +14,15 @@
     BOOL _highlighted;
     UIEdgeInsets _touchInset;
     
-    SDControl *_previousControl;
-    SDControl *_nextControl;
+    SDControl *__weak _previousControl;
+    SDControl *__weak _nextControl;
 }
 
 @property (nonatomic, readonly) CGRect frame;
 @property (nonatomic, assign) BOOL highlighted;
 @property (nonatomic, assign) UIEdgeInsets touchInset;
-@property (nonatomic, assign) SDControl *previousControl;
-@property (nonatomic, assign) SDControl *nextControl;
+@property (nonatomic, weak) SDControl *previousControl;
+@property (nonatomic, weak) SDControl *nextControl;
 
 - (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw;
 - (CGSize)drawAtPoint:(CGPoint)point;

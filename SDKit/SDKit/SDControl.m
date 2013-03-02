@@ -26,7 +26,6 @@
 {
     _previousControl = nil;
     _nextControl = nil;
-    [super dealloc];
 }
 
 #pragma mark - For override

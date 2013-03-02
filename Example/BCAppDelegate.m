@@ -14,22 +14,15 @@
 @synthesize window = _window;
 @synthesize viewController = _viewController;
 
-- (void)dealloc
-{
-    [_window release];
-    [_viewController release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.viewController = [[[BCNavigationViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.viewController = [[BCNavigationViewController alloc] initWithStyle:UITableViewStylePlain];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     [navigationController.navigationBar setTintColor:[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0]];
     self.window.rootViewController = navigationController;
-    [navigationController release];
     
     [self.window makeKeyAndVisible];
     return YES;

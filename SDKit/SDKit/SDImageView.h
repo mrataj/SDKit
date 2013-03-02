@@ -17,8 +17,8 @@
 }
 
 @property (nonatomic, assign) CGSize size;
-@property (nonatomic, retain) SDEvent *event;
-@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, strong) SDEvent *event;
+@property (nonatomic, strong) UIImage *image;
 
 - (id)initWithSize:(CGSize)size;
 

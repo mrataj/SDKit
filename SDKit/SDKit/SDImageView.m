@@ -37,11 +37,5 @@
     [_event performEvent];
 }
 
-- (void)dealloc
-{
-    [_event release];
-    [_image release];
-    [super dealloc];
-}
 
 @end

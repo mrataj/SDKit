@@ -41,12 +41,6 @@
     [_title drawAtPoint:CGPointMake(4, 50)];
 }
 
-- (void)dealloc
-{
-    [_button release];
-    [_title release];
-    [super dealloc];
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

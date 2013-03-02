@@ -327,6 +327,7 @@
 		114F4E5F14D6DF34004FDAF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/SDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDKit/Supporting Files/SDKit-Prefix.pch";
@@ -341,6 +342,7 @@
 		114F4E6014D6DF34004FDAF3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/SDKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDKit/Supporting Files/SDKit-Prefix.pch";

@@ -12,12 +12,12 @@
 @interface BCFeedCell : SDTableViewCell {
     SDSentence *_sentence;
     SDImageView *_image;
-    id<BCFeedCellDelegate> _delegate;
+    id<BCFeedCellDelegate> __weak _delegate;
 }
 
-@property (nonatomic, retain) SDSentence *sentence;
-@property (nonatomic, retain) SDImageView *image;
-@property (nonatomic, assign) id<BCFeedCellDelegate> delegate;
+@property (nonatomic, strong) SDSentence *sentence;
+@property (nonatomic, strong) SDImageView *image;
+@property (nonatomic, weak) id<BCFeedCellDelegate> delegate;
 
 + (CGFloat)heightForCode:(NSString *)code andWidth:(CGFloat)width;
 

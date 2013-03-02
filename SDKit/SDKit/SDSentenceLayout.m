@@ -19,7 +19,7 @@
     SDLabel *label = [[SDLabel alloc] init];
     [label setTextColor:[UIColor blackColor]];
     [label setFont:[UIFont systemFontOfSize:12.0]];
-    return [label autorelease];
+    return label;
 }
 
 - (NSArray *)getTags
@@ -30,7 +30,6 @@
 - (void)dealloc
 {
     _eventResponder = nil;
-    [super dealloc];
 }
 
 @end

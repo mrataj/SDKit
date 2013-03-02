@@ -12,10 +12,10 @@
 @class BBElement;
 
 @interface SDSentenceLayout : NSObject {
-    id _eventResponder;
+    id __weak _eventResponder;
 }
 
-@property (nonatomic, assign) id eventResponder;
+@property (nonatomic, weak) id eventResponder;
 
 - (SDLabel *)getLayoutForElement:(BBElement *)element;
 - (NSArray *)getTags;

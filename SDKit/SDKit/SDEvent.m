@@ -18,7 +18,7 @@
     [event setTarget:tar];
     [event setSelector:sel];
     [event setObject:obj];
-    return [event autorelease];
+    return event;
 }
 
 + (SDEvent *)eventForTarget:(id)tar selector:(SEL)sel
@@ -36,8 +36,6 @@
 {
     _selector = nil;
     _target = nil;
-    [_object release];
-    [super dealloc];
 }
 
 @end

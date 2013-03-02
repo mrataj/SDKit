@@ -21,11 +21,11 @@
     {
         _size = CGSizeMake(50, 24);
         _event = nil;
-        _font = [[UIFont boldSystemFontOfSize:14.0] retain];
-        _textColor = [[UIColor whiteColor] retain];
-        _highlightedTextColor = [[UIColor whiteColor] retain];
-        _backgroundColor = [[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0] retain];
-        _highlightedBackgroundColor = [[UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:182.0/255.0 alpha:1.0] retain];
+        _font = [UIFont boldSystemFontOfSize:14.0];
+        _textColor = [UIColor whiteColor];
+        _highlightedTextColor = [UIColor whiteColor];
+        _backgroundColor = [UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:152.0/255.0 alpha:1.0];
+        _highlightedBackgroundColor = [UIColor colorWithRed:59.0/255.0 green:89.0/255.0 blue:182.0/255.0 alpha:1.0];
         _text = nil;
     }
     return self;
@@ -81,15 +81,4 @@
     [_event performEvent];
 }
 
-- (void)dealloc
-{
-    [_event release];
-    [_font release];
-    [_textColor release];
-    [_backgroundColor release];
-    [_highlightedTextColor release];
-    [_highlightedBackgroundColor release];
-    [_text release];
-    [super dealloc];
-}
 @end

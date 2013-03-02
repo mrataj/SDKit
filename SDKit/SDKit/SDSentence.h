@@ -27,7 +27,7 @@
 @property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, assign) CGFloat maxHeight;
 @property (nonatomic, copy) NSString *BBCode;
-@property (nonatomic, retain) SDSentenceLayout *layout;
+@property (nonatomic, strong) SDSentenceLayout *layout;
 @property (nonatomic, readonly) BOOL hasHeightLimitation;
 @property (nonatomic, readonly) BOOL hasWidthLimitation;
 

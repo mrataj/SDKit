@@ -37,7 +37,6 @@
     [parser setCode:_code];
     [parser parse];
     [self createForElement:parser.element];
-    [parser release];
 }
 
 - (void)createLabel:(NSString *)text forElement:(BBElement *)element
@@ -55,7 +54,6 @@
     [label setTouchInset:layout.touchInset];
     [label setText:text];
     [_labels addObject:label];
-    [label release];
 }
 
 - (void)createForElement:(BBElement *)element
@@ -96,12 +94,5 @@
         [self createLabel:word forElement:element];
 }
 
-- (void)dealloc
-{
-    [_layout release];
-    [_code release];
-    [_labels release];
-    [super dealloc];
-}
 
 @end

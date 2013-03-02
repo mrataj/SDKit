@@ -14,11 +14,11 @@
 @protected
     NSMutableArray *_items;
     NSMutableArray *_highlightedItems;
-    UIView *_parent;
+    UIView *__weak _parent;
 }
 
-@property (nonatomic, assign) UIView *parent;
-@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, weak) UIView *parent;
+@property (nonatomic, strong) NSArray *items;
 
 - (id)initWithParent:(UIView *)parent;
 

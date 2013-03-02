@@ -21,7 +21,6 @@
         
         UIBarButtonItem *create = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
         [self.navigationItem setRightBarButtonItem:create];
-        [create release];
         
         NSString *item0 = @"Person James Newille said:\nI created this text yesterday morning.";
         NSString *item1 = @"[user id=\"42\"]Kate Cameron[/user] meet person [user id=\"12\"]Guy Buckland[/user] 3 hours ago in [link]London, UK[/link].";
@@ -37,11 +36,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [dataSource release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -134,7 +128,7 @@
     BCFeedCell *cell = (BCFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil)
     {
-        cell = [[[BCFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[BCFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setDelegate:self];
     }
     

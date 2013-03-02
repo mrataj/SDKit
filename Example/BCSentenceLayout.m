@@ -96,7 +96,7 @@ static NSDictionary *__fonts;
     [label setFont:[BCSentenceLayout getFontRecursively:element]];
     [label setEvent:[self getEventRecursively:element]];
     [label setTouchInset:UIEdgeInsetsMake(0, -20, 0, -20)];
-    return [label autorelease];
+    return label;
 }
 
 - (NSArray *)getTags
@@ -109,10 +109,5 @@ static NSDictionary *__fonts;
     return tags;
 }
 
-- (void)dealloc
-{
-    [_events release];
-    [super dealloc];
-}
 
 @end

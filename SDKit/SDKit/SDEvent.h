@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface SDEvent : NSObject {
-    id _target;
+    id __weak _target;
     SEL _selector;
     id _object;
 }
 
-@property (nonatomic, assign) id target;
+@property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL selector;
-@property (nonatomic, retain) id object;
+@property (nonatomic, strong) id object;
 
 + (SDEvent *)eventForTarget:(id)tar selector:(SEL)sel andObject:(id)obj;
 + (SDEvent *)eventForTarget:(id)tar selector:(SEL)sel;

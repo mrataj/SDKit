@@ -21,7 +21,7 @@
 }
 
 @property (nonatomic, readonly) NSArray *labels;
-@property (nonatomic, retain) SDSentenceLayout *layout;
+@property (nonatomic, strong) SDSentenceLayout *layout;
 
 - (id)initWithCode:(NSString *)code;
 - (void)build;
