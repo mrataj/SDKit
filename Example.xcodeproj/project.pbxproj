@@ -21,10 +21,6 @@
 		1169FB9414DDF87300AE8E9E /* BCRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1169FB8E14DDF87300AE8E9E /* BCRequestCell.m */; };
 		1169FB9514DDF87300AE8E9E /* BCRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1169FB9014DDF87300AE8E9E /* BCRequestsViewController.m */; };
 		117A31FA16ECB6D9009C2789 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A31F916ECB6D9009C2789 /* CoreText.framework */; };
-		11A7585A16ECC33B00CC5AAD /* BBAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7585216ECC33B00CC5AAD /* BBAttribute.m */; };
-		11A7585B16ECC33B00CC5AAD /* BBCodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7585416ECC33B00CC5AAD /* BBCodeParser.m */; };
-		11A7585C16ECC33B00CC5AAD /* BBElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7585716ECC33B00CC5AAD /* BBElement.m */; };
-		11A7585D16ECC33B00CC5AAD /* BBParsingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7585916ECC33B00CC5AAD /* BBParsingElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,15 +65,6 @@
 		1169FB8F14DDF87300AE8E9E /* BCRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCRequestsViewController.h; path = Example/BCRequestsViewController.h; sourceTree = SOURCE_ROOT; };
 		1169FB9014DDF87300AE8E9E /* BCRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCRequestsViewController.m; path = Example/BCRequestsViewController.m; sourceTree = SOURCE_ROOT; };
 		117A31F916ECB6D9009C2789 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		11A7585116ECC33B00CC5AAD /* BBAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAttribute.h; sourceTree = "<group>"; };
-		11A7585216ECC33B00CC5AAD /* BBAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAttribute.m; sourceTree = "<group>"; };
-		11A7585316ECC33B00CC5AAD /* BBCodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCodeParser.h; sourceTree = "<group>"; };
-		11A7585416ECC33B00CC5AAD /* BBCodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCodeParser.m; sourceTree = "<group>"; };
-		11A7585516ECC33B00CC5AAD /* BBCodeParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCodeParserDelegate.h; sourceTree = "<group>"; };
-		11A7585616ECC33B00CC5AAD /* BBElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBElement.h; sourceTree = "<group>"; };
-		11A7585716ECC33B00CC5AAD /* BBElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBElement.m; sourceTree = "<group>"; };
-		11A7585816ECC33B00CC5AAD /* BBParsingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBParsingElement.h; sourceTree = "<group>"; };
-		11A7585916ECC33B00CC5AAD /* BBParsingElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBParsingElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +123,6 @@
 		1158E24A14D45D4C00E31CD0 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				11A7585016ECC33B00CC5AAD /* BBCodeParser */,
 				113AEC8314D6FDEB006653D2 /* BCAppDelegate.h */,
 				113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */,
 				113AEC8514D6FDEB006653D2 /* BCFeedViewController.h */,
@@ -167,23 +153,6 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
-		};
-		11A7585016ECC33B00CC5AAD /* BBCodeParser */ = {
-			isa = PBXGroup;
-			children = (
-				11A7585116ECC33B00CC5AAD /* BBAttribute.h */,
-				11A7585216ECC33B00CC5AAD /* BBAttribute.m */,
-				11A7585316ECC33B00CC5AAD /* BBCodeParser.h */,
-				11A7585416ECC33B00CC5AAD /* BBCodeParser.m */,
-				11A7585516ECC33B00CC5AAD /* BBCodeParserDelegate.h */,
-				11A7585616ECC33B00CC5AAD /* BBElement.h */,
-				11A7585716ECC33B00CC5AAD /* BBElement.m */,
-				11A7585816ECC33B00CC5AAD /* BBParsingElement.h */,
-				11A7585916ECC33B00CC5AAD /* BBParsingElement.m */,
-			);
-			name = BBCodeParser;
-			path = Example/BBCodeParser;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -272,10 +241,6 @@
 				1169FB9314DDF87300AE8E9E /* BCNavigationViewController.m in Sources */,
 				1169FB9414DDF87300AE8E9E /* BCRequestCell.m in Sources */,
 				1169FB9514DDF87300AE8E9E /* BCRequestsViewController.m in Sources */,
-				11A7585A16ECC33B00CC5AAD /* BBAttribute.m in Sources */,
-				11A7585B16ECC33B00CC5AAD /* BBCodeParser.m in Sources */,
-				11A7585C16ECC33B00CC5AAD /* BBElement.m in Sources */,
-				11A7585D16ECC33B00CC5AAD /* BBParsingElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
