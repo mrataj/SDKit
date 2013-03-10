@@ -51,7 +51,7 @@
         NSString *text7 = @"{0} {~} {}";
         BBCodeString *item7 = [[BBCodeString alloc] initWithBBCode:text7 andLayoutProvider:layout];
         
-        dataSource = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, item4, item5, item6, item7, nil];
+        _model = [[NSArray alloc] initWithObjects:item0, item1, item2, item3, item4, item5, item6, item7, nil];
     }
     return self;
 }
@@ -107,12 +107,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataSource count];
+    return [_model count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BBCodeString *code = [dataSource objectAtIndex:indexPath.row];
+    BBCodeString *code = [_model objectAtIndex:indexPath.row];
         
     return [BCFeedCell heightForAttributedString:code.attributedString andWidth:self.view.bounds.size.width];
 }
@@ -129,7 +129,7 @@
     
     [cell.image setImage:[UIImage imageNamed:@"woman.jpg"]];
     
-    BBCodeString *code = [dataSource objectAtIndex:indexPath.row];
+    BBCodeString *code = [_model objectAtIndex:indexPath.row];
     [cell.sentence setAttributedString:code.attributedString];
     
     return cell;
@@ -140,7 +140,7 @@
 - (void)cell:(BCFeedCell *)cell sentenceTouched:(SDSentenceTouchEventArgument *)eventArgument
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    BBCodeString *code = [dataSource objectAtIndex:indexPath.row];
+    BBCodeString *code = [_model objectAtIndex:indexPath.row];
     BBElement *element = [code getElementByIndex:eventArgument.characterIndex];
     
     NSLog(@"%@", element.text);

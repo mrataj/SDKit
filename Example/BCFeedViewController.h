@@ -10,7 +10,7 @@
 #import "BCFeedCellDelegate.h"
 
 @interface BCFeedViewController : UITableViewController <BCFeedCellDelegate> {
-    NSArray *dataSource;
+    NSArray *_model;
 }
 
 @end
