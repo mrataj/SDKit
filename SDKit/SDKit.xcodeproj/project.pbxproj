@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114D2C4A16ECFAF4002D6CE9 /* SDSentenceTouchEventArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D2C4816ECFAF3002D6CE9 /* SDSentenceTouchEventArgument.m */; };
+		114D2C5016ED0945002D6CE9 /* SDSentenceTouchEventArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = 114D2C4716ECFAF3002D6CE9 /* SDSentenceTouchEventArgument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		114F4E5514D6DF34004FDAF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114F4E5414D6DF34004FDAF3 /* Foundation.framework */; };
 		114F4E7914D6DF61004FDAF3 /* SDControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E6814D6DF61004FDAF3 /* SDControl.m */; };
 		114F4E7B14D6DF61004FDAF3 /* SDEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 114F4E6A14D6DF61004FDAF3 /* SDEvent.m */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		114D2C4716ECFAF3002D6CE9 /* SDSentenceTouchEventArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSentenceTouchEventArgument.h; sourceTree = "<group>"; };
+		114D2C4816ECFAF3002D6CE9 /* SDSentenceTouchEventArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSentenceTouchEventArgument.m; sourceTree = "<group>"; };
 		114F4E5114D6DF34004FDAF3 /* libSDKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		114F4E5414D6DF34004FDAF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		114F4E6714D6DF61004FDAF3 /* SDControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDControl.h; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				114F4E7114D6DF61004FDAF3 /* SDLabel.m */,
 				114F4E7214D6DF61004FDAF3 /* SDPlaceholder.h */,
 				114F4E7314D6DF61004FDAF3 /* SDPlaceholder.m */,
+				114D2C4716ECFAF3002D6CE9 /* SDSentenceTouchEventArgument.h */,
+				114D2C4816ECFAF3002D6CE9 /* SDSentenceTouchEventArgument.m */,
 				114F4E7414D6DF61004FDAF3 /* SDSentence.h */,
 				114F4E7514D6DF61004FDAF3 /* SDSentence.m */,
 				114F4E7614D6DF61004FDAF3 /* SDTableViewCell.h */,
@@ -161,6 +167,7 @@
 				1194D6CE14E9696A00CF32B7 /* SDView.h in Headers */,
 				114F4E9514D6E496004FDAF3 /* SDSentence.h in Headers */,
 				114F4E9614D6E496004FDAF3 /* SDTableViewCell.h in Headers */,
+				114D2C5016ED0945002D6CE9 /* SDSentenceTouchEventArgument.h in Headers */,
 				11DA253514D8754D0010A607 /* SDKit-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +233,7 @@
 				114F4E8814D6DF61004FDAF3 /* SDTableViewCell.m in Sources */,
 				1181E58314DDE7E6001FF7DE /* SDButton.m in Sources */,
 				1194D6CF14E9696A00CF32B7 /* SDView.m in Sources */,
+				114D2C4A16ECFAF4002D6CE9 /* SDSentenceTouchEventArgument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class BCFeedCell;
+@class SDSentenceTouchEventArgument;
+
 @protocol BCFeedCellDelegate <NSObject>
 
-
+- (void)cell:(BCFeedCell *)cell sentenceTouched:(SDSentenceTouchEventArgument *)eventArgument;
 
 @end

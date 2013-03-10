@@ -7,9 +7,15 @@
 //
 
 #import "SDControl.h"
+#import <CoreText/CoreText.h>
 
-@interface SDSentence : SDControl
+@class SDEvent;
 
+@interface SDSentence : SDControl {
+    CTFrameRef _ctFrame;
+}
+
+@property (nonatomic, strong) SDEvent *event;
 @property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, assign) CGFloat maxHeight;
 @property (nonatomic, strong) NSAttributedString *attributedString;

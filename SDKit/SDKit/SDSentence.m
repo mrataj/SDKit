@@ -8,7 +8,8 @@
 
 #import "SDSentence.h"
 #import "SDHelper.h"
-#import <CoreText/CoreText.h>
+#import "SDEvent.h"
+#import "SDSentenceTouchEventArgument.h"
 
 @implementation SDSentence
 
@@ -64,14 +65,20 @@ const CGFloat _defaultMaxHeight = 1000;
         
         // Create frame with attributed string
         CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)(self.attributedString));
-        CTFrameRef frame = CTFramesetterCreateFrame( framesetter, CFRangeMake( 0, 0 ), path, NULL );
+        
+        // Make sure that we release frame before assigning it
+        if (_ctFrame != nil)
+        {
+            CFRelease(_ctFrame);
+            _ctFrame = nil;
+        }
+        _ctFrame = CTFramesetterCreateFrame( framesetter, CFRangeMake( 0, 0 ), path, NULL );
         
         // Draw frame with attributed string
-        CTFrameDraw(frame, ctx);
+        CTFrameDraw(_ctFrame, ctx);
         
         // Release created items
         CGPathRelease(path);
-        CFRelease(frame);
         CFRelease(framesetter);
         
         // Restore state
@@ -89,6 +96,55 @@ const CGFloat _defaultMaxHeight = 1000;
 - (BOOL)hasWidthLimitation
 {
     return _maxWidth > 0;
+}
+
+- (void)touchEndedAtLocation:(CGPoint)location
+{
+    [super touchEndedAtLocation:location];
+    
+    CGPoint relativeLocation = CGPointMake(location.x - _frame.origin.x, location.y - _frame.origin.y);
+    
+    // Set argument
+    SDSentenceTouchEventArgument *argument = [[SDSentenceTouchEventArgument alloc] init];
+    [argument setTouchLocation:relativeLocation];
+    [argument setCharacterIndex:[self getCharacterIndexForTouchLocation:relativeLocation]];
+    [_event setObject:argument];
+    
+    // Perform event
+    [_event performEvent];
+}
+
+- (NSInteger)getCharacterIndexForTouchLocation:(CGPoint)touchLocation
+{
+    CGPoint reverseTouchLocation = CGPointMake(touchLocation.x, self.frame.size.height - touchLocation.y);
+    
+    CFArrayRef lines = CTFrameGetLines(_ctFrame);
+    
+    CGPoint* lineOrigins = malloc(sizeof(CGPoint) * CFArrayGetCount(lines));
+    
+    CTFrameGetLineOrigins(_ctFrame, CFRangeMake(0,0), lineOrigins);
+    
+    NSInteger index = -1;
+    for (CFIndex i = 0; i < CFArrayGetCount(lines); i++)
+    {
+        CTLineRef currentLine = CFArrayGetValueAtIndex(lines, i);
+        
+        CGPoint origin = lineOrigins[i];
+        if (reverseTouchLocation.y > origin.y)
+        {
+            index = CTLineGetStringIndexForPosition(currentLine, reverseTouchLocation);
+            break;
+        }
+    }
+    
+    free(lineOrigins);
+    
+    return index;
+}
+
+- (void)dealloc
+{
+    // todo: dealloc
 }
 
 @end

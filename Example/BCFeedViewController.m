@@ -10,6 +10,7 @@
 #import "BCFeedCell.h"
 #import "BBCodeString.h"
 #import "SDKit.h"
+#import "BBElement.h"
 #import "BCFeedLayout.h"
 
 @implementation BCFeedViewController
@@ -26,7 +27,7 @@
         
         BCFeedLayout *layout = [[BCFeedLayout alloc] init];
                 
-        NSString *text0 = @"Person James Newille said:\nI created this text yesterday morning.";
+        NSString *text0 = @"Person [user id=\"2\"]James Newille[/user] said:\nI created this text yesterday morning.";
         BBCodeString *item0 = [[BBCodeString alloc] initWithBBCode:text0 andLayoutProvider:layout];
         
         NSString *text1 = @"[user id=\"42\"]Kate Cameron[/user] meet person [user id=\"12\"]Guy Buckland[/user] 3 hours ago in [link]London, UK[/link].";
@@ -54,7 +55,6 @@
     }
     return self;
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -140,6 +140,17 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self.tableView reloadData];
+}
+
+#pragma mark - Events
+
+- (void)cell:(BCFeedCell *)cell sentenceTouched:(SDSentenceTouchEventArgument *)eventArgument
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    BBCodeString *code = [dataSource objectAtIndex:indexPath.row];
+    BBElement *element = [code getElementByIndex:eventArgument.characterIndex];
+    
+    NSLog(@"%@", element.text);
 }
 
 @end

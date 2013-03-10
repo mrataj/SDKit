@@ -1,6 +1,6 @@
 //
-//  BCTestCell.m
-//  Style
+//  BCFeedCell.m
+//  Example
 //
 //  Created by Miha Rataj on 30.1.12.
 //  Copyright (c) 2012 Marg, d.o.o. All rights reserved.
@@ -10,14 +10,14 @@
 
 @implementation BCFeedCell
 
-@synthesize sentence=_sentence, image=_image, delegate=_delegate;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
         _sentence = [[SDSentence alloc] init];
+        [_sentence setEvent:[SDEvent eventForTarget:self selector:@selector(sentenceTouched:)]];
+        
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
         
         [_placeholder setItems:[NSArray arrayWithObjects:_image, _sentence, nil]];
@@ -31,6 +31,12 @@
     
     [_sentence setMaxWidth:rect.size.width - 55];
     [_sentence drawAtPoint:CGPointMake(50, 5)];
+}
+
+- (void)sentenceTouched:(SDSentenceTouchEventArgument *)eventArgument
+{
+    if ([self.delegate respondsToSelector:@selector(cell:sentenceTouched:)])
+        [self.delegate performSelector:@selector(cell:sentenceTouched:) withObject:self withObject:eventArgument];
 }
 
 + (CGFloat)heightForAttributedString:(NSAttributedString *)string andWidth:(CGFloat)width
