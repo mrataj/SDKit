@@ -1,6 +1,6 @@
 //
 //  SDHelper.m
-//  Style
+//  SDKit
 //
 //  Created by Miha Rataj on 29.1.12.
 //  Copyright (c) 2012 Marg, d.o.o. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "SDHelper.h"
 
-@implementation NSString (BCStyleHelper)
+@implementation NSString (SDHelper)
 
 - (BOOL)isURL
 {

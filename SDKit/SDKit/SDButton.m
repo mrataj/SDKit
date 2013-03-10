@@ -68,8 +68,8 @@
                                      [_font ascender]);
         [_text drawInRect:textRect
                  withFont:_font
-            lineBreakMode:UILineBreakModeTailTruncation
-                alignment:UITextAlignmentCenter];
+            lineBreakMode:NSLineBreakByTruncatingTail
+                alignment:NSTextAlignmentCenter];
     }
     
     return _size;

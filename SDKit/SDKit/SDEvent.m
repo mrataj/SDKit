@@ -1,6 +1,6 @@
 //
 //  SDEvent.m
-//  Style
+//  SDKit
 //
 //  Created by Miha Rataj on 29.1.12.
 //  Copyright (c) 2012 Marg, d.o.o. All rights reserved.

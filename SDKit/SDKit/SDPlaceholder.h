@@ -1,6 +1,6 @@
 //
-//  BCView.h
-//  Style
+//  SDPlaceholder.h
+//  SDKit
 //
 //  Created by Miha Rataj on 28.1.12.
 //  Copyright (c) 2012 Marg, d.o.o. All rights reserved.
@@ -13,7 +13,6 @@
 @interface SDPlaceholder : NSObject {
 @protected
     NSMutableArray *_items;
-    NSMutableArray *_highlightedItems;
     UIView *__weak _parent;
 }
 

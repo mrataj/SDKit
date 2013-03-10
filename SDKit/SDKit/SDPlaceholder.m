@@ -1,6 +1,6 @@
 //
-//  BCView.m
-//  Style
+//  SDPlaceholder.m
+//  SDKit
 //
 //  Created by Miha Rataj on 28.1.12.
 //  Copyright (c) 2012 Marg, d.o.o. All rights reserved.
@@ -20,7 +20,6 @@
     if (self)
     {
         _items = [[NSMutableArray alloc] init];
-        _highlightedItems = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -79,20 +78,15 @@
     NSArray *items = [self getItemsAtLocation:location];
     for (SDControl *item in items)
     {
-        [item touchBeganAtLocation:location];
-        [_highlightedItems addObject:[NSValue valueWithNonretainedObject:item]];        
+        [item touchBeganAtLocation:location];       
     }
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location
 {
-    for (NSValue *value in _highlightedItems)
-    {
-        SDPlaceholder *control = [value nonretainedObjectValue];
+    NSArray *items = [self getItemsAtLocation:location];
+    for (SDControl *control in items)
         [control touchEndedAtLocation:location];
-    }
-    
-    [_highlightedItems removeAllObjects];
 }
 
 - (void)touchMovedAtLocation:(CGPoint)location
@@ -104,13 +98,9 @@
 
 - (void)touchCanceledAtLocation:(CGPoint)location
 {
-    for (NSValue *value in _highlightedItems)
-    {
-        SDPlaceholder *control = [value nonretainedObjectValue];
+    NSArray *items = [self getItemsAtLocation:location];
+    for (SDControl *control in items)
         [control touchCanceledAtLocation:location];
-    }
-    
-    [_highlightedItems removeAllObjects];
 }
 
 #pragma mark - UIView
