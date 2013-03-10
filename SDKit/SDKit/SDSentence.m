@@ -64,7 +64,8 @@ const CGFloat _defaultMaxHeight = 1000;
         CGPathAddRect(path, NULL, rect);
         
         // Create frame with attributed string
-        CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)(self.attributedString));
+        CFAttributedStringRef stringToDraw = (__bridge CFAttributedStringRef)self.attributedString;
+        CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(stringToDraw);
         
         // Make sure that we release frame before assigning it
         if (_ctFrame != nil)
@@ -72,7 +73,8 @@ const CGFloat _defaultMaxHeight = 1000;
             CFRelease(_ctFrame);
             _ctFrame = nil;
         }
-        _ctFrame = CTFramesetterCreateFrame( framesetter, CFRangeMake( 0, 0 ), path, NULL );
+        
+        _ctFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
         
         // Draw frame with attributed string
         CTFrameDraw(_ctFrame, ctx);
@@ -144,7 +146,10 @@ const CGFloat _defaultMaxHeight = 1000;
 
 - (void)dealloc
 {
-    // todo: dealloc
+    if (_ctFrame != nil)
+    {
+        CFRelease(_ctFrame);        
+    }
 }
 
 @end

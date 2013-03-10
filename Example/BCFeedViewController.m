@@ -135,13 +135,6 @@
     return cell;
 }
 
-#pragma mark - Orientation
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self.tableView reloadData];
-}
-
 #pragma mark - Events
 
 - (void)cell:(BCFeedCell *)cell sentenceTouched:(SDSentenceTouchEventArgument *)eventArgument
