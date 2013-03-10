@@ -42,31 +42,6 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Feed cell delegate methods
-
-- (void)showParameters:(NSArray *)params
-{
-    for (BBAttribute *attribute in params)
-    {
-        NSLog(@"Key: %@, Value: %@", attribute.name, attribute.value);
-    }
-}
-
-- (void)showUser:(id)params
-{
-    [self showParameters:params];
-}
-
-- (void)showDocument:(id)params
-{
-    [self showParameters:params];
-}
-
-- (void)showLink:(id)params
-{
-    [self showParameters:params];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -116,10 +91,27 @@
     return [dataSource count];
 }
 
+// todo remove me
++ (NSAttributedString *)getAttributedString
+{
+    NSString *text = @"Mary Jones sent the metting report to professor Gary Durkheim yesterday.";
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:text];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[text rangeOfString:@"Mary Jones"]];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[text rangeOfString:@"Gary Durkheim"]];
+    [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[text rangeOfString:@"Mary Jones"]];
+    [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[text rangeOfString:@"Gary Durkheim"]];
+    return str;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *code = [dataSource objectAtIndex:indexPath.row];
-    return [BCFeedCell heightForCode:code andWidth:self.view.bounds.size.width];
+    // NSString *code = [dataSource objectAtIndex:indexPath.row];
+    
+    // TODO: Make attributed string
+    NSAttributedString *attributedString = [BCFeedViewController getAttributedString];
+    
+    return [BCFeedCell heightForAttributedString:attributedString andWidth:self.view.bounds.size.width];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -134,8 +126,13 @@
     
     [cell.image setImage:[UIImage imageNamed:@"woman.jpg"]];
     
-    NSString *code = [dataSource objectAtIndex:indexPath.row];
-    [cell.sentence setBBCode:code];
+    // TODO: Make attributed string
+    
+    // NSString *code = [dataSource objectAtIndex:indexPath.row];
+    // [cell.sentence setBBCode:code];
+    
+    NSAttributedString *attributedString = [BCFeedViewController getAttributedString];
+    [cell.sentence setAttributedString:attributedString];
     
     return cell;
 }

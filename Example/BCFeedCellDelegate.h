@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol BCFeedCellDelegate <NSObject>
-- (void)showUser:(id)params;
-- (void)showDocument:(id)params;
-- (void)showLink:(id)params;
+
+
+
 @end

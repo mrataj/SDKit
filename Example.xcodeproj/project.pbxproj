@@ -20,7 +20,7 @@
 		1169FB9314DDF87300AE8E9E /* BCNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1169FB8C14DDF87300AE8E9E /* BCNavigationViewController.m */; };
 		1169FB9414DDF87300AE8E9E /* BCRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1169FB8E14DDF87300AE8E9E /* BCRequestCell.m */; };
 		1169FB9514DDF87300AE8E9E /* BCRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1169FB9014DDF87300AE8E9E /* BCRequestsViewController.m */; };
-		1169FB9614DDF87300AE8E9E /* BCSentenceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1169FB9214DDF87300AE8E9E /* BCSentenceLayout.m */; };
+		117A31FA16ECB6D9009C2789 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A31F916ECB6D9009C2789 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +64,7 @@
 		1169FB8E14DDF87300AE8E9E /* BCRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCRequestCell.m; path = Example/BCRequestCell.m; sourceTree = SOURCE_ROOT; };
 		1169FB8F14DDF87300AE8E9E /* BCRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCRequestsViewController.h; path = Example/BCRequestsViewController.h; sourceTree = SOURCE_ROOT; };
 		1169FB9014DDF87300AE8E9E /* BCRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCRequestsViewController.m; path = Example/BCRequestsViewController.m; sourceTree = SOURCE_ROOT; };
-		1169FB9114DDF87300AE8E9E /* BCSentenceLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCSentenceLayout.h; path = Example/BCSentenceLayout.h; sourceTree = SOURCE_ROOT; };
-		1169FB9214DDF87300AE8E9E /* BCSentenceLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCSentenceLayout.m; path = Example/BCSentenceLayout.m; sourceTree = SOURCE_ROOT; };
+		117A31F916ECB6D9009C2789 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117A31FA16ECB6D9009C2789 /* CoreText.framework in Frameworks */,
 				114F4E9914D6E4E5004FDAF3 /* libSDKit.a in Frameworks */,
 				1158E24514D45D4C00E31CD0 /* UIKit.framework in Frameworks */,
 				1158E24714D45D4C00E31CD0 /* Foundation.framework in Frameworks */,
@@ -112,6 +112,7 @@
 		1158E24314D45D4C00E31CD0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				117A31F916ECB6D9009C2789 /* CoreText.framework */,
 				1158E24414D45D4C00E31CD0 /* UIKit.framework */,
 				1158E24614D45D4C00E31CD0 /* Foundation.framework */,
 				1158E24814D45D4C00E31CD0 /* CoreGraphics.framework */,
@@ -135,8 +136,6 @@
 				1169FB8E14DDF87300AE8E9E /* BCRequestCell.m */,
 				1169FB8F14DDF87300AE8E9E /* BCRequestsViewController.h */,
 				1169FB9014DDF87300AE8E9E /* BCRequestsViewController.m */,
-				1169FB9114DDF87300AE8E9E /* BCSentenceLayout.h */,
-				1169FB9214DDF87300AE8E9E /* BCSentenceLayout.m */,
 				1158E24B14D45D4C00E31CD0 /* Supporting Files */,
 			);
 			name = Example;
@@ -242,7 +241,6 @@
 				1169FB9314DDF87300AE8E9E /* BCNavigationViewController.m in Sources */,
 				1169FB9414DDF87300AE8E9E /* BCRequestCell.m in Sources */,
 				1169FB9514DDF87300AE8E9E /* BCRequestsViewController.m in Sources */,
-				1169FB9614DDF87300AE8E9E /* BCSentenceLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

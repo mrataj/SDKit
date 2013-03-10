@@ -42,11 +42,11 @@
     if (draw)
     {
         [[self getColor] set];
-        return [textToDraw drawAtPoint:point forWidth:_maxWidth withFont:_font lineBreakMode:UILineBreakModeTailTruncation];
+        return [textToDraw drawAtPoint:point forWidth:_maxWidth withFont:_font lineBreakMode:NSLineBreakByTruncatingTail];
     }
     else
     {
-        return [textToDraw sizeWithFont:_font forWidth:_maxWidth lineBreakMode:UILineBreakModeTailTruncation];
+        return [textToDraw sizeWithFont:_font forWidth:_maxWidth lineBreakMode:NSLineBreakByTruncatingTail];
     }
 }
 

@@ -7,7 +7,6 @@
 //
 
 #import "BCFeedCell.h"
-#import "BCSentenceLayout.h"
 
 @implementation BCFeedCell
 
@@ -26,15 +25,6 @@
     return self;
 }
 
-- (void)setDelegate:(id)delegate
-{
-    _delegate = delegate;
-    
-    BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
-    [layout setEventResponder:_delegate];
-    [_sentence setLayout:layout];
-}
-
 - (void)drawRect:(CGRect)rect
 {
     [_image drawAtPoint:CGPointMake(5, 5)];
@@ -43,19 +33,17 @@
     [_sentence drawAtPoint:CGPointMake(50, 5)];
 }
 
-+ (CGFloat)heightForCode:(NSString *)code andWidth:(CGFloat)width
++ (CGFloat)heightForAttributedString:(NSAttributedString *)string andWidth:(CGFloat)width
 {
     CGFloat height = 10.0;
     
-    BCSentenceLayout *layout = [[BCSentenceLayout alloc] init];
-    SDSentence *sentence = [[SDSentence alloc] initWithLayout:layout];
+    SDSentence *sentence = [[SDSentence alloc] init];
     [sentence setMaxWidth:width - 55];
-    [sentence setBBCode:code];
+    [sentence setAttributedString:string];
     height += [sentence sizeForPoint:CGPointMake(50, 5)].height;
     
     return height;
 }
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
