@@ -52,7 +52,6 @@
     if (draw)
     {
         // Background
-        
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetFillColorWithColor(context, [self getBackgroundColor].CGColor);
         CGRect buttonRect = CGRectMake(point.x, point.y, _size.width, _size.height);
@@ -60,7 +59,6 @@
         CGContextFillPath(context);
         
         // Text
-        
         [[self getTextColor] set];
         CGRect textRect = CGRectMake(buttonRect.origin.x,
                                      point.y + floor(buttonRect.size.height / 2.0) - floor([_font ascender] / 2.0) - 2.0,

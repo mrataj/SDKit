@@ -11,7 +11,7 @@
 
 @implementation SDControl
 
-@synthesize frame=_frame, highlighted=_highlighted, touchInset=_touchInset, previousControl=_previousControl, nextControl=_nextControl;
+@synthesize frame=_frame, highlighted=_highlighted, touchInset=_touchInset;
 
 - (id)init
 {
@@ -20,12 +20,6 @@
     {
     }
     return self;
-}
-
-- (void)dealloc
-{
-    _previousControl = nil;
-    _nextControl = nil;
 }
 
 #pragma mark - For override
@@ -47,51 +41,33 @@
     return [self sizeForDrawingAtPoint:point draw:NO];
 }
 
-#pragma mark - Properties
-
-- (void)setHighlightEffect:(NSNumber *)highlight
-{
-    _highlighted = [highlight boolValue];
-    
-    if (_previousControl.highlighted != _highlighted)
-        [_previousControl setHighlightEffect:highlight];
-    
-    if (_nextControl.highlighted != _highlighted)
-        [_nextControl setHighlightEffect:highlight];
-}
-
-- (void)setPreviousControl:(SDControl *)previousControl
-{
-    _previousControl = previousControl;
-    [_previousControl setNextControl:self];
-}
-
 #pragma mark - Touches
 
 - (void)touchBeganAtLocation:(CGPoint)location
 {
     [super touchBeganAtLocation:location];
-    [self setHighlightEffect:[NSNumber numberWithBool:YES]];
+    [self setHighlighted:YES];
     [_parent setNeedsDisplay];
 }
 
 - (void)touchEndedAtLocation:(CGPoint)location
 {
     [super touchEndedAtLocation:location];
-    [self performSelector:@selector(setHighlightEffect:) withObject:[NSNumber numberWithBool:NO] afterDelay:0.15];
-    [_parent performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:0.16];
+    [self setHighlighted:NO];
+    [_parent setNeedsDisplay];
 }
 
 - (void)touchMovedAtLocation:(CGPoint)location
 {
     [super touchMovedAtLocation:location];
-    [self touchCanceledAtLocation:location];
+    [self setHighlighted:NO];
+    [_parent setNeedsDisplay];
 }
 
 - (void)touchCanceledAtLocation:(CGPoint)location
 {
     [super touchCanceledAtLocation:location];
-    [self setHighlightEffect:[NSNumber numberWithBool:NO]];
+    [self setHighlighted:NO];
     [_parent setNeedsDisplay];
 }
 
