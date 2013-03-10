@@ -34,6 +34,7 @@ const CGFloat _defaultMaxHeight = 1000;
     CGRect rect = [self.attributedString boundingRectWithSize:CGSizeMake(maxWidth, maxHeight)
                                                       options:NSStringDrawingUsesLineFragmentOrigin
                                                       context:nil];
+    rect.origin = point;
     
     if (draw)
     {
