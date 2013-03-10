@@ -13,6 +13,13 @@
 		113AEC8914D6FDEB006653D2 /* BCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */; };
 		113AEC8A14D6FDEB006653D2 /* BCFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC8614D6FDEB006653D2 /* BCFeedViewController.m */; };
 		113AEC8B14D6FDEB006653D2 /* BCFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC8814D6FDEB006653D2 /* BCFeedCell.m */; };
+		113C28DA16ECE2BC006BF0F1 /* BBAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28CE16ECE2BC006BF0F1 /* BBAttribute.m */; };
+		113C28DB16ECE2BC006BF0F1 /* BBCodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D016ECE2BC006BF0F1 /* BBCodeParser.m */; };
+		113C28DC16ECE2BC006BF0F1 /* BBElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D316ECE2BC006BF0F1 /* BBElement.m */; };
+		113C28DD16ECE2BC006BF0F1 /* BBParsingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D516ECE2BC006BF0F1 /* BBParsingElement.m */; };
+		113C28DE16ECE2BC006BF0F1 /* BBCodeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D716ECE2BC006BF0F1 /* BBCodeString.m */; };
+		113C28DF16ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D916ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m */; };
+		113C28E916ECE48E006BF0F1 /* BCFeedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28E816ECE48E006BF0F1 /* BCFeedLayout.m */; };
 		114F4E9914D6E4E5004FDAF3 /* libSDKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 114F4E6614D6DF36004FDAF3 /* libSDKit.a */; };
 		1158E24514D45D4C00E31CD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24414D45D4C00E31CD0 /* UIKit.framework */; };
 		1158E24714D45D4C00E31CD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24614D45D4C00E31CD0 /* Foundation.framework */; };
@@ -52,6 +59,22 @@
 		113AEC8614D6FDEB006653D2 /* BCFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCFeedViewController.m; path = Example/BCFeedViewController.m; sourceTree = SOURCE_ROOT; };
 		113AEC8714D6FDEB006653D2 /* BCFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCFeedCell.h; path = Example/BCFeedCell.h; sourceTree = SOURCE_ROOT; };
 		113AEC8814D6FDEB006653D2 /* BCFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCFeedCell.m; path = Example/BCFeedCell.m; sourceTree = SOURCE_ROOT; };
+		113C28CD16ECE2BC006BF0F1 /* BBAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAttribute.h; sourceTree = "<group>"; };
+		113C28CE16ECE2BC006BF0F1 /* BBAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAttribute.m; sourceTree = "<group>"; };
+		113C28CF16ECE2BC006BF0F1 /* BBCodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCodeParser.h; sourceTree = "<group>"; };
+		113C28D016ECE2BC006BF0F1 /* BBCodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCodeParser.m; sourceTree = "<group>"; };
+		113C28D116ECE2BC006BF0F1 /* BBCodeParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCodeParserDelegate.h; sourceTree = "<group>"; };
+		113C28D216ECE2BC006BF0F1 /* BBElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBElement.h; sourceTree = "<group>"; };
+		113C28D316ECE2BC006BF0F1 /* BBElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBElement.m; sourceTree = "<group>"; };
+		113C28D416ECE2BC006BF0F1 /* BBParsingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBParsingElement.h; sourceTree = "<group>"; };
+		113C28D516ECE2BC006BF0F1 /* BBParsingElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBParsingElement.m; sourceTree = "<group>"; };
+		113C28D616ECE2BC006BF0F1 /* BBCodeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCodeString.h; sourceTree = "<group>"; };
+		113C28D716ECE2BC006BF0F1 /* BBCodeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCodeString.m; sourceTree = "<group>"; };
+		113C28D816ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+BBCodeString.h"; sourceTree = "<group>"; };
+		113C28D916ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+BBCodeString.m"; sourceTree = "<group>"; };
+		113C28E616ECE453006BF0F1 /* BBCodeStringDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBCodeStringDelegate.h; sourceTree = "<group>"; };
+		113C28E716ECE48E006BF0F1 /* BCFeedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCFeedLayout.h; sourceTree = SOURCE_ROOT; };
+		113C28E816ECE48E006BF0F1 /* BCFeedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCFeedLayout.m; sourceTree = SOURCE_ROOT; };
 		114F4E6114D6DF34004FDAF3 /* SDKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDKit.xcodeproj; path = SDKit/SDKit.xcodeproj; sourceTree = "<group>"; };
 		1158E24014D45D4C00E31CD0 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1158E24414D45D4C00E31CD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -83,6 +106,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		113C28CB16ECE2BC006BF0F1 /* BBCodeString */ = {
+			isa = PBXGroup;
+			children = (
+				113C28CC16ECE2BC006BF0F1 /* BBCodeParser */,
+				113C28D616ECE2BC006BF0F1 /* BBCodeString.h */,
+				113C28D716ECE2BC006BF0F1 /* BBCodeString.m */,
+				113C28E616ECE453006BF0F1 /* BBCodeStringDelegate.h */,
+				113C28D816ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.h */,
+				113C28D916ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m */,
+			);
+			name = BBCodeString;
+			path = Example/BBCodeString;
+			sourceTree = SOURCE_ROOT;
+		};
+		113C28CC16ECE2BC006BF0F1 /* BBCodeParser */ = {
+			isa = PBXGroup;
+			children = (
+				113C28CD16ECE2BC006BF0F1 /* BBAttribute.h */,
+				113C28CE16ECE2BC006BF0F1 /* BBAttribute.m */,
+				113C28CF16ECE2BC006BF0F1 /* BBCodeParser.h */,
+				113C28D016ECE2BC006BF0F1 /* BBCodeParser.m */,
+				113C28D116ECE2BC006BF0F1 /* BBCodeParserDelegate.h */,
+				113C28D216ECE2BC006BF0F1 /* BBElement.h */,
+				113C28D316ECE2BC006BF0F1 /* BBElement.m */,
+				113C28D416ECE2BC006BF0F1 /* BBParsingElement.h */,
+				113C28D516ECE2BC006BF0F1 /* BBParsingElement.m */,
+			);
+			path = BBCodeParser;
+			sourceTree = "<group>";
+		};
 		114F4E6214D6DF34004FDAF3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +176,7 @@
 		1158E24A14D45D4C00E31CD0 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				113C28CB16ECE2BC006BF0F1 /* BBCodeString */,
 				113AEC8314D6FDEB006653D2 /* BCAppDelegate.h */,
 				113AEC8414D6FDEB006653D2 /* BCAppDelegate.m */,
 				113AEC8514D6FDEB006653D2 /* BCFeedViewController.h */,
@@ -136,6 +190,8 @@
 				1169FB8E14DDF87300AE8E9E /* BCRequestCell.m */,
 				1169FB8F14DDF87300AE8E9E /* BCRequestsViewController.h */,
 				1169FB9014DDF87300AE8E9E /* BCRequestsViewController.m */,
+				113C28E716ECE48E006BF0F1 /* BCFeedLayout.h */,
+				113C28E816ECE48E006BF0F1 /* BCFeedLayout.m */,
 				1158E24B14D45D4C00E31CD0 /* Supporting Files */,
 			);
 			name = Example;
@@ -241,6 +297,13 @@
 				1169FB9314DDF87300AE8E9E /* BCNavigationViewController.m in Sources */,
 				1169FB9414DDF87300AE8E9E /* BCRequestCell.m in Sources */,
 				1169FB9514DDF87300AE8E9E /* BCRequestsViewController.m in Sources */,
+				113C28DA16ECE2BC006BF0F1 /* BBAttribute.m in Sources */,
+				113C28DB16ECE2BC006BF0F1 /* BBCodeParser.m in Sources */,
+				113C28DC16ECE2BC006BF0F1 /* BBElement.m in Sources */,
+				113C28DD16ECE2BC006BF0F1 /* BBParsingElement.m in Sources */,
+				113C28DE16ECE2BC006BF0F1 /* BBCodeString.m in Sources */,
+				113C28DF16ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m in Sources */,
+				113C28E916ECE48E006BF0F1 /* BCFeedLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
