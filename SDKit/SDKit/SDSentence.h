@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) SDEvent *onTouchUp; // on touch up - with information about touched element
 @property (nonatomic, strong) SDEvent *onTouchIn; // on touch in - with information about touched element
-@property (nonatomic, strong) SDEvent *onTouchEnd; // on every touch event end
+@property (nonatomic, strong) SDEvent *onTouchEnd; // on every touch event end inside SDSentence
 @property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, assign) CGFloat maxHeight;
 @property (nonatomic, strong) NSAttributedString *attributedString;

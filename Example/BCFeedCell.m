@@ -17,7 +17,7 @@
     if (self)
     {
         _sentence = [[BBSentence alloc] init];
-        [_sentence setOnTouchUp:[SDEvent eventForTarget:self selector:@selector(onTouchUp:)]]; // todo add instead of set
+        [_sentence setOnTouchUp:[SDEvent eventForTarget:self selector:@selector(onTouchUp:)]];
         
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
         

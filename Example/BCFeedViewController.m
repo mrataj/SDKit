@@ -22,10 +22,7 @@
     if (self)
     {
         [self setTitle:@"News Feed"];
-        
-        UIBarButtonItem *create = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
-        [self.navigationItem setRightBarButtonItem:create];
-        
+                
         _layout = [[BCFeedLayout alloc] init];
         
         NSString *text0 = @"Person [user id=\"2\"]James Newille[/user] said:\nI created this text yesterday morning.";
@@ -72,31 +69,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 #pragma mark - Table view
