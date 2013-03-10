@@ -19,6 +19,7 @@
         [_button setSize:CGSizeMake(70, 26)];
         [_button setText:@"Push"];
         [_button setEvent:[SDEvent eventForTarget:self selector:@selector(showText)]];
+        [_button setHighlightedBackgroundColor:[UIColor redColor]];
         
         _title = [[SDLabel alloc] init];
         [_title setText:@"Long title test."];
