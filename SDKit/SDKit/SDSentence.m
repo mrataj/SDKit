@@ -12,43 +12,72 @@
 
 @implementation SDSentence
 
+const CGFloat _defaultMaxWidth = 1000;
+const CGFloat _defaultMaxHeight = 1000;
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+
 - (CGSize)sizeForDrawingAtPoint:(CGPoint)point draw:(BOOL)draw
 {
-    CGFloat maxWidth = (self.hasWidthLimitation) ? self.maxWidth : 1000;
-    CGFloat maxHeight = (self.hasHeightLimitation) ? self.hasHeightLimitation : 1000;
+    CGFloat maxWidth = (self.hasWidthLimitation) ? self.maxWidth : _defaultMaxWidth;
+    CGFloat maxHeight = (self.hasHeightLimitation) ? self.hasHeightLimitation : _defaultMaxHeight;
+    
+    // Get rectangle for string
+    CGRect rect = [self.attributedString boundingRectWithSize:CGSizeMake(maxWidth, maxHeight)
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                      context:nil];
     
     if (draw)
     {
+        // Get graphics context
         CGContextRef ctx = UIGraphicsGetCurrentContext();
+        
+        // Save state
         CGContextSaveGState(ctx);
+        
+        // Draw background if needed
+        if (self.backgroundColor != [UIColor clearColor])
+        {
+            CGContextSetFillColorWithColor(ctx, self.backgroundColor.CGColor);
+            CGContextFillRect(ctx, rect);
+        }
         
         CGContextSetTextMatrix(ctx, CGAffineTransformIdentity);
         
-        CGRect rect = CGRectMake(20.0, point.y, maxWidth, maxHeight);
-        
-        CGContextTranslateCTM(ctx, rect.origin.x, rect.origin.y);
+        // Flip coordinate system
+        CGContextTranslateCTM(ctx, 1.0f, rect.origin.y);
         CGContextScaleCTM(ctx, 1.0f, -1.0f);
-        CGContextTranslateCTM(ctx, rect.origin.x, - (rect.origin.y + rect.size.height));
+        CGContextTranslateCTM(ctx, 1.0f, - (rect.origin.y + rect.size.height));
         
+        // Set path
         CGMutablePathRef path = CGPathCreateMutable();
         CGPathAddRect(path, NULL, rect);
         
+        // Create frame with attributed string
         CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)(self.attributedString));
         CTFrameRef frame = CTFramesetterCreateFrame( framesetter, CFRangeMake( 0, 0 ), path, NULL );
         
+        // Draw frame with attributed string
         CTFrameDraw(frame, ctx);
         
+        // Release created items
         CGPathRelease(path);
         CFRelease(frame);
         CFRelease(framesetter);
         
+        // Restore state
         CGContextRestoreGState(ctx); 
     }
     
-    CGRect textRect = [self.attributedString boundingRectWithSize:CGSizeMake(maxWidth, maxHeight)
-                                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                                          context:nil];
-    return textRect.size;
+    return rect.size;
 }
 
 - (BOOL)hasHeightLimitation

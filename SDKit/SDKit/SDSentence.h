@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSAttributedString *attributedString;
 @property (nonatomic, readonly) BOOL hasHeightLimitation;
 @property (nonatomic, readonly) BOOL hasWidthLimitation;
+@property (nonatomic, strong) UIColor *backgroundColor;
 
 @end
