@@ -12,8 +12,8 @@
 
 @protocol BBCodeStringDelegate <NSObject>
 
-- (UIFont *)getFont:(BBElement *)element;
-- (UIColor *)getTextColor:(BBElement *)element;
+- (UIFont *)getFont:(BBElement *)element selected:(BOOL)selected;
+- (UIColor *)getTextColor:(BBElement *)element selected:(BOOL)selected;
 - (NSArray *)getSupportedTags;
 
 @end

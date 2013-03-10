@@ -13,6 +13,6 @@
 
 @protocol BCFeedCellDelegate <NSObject>
 
-- (void)cell:(BCFeedCell *)cell sentenceTouched:(SDSentenceTouchEventArgument *)eventArgument;
+- (void)cell:(BCFeedCell *)cell onSentenceTouchUp:(SDSentenceTouchEventArgument *)eventArgument;
 
 @end

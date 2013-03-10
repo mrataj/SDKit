@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1108300316ED24870034C7BB /* BCFeedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1108300216ED24350034C7BB /* BCFeedLayout.m */; };
+		111A42B316ED1E7800ABEAA8 /* BBSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A42B216ED1E7800ABEAA8 /* BBSentence.m */; };
 		113AEC7D14D6FDCD006653D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 113AEC7A14D6FDCD006653D2 /* main.m */; };
 		113AEC7E14D6FDCD006653D2 /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 113AEC7B14D6FDCD006653D2 /* woman.jpg */; };
 		113AEC8214D6FDE2006653D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 113AEC8014D6FDE2006653D2 /* InfoPlist.strings */; };
@@ -19,7 +21,6 @@
 		113C28DD16ECE2BC006BF0F1 /* BBParsingElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D516ECE2BC006BF0F1 /* BBParsingElement.m */; };
 		113C28DE16ECE2BC006BF0F1 /* BBCodeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D716ECE2BC006BF0F1 /* BBCodeString.m */; };
 		113C28DF16ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28D916ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m */; };
-		113C28E916ECE48E006BF0F1 /* BCFeedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C28E816ECE48E006BF0F1 /* BCFeedLayout.m */; };
 		114F4E9914D6E4E5004FDAF3 /* libSDKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 114F4E6614D6DF36004FDAF3 /* libSDKit.a */; };
 		1158E24514D45D4C00E31CD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24414D45D4C00E31CD0 /* UIKit.framework */; };
 		1158E24714D45D4C00E31CD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1158E24614D45D4C00E31CD0 /* Foundation.framework */; };
@@ -48,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1108300116ED24350034C7BB /* BCFeedLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BCFeedLayout.h; path = Example/BCFeedLayout.h; sourceTree = SOURCE_ROOT; };
+		1108300216ED24350034C7BB /* BCFeedLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BCFeedLayout.m; path = Example/BCFeedLayout.m; sourceTree = SOURCE_ROOT; };
+		111A42B116ED1E7800ABEAA8 /* BBSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBSentence.h; path = Example/BBSentence.h; sourceTree = SOURCE_ROOT; };
+		111A42B216ED1E7800ABEAA8 /* BBSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBSentence.m; path = Example/BBSentence.m; sourceTree = SOURCE_ROOT; };
 		113AEC7814D6FDCD006653D2 /* Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Example-Info.plist"; path = "Example/Example-Info.plist"; sourceTree = SOURCE_ROOT; };
 		113AEC7914D6FDCD006653D2 /* Example-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Example-Prefix.pch"; path = "Example/Example-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		113AEC7A14D6FDCD006653D2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Example/main.m; sourceTree = SOURCE_ROOT; };
@@ -73,8 +78,6 @@
 		113C28D816ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+BBCodeString.h"; sourceTree = "<group>"; };
 		113C28D916ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+BBCodeString.m"; sourceTree = "<group>"; };
 		113C28E616ECE453006BF0F1 /* BBCodeStringDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBCodeStringDelegate.h; sourceTree = "<group>"; };
-		113C28E716ECE48E006BF0F1 /* BCFeedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCFeedLayout.h; sourceTree = SOURCE_ROOT; };
-		113C28E816ECE48E006BF0F1 /* BCFeedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCFeedLayout.m; sourceTree = SOURCE_ROOT; };
 		114F4E6114D6DF34004FDAF3 /* SDKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDKit.xcodeproj; path = SDKit/SDKit.xcodeproj; sourceTree = "<group>"; };
 		1158E24014D45D4C00E31CD0 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1158E24414D45D4C00E31CD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -190,8 +193,10 @@
 				1169FB8E14DDF87300AE8E9E /* BCRequestCell.m */,
 				1169FB8F14DDF87300AE8E9E /* BCRequestsViewController.h */,
 				1169FB9014DDF87300AE8E9E /* BCRequestsViewController.m */,
-				113C28E716ECE48E006BF0F1 /* BCFeedLayout.h */,
-				113C28E816ECE48E006BF0F1 /* BCFeedLayout.m */,
+				111A42B116ED1E7800ABEAA8 /* BBSentence.h */,
+				111A42B216ED1E7800ABEAA8 /* BBSentence.m */,
+				1108300116ED24350034C7BB /* BCFeedLayout.h */,
+				1108300216ED24350034C7BB /* BCFeedLayout.m */,
 				1158E24B14D45D4C00E31CD0 /* Supporting Files */,
 			);
 			name = Example;
@@ -290,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1108300316ED24870034C7BB /* BCFeedLayout.m in Sources */,
 				113AEC7D14D6FDCD006653D2 /* main.m in Sources */,
 				113AEC8914D6FDEB006653D2 /* BCAppDelegate.m in Sources */,
 				113AEC8A14D6FDEB006653D2 /* BCFeedViewController.m in Sources */,
@@ -303,7 +309,7 @@
 				113C28DD16ECE2BC006BF0F1 /* BBParsingElement.m in Sources */,
 				113C28DE16ECE2BC006BF0F1 /* BBCodeString.m in Sources */,
 				113C28DF16ECE2BC006BF0F1 /* NSMutableAttributedString+BBCodeString.m in Sources */,
-				113C28E916ECE48E006BF0F1 /* BCFeedLayout.m in Sources */,
+				111A42B316ED1E7800ABEAA8 /* BBSentence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

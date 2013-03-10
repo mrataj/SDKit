@@ -11,6 +11,10 @@
 #import "SDEvent.h"
 #import "SDSentenceTouchEventArgument.h"
 
+@interface SDControl (protected)
+- (void)removeHighlightAndUpdate;
+@end
+
 @implementation SDSentence
 
 const CGFloat _defaultMaxWidth = 1000;
@@ -100,22 +104,6 @@ const CGFloat _defaultMaxHeight = 1000;
     return _maxWidth > 0;
 }
 
-- (void)touchEndedAtLocation:(CGPoint)location
-{
-    [super touchEndedAtLocation:location];
-    
-    CGPoint relativeLocation = CGPointMake(location.x - _frame.origin.x, location.y - _frame.origin.y);
-    
-    // Set argument
-    SDSentenceTouchEventArgument *argument = [[SDSentenceTouchEventArgument alloc] init];
-    [argument setTouchLocation:relativeLocation];
-    [argument setCharacterIndex:[self getCharacterIndexForTouchLocation:relativeLocation]];
-    [_event setObject:argument];
-    
-    // Perform event
-    [_event performEvent];
-}
-
 - (NSInteger)getCharacterIndexForTouchLocation:(CGPoint)touchLocation
 {
     CGPoint reverseTouchLocation = CGPointMake(touchLocation.x, self.frame.size.height - touchLocation.y);
@@ -142,6 +130,46 @@ const CGFloat _defaultMaxHeight = 1000;
     free(lineOrigins);
     
     return index;
+}
+
+- (void)touchBeganAtLocation:(CGPoint)location
+{
+    CGPoint relativeLocation = CGPointMake(location.x - _frame.origin.x, location.y - _frame.origin.y);
+    
+    // Set argument
+    SDSentenceTouchEventArgument *argument = [[SDSentenceTouchEventArgument alloc] init];
+    [argument setTouchLocation:relativeLocation];
+    [argument setCharacterIndex:[self getCharacterIndexForTouchLocation:relativeLocation]];
+    [_onTouchIn setObject:argument];
+    
+    // Perform event
+    [_onTouchIn performEvent];
+    
+    [super touchBeganAtLocation:location];
+}
+
+- (void)touchEndedAtLocation:(CGPoint)location
+{
+    [super touchEndedAtLocation:location];
+    
+    CGPoint relativeLocation = CGPointMake(location.x - _frame.origin.x, location.y - _frame.origin.y);
+    
+    // Set argument
+    SDSentenceTouchEventArgument *argument = [[SDSentenceTouchEventArgument alloc] init];
+    [argument setTouchLocation:relativeLocation];
+    [argument setCharacterIndex:[self getCharacterIndexForTouchLocation:relativeLocation]];
+    [_onTouchUp setObject:argument];
+    
+    // Perform event
+    [_onTouchUp performEvent];
+}
+
+- (void)removeHighlightAndUpdate
+{
+    // Perform event
+    [_onTouchEnd performEvent];
+    
+    [super removeHighlightAndUpdate];
 }
 
 - (void)dealloc

@@ -7,6 +7,7 @@
 //
 
 #import "BCFeedCell.h"
+#import "BBSentence.h"
 
 @implementation BCFeedCell
 
@@ -15,8 +16,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        _sentence = [[SDSentence alloc] init];
-        [_sentence setEvent:[SDEvent eventForTarget:self selector:@selector(sentenceTouched:)]];
+        _sentence = [[BBSentence alloc] init];
+        [_sentence setOnTouchUp:[SDEvent eventForTarget:self selector:@selector(onTouchUp:)]]; // todo add instead of set
         
         _image = [[SDImageView alloc] initWithSize:CGSizeMake(40, 40)];
         
@@ -33,19 +34,19 @@
     [_sentence drawAtPoint:CGPointMake(50, 5)];
 }
 
-- (void)sentenceTouched:(SDSentenceTouchEventArgument *)eventArgument
+- (void)onTouchUp:(SDSentenceTouchEventArgument *)eventArgument
 {
-    if ([self.delegate respondsToSelector:@selector(cell:sentenceTouched:)])
-        [self.delegate performSelector:@selector(cell:sentenceTouched:) withObject:self withObject:eventArgument];
+    if ([self.delegate respondsToSelector:@selector(cell:onSentenceTouchUp:)])
+        [self.delegate performSelector:@selector(cell:onSentenceTouchUp:) withObject:self withObject:eventArgument];
 }
 
-+ (CGFloat)heightForAttributedString:(NSAttributedString *)string andWidth:(CGFloat)width
++ (CGFloat)heightForBbCode:(BBCodeString *)code andWidth:(CGFloat)width
 {
     CGFloat height = 10.0;
     
-    SDSentence *sentence = [[SDSentence alloc] init];
+    BBSentence *sentence = [[BBSentence alloc] init];
     [sentence setMaxWidth:width - 55];
-    [sentence setAttributedString:string];
+    [sentence setBbCode:code];
     height += [sentence sizeForPoint:CGPointMake(50, 5)].height;
     
     return height;

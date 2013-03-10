@@ -53,10 +53,10 @@
 - (void)touchEndedAtLocation:(CGPoint)location
 {
     [super touchEndedAtLocation:location];
-    [self performSelector:@selector(unHiglightAndUpdate) withObject:nil afterDelay:0.2];
+    [self performSelector:@selector(removeHighlightAndUpdate) withObject:nil afterDelay:0.2];
 }
 
-- (void)unHiglightAndUpdate
+- (void)removeHighlightAndUpdate
 {
     [self setHighlighted:NO];
     [_parent setNeedsDisplay];
@@ -65,13 +65,13 @@
 - (void)touchMovedAtLocation:(CGPoint)location
 {
     [super touchMovedAtLocation:location];
-    [self unHiglightAndUpdate];
+    [self removeHighlightAndUpdate];
 }
 
 - (void)touchCanceledAtLocation:(CGPoint)location
 {
     [super touchCanceledAtLocation:location];
-    [self unHiglightAndUpdate];
+    [self removeHighlightAndUpdate];
 }
 
 @end

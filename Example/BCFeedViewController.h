@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "BCFeedCellDelegate.h"
 
+@class BCFeedLayout;
+
 @interface BCFeedViewController : UITableViewController <BCFeedCellDelegate> {
     NSArray *_model;
+    BCFeedLayout *_layout;
 }
 
 @end

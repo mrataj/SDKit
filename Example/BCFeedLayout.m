@@ -11,9 +11,9 @@
 
 @implementation BCFeedLayout
 
-- (UIFont *)getFont:(BBElement *)element
+- (UIFont *)getFont:(BBElement *)element selected:(BOOL)selected
 {
-    if ([self isTagSupported:element.tag])
+    if ([self isTagClickable:element.tag])
     {
         return [UIFont boldSystemFontOfSize:16.0];
     }
@@ -23,11 +23,11 @@
     }
 }
 
-- (UIColor *)getTextColor:(BBElement *)element
+- (UIColor *)getTextColor:(BBElement *)element selected:(BOOL)selected
 {
-    if ([self isTagSupported:element.tag])
+    if ([self isTagClickable:element.tag])
     {
-        return [UIColor colorWithRed:59/255.0 green:90/255.0 blue:155/255.0 alpha:1.0];
+        return (selected) ? [UIColor blackColor] : [UIColor colorWithRed:59/255.0 green:90/255.0 blue:155/255.0 alpha:1.0];
     }
     else
     {
@@ -44,7 +44,7 @@
             nil];
 }
 
-- (BOOL)isTagSupported:(NSString *)tag
+- (BOOL)isTagClickable:(NSString *)tag
 {
     for (NSString *supportedTag in [self getSupportedTags])
         if ([tag isEqualToString:supportedTag])

@@ -26,20 +26,22 @@
         
         _layoutProvider = layoutProvider;
         
-        [self make];
+        BBCodeParser *parser = [[BBCodeParser alloc] initWithTags:[self.layoutProvider getSupportedTags]];
+        [parser setCode:self.bbCode];
+        [parser parse];
+        
+        _root = parser.element;
+        
+        _attributedString = [[NSMutableAttributedString alloc] init];
+        
+        [self redraw];
     }
     return self;
 }
 
-- (void)make
+- (void)redraw
 {
-    _attributedString = [[NSMutableAttributedString alloc] init];
-    
-    BBCodeParser *parser = [[BBCodeParser alloc] initWithTags:[self.layoutProvider getSupportedTags]];
-    [parser setCode:self.bbCode];
-    [parser parse];
-    
-    _root = parser.element;
+    [_attributedString deleteCharactersInRange:NSMakeRange(0, _attributedString.length)];
     
     [self appendElement:_root];
 }
@@ -97,10 +99,22 @@
     
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text];
     
-    [string setFont:[self.layoutProvider getFont:element]];
-    [string setColor:[self.layoutProvider getTextColor:element]];
+    BOOL selected = (element == _selectedElement);
+    
+    if (_layoutProvider == nil)
+        @throw @"Layout provider not set";
+    
+    [string setFont:[_layoutProvider getFont:element selected:selected]];
+    [string setColor:[_layoutProvider getTextColor:element selected:selected]];
     
     [_attributedString appendAttributedString:string];
+}
+
+- (void)setSelectedElement:(BBElement *)selectedElement
+{
+    _selectedElement = selectedElement;
+    
+    [self redraw];
 }
 
 @end

@@ -9,12 +9,15 @@
 #import "SDKit.h"
 #import "BCFeedCellDelegate.h"
 
+@class BBSentence;
+@class BBCodeString;
+
 @interface BCFeedCell : SDTableViewCell
 
-@property (nonatomic, strong) SDSentence *sentence;
+@property (nonatomic, strong) BBSentence *sentence;
 @property (nonatomic, strong) SDImageView *image;
 @property (nonatomic, weak) id<BCFeedCellDelegate> delegate;
 
-+ (CGFloat)heightForAttributedString:(NSAttributedString *)string andWidth:(CGFloat)width;
++ (CGFloat)heightForBbCode:(BBCodeString *)code andWidth:(CGFloat)width;
 
 @end
